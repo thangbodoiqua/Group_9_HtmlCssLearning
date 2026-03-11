@@ -1,0 +1,22 @@
+package com.se2.htmlcsslearning.entity;
+
+import jakarta.persistence.*;
+import lombok.Data;
+
+@Entity
+@Data
+public class Lesson {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "lesson_name")
+    private String lessonName;
+
+    @Column(name = "lesson_order")
+    private Integer lessonOrder;
+
+    @ManyToOne
+    @JoinColumn(name="category_name", referencedColumnName = "category_name")
+    private LessonCategory category;
+}

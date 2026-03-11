@@ -1,6 +1,9 @@
 package com.se2.htmlcsslearning.service.impl;
 
-import main.java.com.se2.htmlcsslearning.service.GradingService;
 
+import com.se2.htmlcsslearning.service.GradingService;
+import org.springframework.stereotype.Service;
+
+@Service
 public class GradingServiceImpl implements GradingService {
 }
