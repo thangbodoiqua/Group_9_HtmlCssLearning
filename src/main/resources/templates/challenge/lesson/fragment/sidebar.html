@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<aside th:fragment="sidebar" class="cm-sidebar">
+  <div class="cm-sidebar-toggle" onclick="document.getElementById('mobileSidebarMenu').classList.toggle('show')">
+    <span th:text="${currentCategory} + ' Lessons Menu'">Lessons Menu</span>
+    <span>▼</span>
+  </div>
+
+  <div class="cm-sidebar-content" id="mobileSidebarMenu">
+    <div class="lesson-sidebar-title" th:text="${currentCategory} + ' Tutorial'">Tutorial</div>
+
+    <ul class="lesson-sidebar-menu">
+      <li th:each="lesson : ${lessons}">
+        <a th:href="@{/lesson/{cat}/{name}(cat=${#strings.toLowerCase(currentCategory)}, name=${lesson.lessonName})}"
+           class="lesson-sidebar-link"
+           th:classappend="${lesson.lessonName == currentLessonName} ? 'active' : ''"
+           th:text="${#strings.replace(lesson.lessonName, '_', ' ')}">
+          Tên bài học
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
+</body>
+</html>

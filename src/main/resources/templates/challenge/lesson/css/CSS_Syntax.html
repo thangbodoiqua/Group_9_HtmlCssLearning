@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{challenge/lesson/fragment/lesson-layout :: main_layout(title='CSS Syntax - Markuply', content=~{:: #lessonData})}">
+<head>
+  <title>CSS Syntax</title>
+</head>
+<body>
+
+<div id="lessonData">
+
+  <h1 class="cm-heading mb-4 lesson-title">CSS Syntax</h1>
+
+  <p class="lead" style="color: var(--cm-text-main); opacity: 0.9;">
+    A CSS rule consists of a selector and a declaration block.
+  </p>
+
+  <hr class="my-4">
+
+  <h2 class="cm-heading mb-3 lesson-section-title">The CSS Syntax Structure</h2>
+
+
+
+  <div class="text-center my-4 p-4 bg-light border rounded shadow-sm" style="font-family: 'Courier New', Courier, monospace; font-size: 1.5rem; color: var(--cm-text-main);">
+    <div class="d-flex justify-content-center align-items-center flex-wrap">
+      <div class="text-center mx-3">
+        <span style="color: #d97706; font-weight: bold; font-size: 2rem;">h1</span>
+        <div style="font-size: 0.9rem; color: #6b7280; font-family: sans-serif; margin-top: 5px;">Selector</div>
+      </div>
+      <div style="font-size: 2rem; font-weight: bold;">{</div>
+      <div class="text-center mx-3">
+        <span style="color: #2563eb; font-weight: bold; font-size: 1.5rem;">color</span>
+        <span style="font-weight: bold; font-size: 1.5rem;">:</span>
+        <span style="color: #16a34a; font-weight: bold; font-size: 1.5rem;">blue</span><span style="font-weight: bold; font-size: 1.5rem;">;</span>
+        <div style="font-size: 0.9rem; color: #6b7280; font-family: sans-serif; margin-top: 5px;">Declaration</div>
+      </div>
+      <div class="text-center mx-3">
+        <span style="color: #2563eb; font-weight: bold; font-size: 1.5rem;">font-size</span>
+        <span style="font-weight: bold; font-size: 1.5rem;">:</span>
+        <span style="color: #16a34a; font-weight: bold; font-size: 1.5rem;">12px</span><span style="font-weight: bold; font-size: 1.5rem;">;</span>
+        <div style="font-size: 0.9rem; color: #6b7280; font-family: sans-serif; margin-top: 5px;">Declaration</div>
+      </div>
+      <div style="font-size: 2rem; font-weight: bold;">}</div>
+    </div>
+  </div>
+
+  <ul class="mb-4" style="line-height: 1.8;">
+    <li class="mb-2">The <strong>selector</strong> points to the HTML element you want to style.</li>
+    <li class="mb-2">The <strong>declaration block</strong> contains one or more declarations separated by semicolons.</li>
+    <li class="mb-2">Each declaration includes a CSS <strong>property name</strong> and a <strong>value</strong>, separated by a colon.</li>
+    <li class="mb-2">Multiple CSS declarations are separated with semicolons, and declaration blocks are surrounded by curly braces.</li>
+  </ul>
+
+  <hr class="my-5">
+
+  <h2 class="cm-heading mb-3 lesson-section-title">CSS Example</h2>
+  <p>In this example all <span class="inline-code">&lt;p&gt;</span> elements will be center-aligned, with a red text color:</p>
+
+  <section class="lesson-example mb-4" aria-label="Example">
+    <div class="lesson-example-header">
+      <h3 class="lesson-example-title">Example:</h3>
+      <a class="btn btn-sm btn-cm-primary" id="tryNowExampleBtn" th:href="@{/compiler}">Try it Yourself</a>
+    </div>
+    <div class="lesson-example-body">
+                <pre class="lesson-codeblock"><code id="exampleCssCode">p {
+  color: red;
+  text-align: center;
+}</code></pre>
+    </div>
+  </section>
+
+  <h3 class="cm-heading mt-4 mb-3" style="font-size: 1.3rem;">Example Explained</h3>
+  <ul class="mb-4" style="line-height: 1.8;">
+    <li class="mb-2"><span class="inline-code" style="color: #d97706; font-weight: bold;">p</span> is a <strong>selector</strong> in CSS (it points to the HTML element you want to style: &lt;p&gt;).</li>
+    <li class="mb-2"><span class="inline-code" style="color: #2563eb; font-weight: bold;">color</span> is a <strong>property</strong>, and <span class="inline-code" style="color: #16a34a; font-weight: bold;">red</span> is the property <strong>value</strong>.</li>
+    <li class="mb-2"><span class="inline-code" style="color: #2563eb; font-weight: bold;">text-align</span> is a <strong>property</strong>, and <span class="inline-code" style="color: #16a34a; font-weight: bold;">center</span> is the property <strong>value</strong>.</li>
+  </ul>
+
+  <div class="highlight-box bg-white border border-info mt-4" style="border-left: 5px solid #0ea5e9 !important;">
+    <strong class="text-info">Important:</strong> Always remember to add a semicolon <span class="inline-code">;</span> at the end of each declaration, otherwise your CSS might not work properly!
+  </div>
+
+  <div class="mt-5 pt-4 border-top d-flex justify-content-between align-items-center flex-wrap lesson-actions">
+    <a class="btn btn-lesson-nav" th:href="${prevLessonUrl}" th:if="${prevLessonUrl != '#'}" aria-label="Previous lesson">← Previous</a>
+    <span th:if="${prevLessonUrl == '#'}"></span>
+
+    <button class="btn btn-cm-primary px-4 py-2 shadow-sm" type="button">Mark as Completed</button>
+
+    <a class="btn btn-lesson-nav" th:href="${nextLessonUrl}" th:if="${nextLessonUrl != '#'}" aria-label="Next lesson">Next →</a>
+    <span th:if="${nextLessonUrl == '#'}"></span>
+  </div>
+
+</div>
+
+</body>
+</html>
