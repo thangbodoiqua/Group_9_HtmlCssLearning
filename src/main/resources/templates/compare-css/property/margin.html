@@ -1,0 +1,94 @@
+<body th:replace="~{compare-css/_layout :: comparePage(
+    'Margin Variants',
+    'Compare different ways to apply margin around elements.',
+    'margin',
+    ~{:: #marginOptions},
+    ~{:: #marginPreviews}
+)}">
+
+<!-- OPTIONS -->
+<th:block id="marginOptions">
+    <button class="compare-option-btn" data-option-index="0">
+        <span class="compare-option-row">
+            <code class="compare-option-code">margin: <span class="compare-value-highlight">16px</span>;</code>
+        </span>
+    </button>
+    <button class="compare-option-btn" data-option-index="1">
+        <span class="compare-option-row">
+            <code class="compare-option-code">margin: <span class="compare-value-highlight">24px 8px</span>;</code>
+        </span>
+    </button>
+    <button class="compare-option-btn" data-option-index="2">
+        <span class="compare-option-row">
+            <code class="compare-option-code">margin: <span class="compare-value-highlight">4px 16px 24px 32px</span>;</code>
+        </span>
+    </button>
+    <button class="compare-option-btn" data-option-index="3">
+        <span class="compare-option-row">
+            <code class="compare-option-code">margin: <span class="compare-value-highlight">16px auto</span>;</code>
+        </span>
+    </button>
+</th:block>
+
+<!-- PREVIEWS -->
+<th:block id="marginPreviews">
+    <!-- 0: all sides -->
+    <div class="compare-preview-item compare-preview-neutral">
+        <div class="compare-preview-content">
+            <h3>All sides</h3>
+            <p>Using one value applies the same margin to all four sides.</p>
+            <div class="compare-css-display">
+                <div style="border:1px dashed var(--cm-border); padding:1rem; background:var(--cm-surface-2);">
+                    <div style="width:120px; height:60px; background:#2563eb; margin:16px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 1: top/bottom & left/right -->
+    <div class="compare-preview-item compare-preview-neutral" style="display:none;">
+        <div class="compare-preview-content">
+            <h3>Top/bottom & left/right</h3>
+            <p>Two values: first is top & bottom, second is left & right.</p>
+            <div class="compare-css-display">
+                <div style="border:1px dashed var(--cm-border); padding:1rem; background:var(--cm-surface-2);">
+                    <div style="width:120px; height:60px; background:#2563eb; margin:24px 8px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2: 4 values -->
+    <div class="compare-preview-item compare-preview-neutral" style="display:none;">
+        <div class="compare-preview-content">
+            <h3>Four values</h3>
+            <p>Four values: top, right, bottom, left.</p>
+            <div class="compare-css-display">
+                <div style="border:1px dashed var(--cm-border); padding:1rem; background:var(--cm-surface-2);">
+                    <div style="width:120px; height:60px; background:#2563eb; margin:4px 16px 24px 32px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3: auto -->
+    <div class="compare-preview-item compare-preview-neutral" style="display:none;">
+        <div class="compare-preview-content">
+            <h3>Auto (horizontal centering)</h3>
+            <p>Using auto on left/right can horizontally center a block with fixed width.</p>
+            <div class="compare-css-display">
+                <div style="border:1px dashed var(--cm-border); padding:1rem; background:var(--cm-surface-2);">
+                    <div style="width:140px; height:60px; background:#2563eb; margin:16px auto;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
+
+</body>
+</html>
+

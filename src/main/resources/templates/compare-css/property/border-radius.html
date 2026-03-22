@@ -1,0 +1,81 @@
+<body th:replace="~{compare-css/_layout :: comparePage(
+    'Border Radius Variants',
+    'Compare different ways of rounding corners with border-radius.',
+    'border-radius',
+    ~{:: #borderRadiusOptions},
+    ~{:: #borderRadiusPreviews}
+)}">
+
+<!-- OPTIONS -->
+<th:block id="borderRadiusOptions">
+    <button class="compare-option-btn" data-option-index="0">
+        <span class="compare-option-row">
+            <code class="compare-option-code">border-radius: <span class="compare-value-highlight">0</span>;</code>
+        </span>
+    </button>
+    <button class="compare-option-btn" data-option-index="1">
+        <span class="compare-option-row">
+            <code class="compare-option-code">border-radius: <span class="compare-value-highlight">8px</span>;</code>
+        </span>
+    </button>
+    <button class="compare-option-btn" data-option-index="2">
+        <span class="compare-option-row">
+            <code class="compare-option-code">border-radius: <span class="compare-value-highlight">50%</span>;</code>
+        </span>
+    </button>
+    <button class="compare-option-btn" data-option-index="3">
+        <span class="compare-option-row">
+            <code class="compare-option-code">border-radius: <span class="compare-value-highlight">24px 8px 24px 8px</span>;</code>
+        </span>
+    </button>
+</th:block>
+
+<!-- PREVIEWS -->
+<th:block id="borderRadiusPreviews">
+    <!-- 0: 0 -->
+    <div class="compare-preview-item compare-preview-neutral">
+        <div class="compare-preview-content">
+            <h3>No rounding (0)</h3>
+            <p>Sharp corners with no rounding.</p>
+            <div class="compare-css-display">
+                <div style="width:160px; height:80px; border:3px solid #2563eb; border-radius:0; background:var(--cm-surface-2); margin:0 auto;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 1: 8px -->
+    <div class="compare-preview-item compare-preview-neutral" style="display:none;">
+        <div class="compare-preview-content">
+            <h3>Small rounding (8px)</h3>
+            <p>Subtle rounded corners, common for cards and buttons.</p>
+            <div class="compare-css-display">
+                <div style="width:160px; height:80px; border:3px solid #2563eb; border-radius:8px; background:var(--cm-surface-2); margin:0 auto;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2: 50% -->
+    <div class="compare-preview-item compare-preview-neutral" style="display:none;">
+        <div class="compare-preview-content">
+            <h3>Circle (50%)</h3>
+            <p>Using 50% on a square makes a perfect circle.</p>
+            <div class="compare-css-display">
+                <div style="width:100px; height:100px; border:3px solid #2563eb; border-radius:50%; background:#0ea5e9; margin:0 auto;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3: mixed corners -->
+    <div class="compare-preview-item compare-preview-neutral" style="display:none;">
+        <div class="compare-preview-content">
+            <h3>Mixed corners</h3>
+            <p>Different values for each corner using shorthand.</p>
+            <div class="compare-css-display">
+                <div style="width:180px; height:90px; border:3px solid #2563eb; border-radius:24px 8px 24px 8px; background:#22c55e; margin:0 auto;"></div>
+            </div>
+        </div>
+    </div>
+</th:block>
+
+</body>
+</html>

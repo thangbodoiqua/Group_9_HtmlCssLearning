@@ -1,0 +1,125 @@
+<body th:replace="~{compare-css/_layout :: comparePage(
+    'Font Weight Variants',
+    'Compare different CSS syntaxes and values for the font-weight property.',
+    'font-weight',
+    ~{:: #fontWeightOptions},
+    ~{:: #fontWeightPreviews}
+)}">
+
+<!-- ==========================================
+     FRAGMENT 1: OPTIONS PANEL
+     ========================================== -->
+<th:block id="fontWeightOptions">
+    <button class="compare-option-btn" data-option-index="0">
+        <span class="compare-option-row">
+            <code class="compare-option-code">font-weight: <span class="compare-value-highlight">normal</span></code>
+        </span>
+    </button>
+
+    <button class="compare-option-btn" data-option-index="1">
+        <span class="compare-option-row">
+            <code class="compare-option-code">font-weight: <span class="compare-value-highlight">bold</span></code>
+        </span>
+    </button>
+
+    <button class="compare-option-btn" data-option-index="2">
+        <span class="compare-option-row">
+            <code class="compare-option-code">font-weight: <span class="compare-value-highlight">lighter</span></code>
+        </span>
+    </button>
+
+    <button class="compare-option-btn" data-option-index="3">
+        <span class="compare-option-row">
+            <code class="compare-option-code">font-weight: <span class="compare-value-highlight">bolder</span></code>
+        </span>
+    </button>
+
+    <button class="compare-option-btn" data-option-index="4">
+        <span class="compare-option-row">
+            <code class="compare-option-code">font-weight: <span class="compare-value-highlight">numeric (100–900)</span></code>
+        </span>
+    </button>
+</th:block>
+
+<!-- ==========================================
+     FRAGMENT 2: PREVIEWS PANEL
+     ========================================== -->
+<th:block id="fontWeightPreviews">
+    <!-- 0: normal -->
+    <div class="compare-preview-item compare-preview-neutral">
+        <div class="compare-preview-content">
+            <h3>normal</h3>
+            <p>Default text weight for most fonts.</p>
+            <div class="compare-css-display">
+                <div style="border:1px dashed var(--cm-border); padding:0.75rem; background:var(--cm-surface-2);">
+                    <p style="font-weight:normal; margin:0;">This text uses <strong>font-weight: normal;</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 1: bold -->
+    <div class="compare-preview-item compare-preview-neutral" style="display:none;">
+        <div class="compare-preview-content">
+            <h3>bold</h3>
+            <p>Heavier text weight, used to emphasize content.</p>
+            <div class="compare-css-display">
+                <div style="border:1px dashed var(--cm-border); padding:0.75rem; background:var(--cm-surface-2);">
+                    <p style="font-weight:bold; margin:0;">This text uses <strong>font-weight: bold;</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2: lighter -->
+    <div class="compare-preview-item compare-preview-neutral" style="display:none;">
+        <div class="compare-preview-content">
+            <h3>lighter</h3>
+            <p>Text becomes lighter relative to the parent weight.</p>
+            <div class="compare-css-display">
+                <div style="border:1px dashed var(--cm-border); padding:0.75rem; background:var(--cm-surface-2);">
+                    <div style="font-weight:bold;">
+                        <p style="margin:0;">Parent with font-weight: bold;</p>
+                        <p style="font-weight:lighter; margin:0;">Child with font-weight: lighter;</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3: bolder -->
+    <div class="compare-preview-item compare-preview-neutral" style="display:none;">
+        <div class="compare-preview-content">
+            <h3>bolder</h3>
+            <p>Text becomes bolder relative to the parent weight.</p>
+            <div class="compare-css-display">
+                <div style="border:1px dashed var(--cm-border); padding:0.75rem; background:var(--cm-surface-2);">
+                    <div style="font-weight:normal;">
+                        <p style="margin:0;">Parent with font-weight: normal;</p>
+                        <p style="font-weight:bolder; margin:0;">Child with font-weight: bolder;</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4: numeric -->
+    <div class="compare-preview-item compare-preview-neutral" style="display:none;">
+        <div class="compare-preview-content">
+            <h3>Numeric values (100–900)</h3>
+            <p>Gives you fine‑grained control over weight when the font supports it.</p>
+            <div class="compare-css-display">
+                <div style="border:1px dashed var(--cm-border); padding:0.75rem; background:var(--cm-surface-2); display:flex; flex-direction:column; gap:0.25rem;">
+                    <p style="font-weight:300; margin:0;">font-weight: 300; (light)</p>
+                    <p style="font-weight:400; margin:0;">font-weight: 400; (normal)</p>
+                    <p style="font-weight:600; margin:0;">font-weight: 600; (semi-bold)</p>
+                    <p style="font-weight:700; margin:0;">font-weight: 700; (bold)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
+
+</body>
+</html>
+

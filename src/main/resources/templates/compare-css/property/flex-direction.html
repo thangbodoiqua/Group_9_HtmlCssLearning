@@ -1,0 +1,98 @@
+<body th:replace="~{compare-css/_layout :: comparePage(
+    'Flex Direction Variants',
+    'Compare different values for flex-direction in a flex container.',
+    'flex-direction',
+    ~{:: #flexDirectionOptions},
+    ~{:: #flexDirectionPreviews}
+)}">
+
+<!-- OPTIONS -->
+<th:block id="flexDirectionOptions">
+    <button class="compare-option-btn" data-option-index="0">
+        <span class="compare-option-row">
+            <code class="compare-option-code">flex-direction: <span class="compare-value-highlight">row</span>;</code>
+        </span>
+    </button>
+    <button class="compare-option-btn" data-option-index="1">
+        <span class="compare-option-row">
+            <code class="compare-option-code">flex-direction: <span class="compare-value-highlight">row-reverse</span>;</code>
+        </span>
+    </button>
+    <button class="compare-option-btn" data-option-index="2">
+        <span class="compare-option-row">
+            <code class="compare-option-code">flex-direction: <span class="compare-value-highlight">column</span>;</code>
+        </span>
+    </button>
+    <button class="compare-option-btn" data-option-index="3">
+        <span class="compare-option-row">
+            <code class="compare-option-code">flex-direction: <span class="compare-value-highlight">column-reverse</span>;</code>
+        </span>
+    </button>
+</th:block>
+
+<!-- PREVIEWS -->
+<th:block id="flexDirectionPreviews">
+    <!-- row -->
+    <div class="compare-preview-item compare-preview-neutral">
+        <div class="compare-preview-content">
+            <h3>Row</h3>
+            <p>Items are laid out in a horizontal row, from left to right.</p>
+            <div class="compare-css-display">
+                <div style="display:flex; gap:0.5rem; border:1px dashed var(--cm-border); padding:0.75rem; background:var(--cm-surface-2); justify-content:center;">
+                    <div style="width:40px; height:40px; background:#2563eb; color:white; display:flex; align-items:center; justify-content:center;">1</div>
+                    <div style="width:40px; height:40px; background:#0ea5e9; color:white; display:flex; align-items:center; justify-content:center;">2</div>
+                    <div style="width:40px; height:40px; background:#22c55e; color:white; display:flex; align-items:center; justify-content:center;">3</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- row-reverse -->
+    <div class="compare-preview-item compare-preview-neutral" style="display:none;">
+        <div class="compare-preview-content">
+            <h3>Row-reverse</h3>
+            <p>Items are in a row but the visual order is reversed.</p>
+            <div class="compare-css-display">
+                <div style="display:flex; flex-direction:row-reverse; gap:0.5rem; border:1px dashed var(--cm-border); padding:0.75rem; background:var(--cm-surface-2); justify-content:center;">
+                    <div style="width:40px; height:40px; background:#2563eb; color:white; display:flex; align-items:center; justify-content:center;">1</div>
+                    <div style="width:40px; height:40px; background:#0ea5e9; color:white; display:flex; align-items:center; justify-content:center;">2</div>
+                    <div style="width:40px; height:40px; background:#22c55e; color:white; display:flex; align-items:center; justify-content:center;">3</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- column -->
+    <div class="compare-preview-item compare-preview-neutral" style="display:none;">
+        <div class="compare-preview-content">
+            <h3>Column</h3>
+            <p>Items are stacked vertically from top to bottom.</p>
+            <div class="compare-css-display">
+                <div style="display:flex; flex-direction:column; gap:0.5rem; border:1px dashed var(--cm-border); padding:0.75rem; background:var(--cm-surface-2); align-items:center;">
+                    <div style="width:40px; height:40px; background:#2563eb; color:white; display:flex; align-items:center; justify-content:center;">1</div>
+                    <div style="width:40px; height:40px; background:#0ea5e9; color:white; display:flex; align-items:center; justify-content:center;">2</div>
+                    <div style="width:40px; height:40px; background:#22c55e; color:white; display:flex; align-items:center; justify-content:center;">3</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- column-reverse -->
+    <div class="compare-preview-item compare-preview-neutral" style="display:none;">
+        <div class="compare-preview-content">
+            <h3>Column-reverse</h3>
+            <p>Items are stacked vertically but the visual order is reversed.</p>
+            <div class="compare-css-display">
+                <div style="display:flex; flex-direction:column-reverse; gap:0.5rem; border:1px dashed var(--cm-border); padding:0.75rem; background:var(--cm-surface-2); align-items:center;">
+                    <div style="width:40px; height:40px; background:#2563eb; color:white; display:flex; align-items:center; justify-content:center;">1</div>
+                    <div style="width:40px; height:40px; background:#0ea5e9; color:white; display:flex; align-items:center; justify-content:center;">2</div>
+                    <div style="width:40px; height:40px; background:#22c55e; color:white; display:flex; align-items:center; justify-content:center;">3</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
+
+</body>
+</html>
+

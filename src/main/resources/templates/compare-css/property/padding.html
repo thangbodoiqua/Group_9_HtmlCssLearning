@@ -1,0 +1,90 @@
+<body th:replace="~{compare-css/_layout :: comparePage(
+    'Padding Variants',
+    'Compare different ways to add space inside an element with padding.',
+    'padding',
+    ~{:: #paddingOptions},
+    ~{:: #paddingPreviews}
+)}">
+
+<!-- OPTIONS -->
+<th:block id="paddingOptions">
+    <button class="compare-option-btn" data-option-index="0">
+        <span class="compare-option-row">
+            <code class="compare-option-code">padding: <span class="compare-value-highlight">16px</span>;</code>
+        </span>
+    </button>
+    <button class="compare-option-btn" data-option-index="1">
+        <span class="compare-option-row">
+            <code class="compare-option-code">padding: <span class="compare-value-highlight">8px 24px</span>;</code>
+        </span>
+    </button>
+    <button class="compare-option-btn" data-option-index="2">
+        <span class="compare-option-row">
+            <code class="compare-option-code">padding: <span class="compare-value-highlight">4px 16px 24px 32px</span>;</code>
+        </span>
+    </button>
+    <button class="compare-option-btn" data-option-index="3">
+        <span class="compare-option-row">
+            <code class="compare-option-code">padding-block: <span class="compare-value-highlight">12px</span>; padding-inline: <span class="compare-value-highlight">24px</span>;</code>
+        </span>
+    </button>
+</th:block>
+
+<!-- PREVIEWS -->
+<th:block id="paddingPreviews">
+    <!-- 0: all sides -->
+    <div class="compare-preview-item compare-preview-neutral">
+        <div class="compare-preview-content">
+            <h3>All sides</h3>
+            <p>One value applies the same padding on all four sides.</p>
+            <div class="compare-css-display">
+                <div style="border:3px solid #2563eb; padding:16px; background:var(--cm-surface-2); max-width:260px; margin:0 auto;">
+                    <span style="display:inline-block; background:#0ea5e9; color:white; padding:4px 8px;">Content</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 1: top/bottom & left/right -->
+    <div class="compare-preview-item compare-preview-neutral" style="display:none;">
+        <div class="compare-preview-content">
+            <h3>Top/bottom & left/right</h3>
+            <p>Two values: first is top & bottom, second is left & right.</p>
+            <div class="compare-css-display">
+                <div style="border:3px solid #2563eb; padding:8px 24px; background:var(--cm-surface-2); max-width:260px; margin:0 auto;">
+                    <span style="display:inline-block; background:#0ea5e9; color:white; padding:4px 8px;">Content</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2: 4 values -->
+    <div class="compare-preview-item compare-preview-neutral" style="display:none;">
+        <div class="compare-preview-content">
+            <h3>Four values</h3>
+            <p>Four values: top, right, bottom, left.</p>
+            <div class="compare-css-display">
+                <div style="border:3px solid #2563eb; padding:4px 16px 24px 32px; background:var(--cm-surface-2); max-width:260px; margin:0 auto;">
+                    <span style="display:inline-block; background:#0ea5e9; color:white; padding:4px 8px;">Content</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3: inline/block -->
+    <div class="compare-preview-item compare-preview-neutral" style="display:none;">
+        <div class="compare-preview-content">
+            <h3>Inline/block padding (logical)</h3>
+            <p>Using logical properties like padding-inline and padding-block.</p>
+            <div class="compare-css-display">
+                <div style="border:3px solid #2563eb; padding-block:12px; padding-inline:24px; background:var(--cm-surface-2); max-width:260px; margin:0 auto;">
+                    <span style="display:inline-block; background:#0ea5e9; color:white; padding:4px 8px;">Content</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
+
+</body>
+</html>
+

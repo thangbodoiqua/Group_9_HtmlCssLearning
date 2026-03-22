@@ -12,7 +12,7 @@ public class Challenge {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name="challenge_type", referencedColumnName = "challange_type")
+    @JoinColumn(name="challenge_type", referencedColumnName = "challenge_type")
     private ChallengeType challengeType;
 
     @Column(name = "challenge_title")

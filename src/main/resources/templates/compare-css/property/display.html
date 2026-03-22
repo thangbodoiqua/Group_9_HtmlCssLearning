@@ -1,0 +1,162 @@
+<body th:replace="~{compare-css/_layout :: comparePage(
+    'Display Property Variants',
+    'Compare different CSS display values and see how they affect layout and layout flow.',
+    'display',
+    ~{:: #displayOptions},
+    ~{:: #displayPreviews}
+)}">
+
+<!-- ==========================================
+     FRAGMENT 1: OPTIONS PANEL
+     ========================================== -->
+<th:block id="displayOptions">
+    <button class="compare-option-btn" data-option-index="0">
+        <span class="compare-option-row">
+            <code class="compare-option-code">display: <span class="compare-value-highlight">block</span>;</code>
+        </span>
+    </button>
+
+    <button class="compare-option-btn" data-option-index="1">
+        <span class="compare-option-row">
+            <code class="compare-option-code">display: <span class="compare-value-highlight">inline</span>;</code>
+        </span>
+    </button>
+
+    <button class="compare-option-btn" data-option-index="2">
+        <span class="compare-option-row">
+            <code class="compare-option-code">display: <span class="compare-value-highlight">inline-block</span>;</code>
+        </span>
+    </button>
+
+    <button class="compare-option-btn" data-option-index="3">
+        <span class="compare-option-row">
+            <code class="compare-option-code">display: <span class="compare-value-highlight">flex</span>;</code>
+        </span>
+    </button>
+
+    <button class="compare-option-btn" data-option-index="4">
+        <span class="compare-option-row">
+            <code class="compare-option-code">display: <span class="compare-value-highlight">grid</span>;</code>
+        </span>
+    </button>
+
+    <button class="compare-option-btn" data-option-index="5">
+        <span class="compare-option-row">
+            <code class="compare-option-code">display: <span class="compare-value-highlight">none</span>;</code>
+        </span>
+    </button>
+</th:block>
+
+<!-- ==========================================
+     FRAGMENT 2: PREVIEWS PANEL
+     ========================================== -->
+<th:block id="displayPreviews">
+    <!-- 0: block -->
+    <div class="compare-preview-item compare-preview-neutral">
+        <div class="compare-preview-content">
+            <h3>Block</h3>
+            <p>Block-level elements stretch to fill the available width and always start on a new line.</p>
+            <div class="compare-css-display">
+                <!-- removed compare-code-block to avoid repeating CSS text -->
+                <div style="border:1px dashed var(--cm-border); padding:0.5rem; background:var(--cm-surface-2);">
+                    <div style="display:block; background:#2563eb; color:white; padding:0.5rem; margin-bottom:0.5rem;">Block 1 (full row)</div>
+                    <div style="display:block; background:#0ea5e9; color:white; padding:0.5rem; margin-bottom:0.5rem;">Block 2 (full row)</div>
+                    <div style="display:block; background:#22c55e; color:white; padding:0.5rem;">Block 3 (full row)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 1: inline -->
+    <div class="compare-preview-item compare-preview-neutral" style="display:none;">
+        <div class="compare-preview-content">
+            <h3>Inline</h3>
+            <p>Inline elements flow inside a text line and ignore width/height, only content size matters.</p>
+            <div class="compare-css-display">
+                <!-- removed compare-code-block to avoid repeating CSS text -->
+                <div style="border:1px dashed var(--cm-border); padding:0.5rem; background:var(--cm-surface-2);">
+                    <p>
+                        This is some text
+                        <span style="display:inline; background:#2563eb; color:white; padding:0.25rem 0.4rem;">inline 1</span>
+                        and more text
+                        <span style="display:inline; background:#0ea5e9; color:white; padding:0.25rem 0.4rem;">inline 2</span>
+                        continuing on the same line.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2: inline-block -->
+    <div class="compare-preview-item compare-preview-neutral" style="display:none;">
+        <div class="compare-preview-content">
+            <h3>Inline-block</h3>
+            <p>Inline-block elements sit next to each other like inline, but you can control their width and height.</p>
+            <div class="compare-css-display">
+                <!-- removed compare-code-block to avoid repeating CSS text -->
+                <div style="border:1px dashed var(--cm-border); padding:0.5rem; background:var(--cm-surface-2); white-space:nowrap;">
+                    <span style="display:inline-block; width:90px; background:#2563eb; color:white; padding:0.5rem; text-align:center; margin-right:0.5rem;">Box A</span>
+                    <span style="display:inline-block; width:120px; background:#0ea5e9; color:white; padding:0.5rem; text-align:center; margin-right:0.5rem;">Box B</span>
+                    <span style="display:inline-block; width:60px; background:#22c55e; color:white; padding:0.5rem; text-align:center;">C</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3: flex -->
+    <div class="compare-preview-item compare-preview-neutral" style="display:none;">
+        <div class="compare-preview-content">
+            <h3>Flex</h3>
+            <p>Flexbox arranges children in a row or column and can distribute free space between them.</p>
+            <div class="compare-css-display">
+                <!-- removed compare-code-block to avoid repeating CSS text -->
+                <div style="display:flex; gap:0.5rem; border:1px dashed var(--cm-border); padding:0.5rem; background:var(--cm-surface-2);">
+                    <div style="background:#2563eb; color:white; padding:0.5rem; flex:1; text-align:center;">Item 1</div>
+                    <div style="background:#0ea5e9; color:white; padding:0.5rem; flex:2; text-align:center;">Item 2 (flex:2)</div>
+                    <div style="background:#22c55e; color:white; padding:0.5rem; flex:1; text-align:center;">Item 3</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4: grid -->
+    <div class="compare-preview-item compare-preview-neutral" style="display:none;">
+        <div class="compare-preview-content">
+            <h3>Grid</h3>
+            <p>CSS Grid lets you define rows and columns for 2D layouts.</p>
+            <div class="compare-css-display">
+                <!-- removed compare-code-block to avoid repeating CSS text -->
+                <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:0.5rem; border:1px dashed var(--cm-border); padding:0.5rem; background:var(--cm-surface-2);">
+                    <div style="background:#2563eb; color:white; padding:0.5rem; text-align:center;">1</div>
+                    <div style="background:#0ea5e9; color:white; padding:0.5rem; text-align:center;">2</div>
+                    <div style="background:#22c55e; color:white; padding:0.5rem; text-align:center;">3</div>
+                    <div style="background:#f97316; color:white; padding:0.5rem; text-align:center;">4</div>
+                    <div style="background:#a855f7; color:white; padding:0.5rem; text-align:center;">5</div>
+                    <div style="background:#ec4899; color:white; padding:0.5rem; text-align:center;">6</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5: none -->
+    <div class="compare-preview-item compare-preview-neutral" style="display:none;">
+        <div class="compare-preview-content">
+            <h3>None</h3>
+            <p>Elements with <code>display: none;</code> do not take any space in the layout (they are not rendered).</p>
+            <div class="compare-css-display">
+                <!-- removed compare-code-block to avoid repeating CSS text -->
+                <div style="border:1px dashed var(--cm-border); padding:0.5rem; background:var(--cm-surface-2);">
+                    <p>In the box below, the middle element is set to <code>display: none;</code> so you only see 1 and 3.</p>
+                    <div style="border:1px solid #cbd5f5; padding:0.5rem; display:flex; gap:0.5rem;">
+                        <div style="background:#2563eb; color:white; padding:0.4rem 0.6rem;">1</div>
+                        <div style="display:none; background:#0ea5e9; color:white; padding:0.4rem 0.6rem;">2 (hidden)</div>
+                        <div style="background:#22c55e; color:white; padding:0.4rem 0.6rem;">3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
+
+</body>
+</html>

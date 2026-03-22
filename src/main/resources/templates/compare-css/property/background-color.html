@@ -1,0 +1,150 @@
+<body th:replace="~{compare-css/_layout :: comparePage(
+    'Background Color Styling',
+    'Explore different CSS syntaxes for the background-color property.',
+    'background-color',
+    ~{:: #bgOptions},
+    ~{:: #bgPreviews}
+)}">
+<!-- We call the layout's comparePage fragment, passing title, desc, propertyName, and the two fragments defined below -->
+<!--<div ></div>-->
+
+<!-- ==========================================
+     FRAGMENT 1: OPTIONS PANEL
+     ========================================== -->
+<th:block id="bgOptions">
+    <button class="compare-option-btn"
+            data-option-index="0"
+            >
+        <span class="compare-option-row">
+            <code class="compare-option-code">background-color: <span class="compare-color-value">red</span>;</code>
+        </span>
+    </button>
+
+    <button class="compare-option-btn"
+            data-option-index="1"
+            >
+        <span class="compare-option-row">
+            <code class="compare-option-code">background-color: <span class="compare-color-value">#0ea</span>;</code>
+        </span>
+    </button>
+
+    <button class="compare-option-btn"
+            data-option-index="2"
+            >
+        <span class="compare-option-row">
+            <code class="compare-option-code">background-color: <span class="compare-color-value">#2563eb</span>;</code>
+        </span>
+    </button>
+
+    <button class="compare-option-btn"
+            data-option-index="3"
+            >
+        <span class="compare-option-row">
+            <code class="compare-option-code">background-color: <span class="compare-color-value">rgb(34, 197, 94)</span>;</code>
+        </span>
+    </button>
+
+    <button class="compare-option-btn"
+            data-option-index="4"
+            >
+        <span class="compare-option-row">
+            <code class="compare-option-code">background-color: <span class="compare-color-value">rgba(239, 68, 68, 0.75)</span>;</code>
+        </span>
+    </button>
+
+    <button class="compare-option-btn"
+            data-option-index="5"
+            >
+        <span class="compare-option-row">
+            <code class="compare-option-code">background-color: <span class="compare-color-value">hsl(280, 70%, 55%)</span>;</code>
+        </span>
+    </button>
+
+    <button class="compare-option-btn"
+            data-option-index="6"
+            >
+        <span class="compare-option-row">
+            <code class="compare-option-code">background-color: <span class="compare-color-value">hsla(190, 90%, 45%, 0.65)</span>;</code>
+        </span>
+    </button>
+
+    <button class="compare-option-btn"
+            data-option-index="7"
+            >
+        <span class="compare-option-row">
+            <code class="compare-option-code">background-color: <span class="compare-color-value">transparent</span>;</code>
+        </span>
+    </button>
+</th:block>
+
+<!-- ==========================================
+     FRAGMENT 2: PREVIEWS PANEL
+     ========================================== -->
+<th:block id="bgPreviews">
+    <!-- 0: Named color – red -->
+    <div class="compare-preview-item" style="background-color: red;">
+        <div class="compare-preview-content">
+            <h3>Named Color</h3>
+            <p>background-color: red</p>
+        </div>
+    </div>
+
+    <!-- 1: Hex 3-digit -->
+    <div class="compare-preview-item" style="background-color: #0ea; display:none;">
+        <div class="compare-preview-content">
+            <h3>Hex (3-Digit)</h3>
+            <p>background-color: #0ea</p>
+        </div>
+    </div>
+
+    <!-- 2: Hex 6-digit -->
+    <div class="compare-preview-item" style="background-color: #2563eb; display:none;">
+        <div class="compare-preview-content">
+            <h3>Hex (6-Digit)</h3>
+            <p>background-color: #2563eb</p>
+        </div>
+    </div>
+
+    <!-- 3: RGB -->
+    <div class="compare-preview-item" style="background-color: rgb(34, 197, 94); display:none;">
+        <div class="compare-preview-content">
+            <h3>RGB</h3>
+            <p>background-color: rgb(34, 197, 94)</p>
+        </div>
+    </div>
+
+    <!-- 4: RGBA -->
+    <div class="compare-preview-item" style="background-color: rgba(239, 68, 68, 0.75); display:none;">
+        <div class="compare-preview-content">
+            <h3>RGBA (Alpha 0.75)</h3>
+            <p>background-color: rgba(239, 68, 68, 0.75)</p>
+        </div>
+    </div>
+
+    <!-- 5: HSL -->
+    <div class="compare-preview-item" style="background-color: hsl(280, 70%, 55%); display:none;">
+        <div class="compare-preview-content">
+            <h3>HSL</h3>
+            <p>background-color: hsl(280, 70%, 55%)</p>
+        </div>
+    </div>
+
+    <!-- 6: HSLA -->
+    <div class="compare-preview-item" style="background-color: hsla(190, 90%, 45%, 0.65); display:none;">
+        <div class="compare-preview-content">
+            <h3>HSLA (Alpha 0.65)</h3>
+            <p>background-color: hsla(190, 90%, 45%, 0.65)</p>
+        </div>
+    </div>
+
+    <!-- 7: Transparent -->
+    <div class="compare-preview-item compare-preview-transparent" style="background-color: transparent; display:none;">
+        <div class="compare-preview-content" style="color: #0f172a;">
+            <h3>Transparent</h3>
+            <p>background-color: transparent</p>
+        </div>
+    </div>
+</th:block>
+
+</body>
+</html>

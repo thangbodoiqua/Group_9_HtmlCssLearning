@@ -1,0 +1,153 @@
+<body th:replace="~{compare-css/_layout :: comparePage(
+    'Font Size Variants',
+    'Compare different CSS syntaxes and values for the font-size property.',
+    'font-size',
+    ~{:: #fontSizeOptions},
+    ~{:: #fontSizePreviews}
+)}">
+
+<!-- ==========================================
+     FRAGMENT 1: OPTIONS PANEL
+     ========================================== -->
+<th:block id="fontSizeOptions">
+    <button class="compare-option-btn" data-option-index="0">
+        <span class="compare-option-row">
+            <code class="compare-option-code">font-size: <span class="compare-value-highlight">px</span></code>
+        </span>
+    </button>
+
+    <button class="compare-option-btn" data-option-index="1">
+        <span class="compare-option-row">
+            <code class="compare-option-code">font-size: <span class="compare-value-highlight">rem</span></code>
+        </span>
+    </button>
+
+    <button class="compare-option-btn" data-option-index="2">
+        <span class="compare-option-row">
+            <code class="compare-option-code">font-size: <span class="compare-value-highlight">em</span></code>
+        </span>
+    </button>
+
+    <button class="compare-option-btn" data-option-index="3">
+        <span class="compare-option-row">
+            <code class="compare-option-code">font-size: <span class="compare-value-highlight">%</span></code>
+        </span>
+    </button>
+
+    <button class="compare-option-btn" data-option-index="4">
+        <span class="compare-option-row">
+            <code class="compare-option-code">font-size: <span class="compare-value-highlight">larger</span></code>
+        </span>
+    </button>
+
+    <button class="compare-option-btn" data-option-index="5">
+        <span class="compare-option-row">
+            <code class="compare-option-code">font-size: <span class="compare-value-highlight">smaller</span></code>
+        </span>
+    </button>
+</th:block>
+
+<!-- ==========================================
+     FRAGMENT 2: PREVIEWS PANEL
+     ========================================== -->
+<th:block id="fontSizePreviews">
+    <!-- 0: px -->
+    <div class="compare-preview-item compare-preview-neutral">
+        <div class="compare-preview-content">
+            <h3>Pixels (px)</h3>
+            <p>Absolute size that does not change if the user changes the root font-size.</p>
+            <div class="compare-css-display">
+                <div style="border:1px dashed var(--cm-border); padding:0.75rem; background:var(--cm-surface-2); display:flex; flex-direction:column; gap:0.25rem;">
+                    <p style="font-size:12px; margin:0;">font-size: 12px; (smaller)</p>
+                    <p style="font-size:16px; margin:0;">font-size: 16px; (typical body)</p>
+                    <p style="font-size:24px; margin:0;">font-size: 24px; (bigger)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 1: rem -->
+    <div class="compare-preview-item compare-preview-neutral" style="display:none;">
+        <div class="compare-preview-content">
+            <h3>Root-relative (rem)</h3>
+            <p>Relative to the root (&lt;html&gt;) font-size, useful for consistent scaling.</p>
+            <div class="compare-css-display">
+                <div style="border:1px dashed var(--cm-border); padding:0.75rem; background:var(--cm-surface-2); display:flex; flex-direction:column; gap:0.25rem;">
+                    <p style="font-size:0.875rem; margin:0;">font-size: 0.875rem;</p>
+                    <p style="font-size:1rem; margin:0;">font-size: 1rem; (base)</p>
+                    <p style="font-size:1.5rem; margin:0;">font-size: 1.5rem; (larger)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2: em -->
+    <div class="compare-preview-item compare-preview-neutral" style="display:none;">
+        <div class="compare-preview-content">
+            <h3>Parent-relative (em)</h3>
+            <p>Relative to the font-size of the element itself or its parent.</p>
+            <div class="compare-css-display">
+                <div style="border:1px dashed var(--cm-border); padding:0.75rem; background:var(--cm-surface-2);">
+                    <div style="font-size:16px;">
+                        <p style="margin:0;">Parent at 16px (1em = 16px).</p>
+                        <p style="font-size:1.25em; margin:0;">Child at 1.25em (≈ 20px).</p>
+                        <p style="font-size:0.75em; margin:0;">Child at 0.75em (≈ 12px).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3: % -->
+    <div class="compare-preview-item compare-preview-neutral" style="display:none;">
+        <div class="compare-preview-content">
+            <h3>Percent (%)</h3>
+            <p>Also relative to the parent font-size, expressed as a percentage.</p>
+            <div class="compare-css-display">
+                <div style="border:1px dashed var(--cm-border); padding:0.75rem; background:var(--cm-surface-2);">
+                    <div style="font-size:16px;">
+                        <p style="margin:0;">Parent at 16px.</p>
+                        <p style="font-size:75%; margin:0;">75% of 16px (≈ 12px).</p>
+                        <p style="font-size:125%; margin:0;">125% of 16px (≈ 20px).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4: larger -->
+    <div class="compare-preview-item compare-preview-neutral" style="display:none;">
+        <div class="compare-preview-content">
+            <h3>Keyword: larger</h3>
+            <p>Increases the font-size relative to the parent, using browser-defined steps.</p>
+            <div class="compare-css-display">
+                <div style="border:1px dashed var(--cm-border); padding:0.75rem; background:var(--cm-surface-2);">
+                    <div style="font-size:16px;">
+                        <p style="margin:0;">Parent at 16px.</p>
+                        <p style="font-size:larger; margin:0;">Child with font-size: larger;</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5: smaller -->
+    <div class="compare-preview-item compare-preview-neutral" style="display:none;">
+        <div class="compare-preview-content">
+            <h3>Keyword: smaller</h3>
+            <p>Decreases the font-size relative to the parent, using browser-defined steps.</p>
+            <div class="compare-css-display">
+                <div style="border:1px dashed var(--cm-border); padding:0.75rem; background:var(--cm-surface-2);">
+                    <div style="font-size:20px;">
+                        <p style="margin:0;">Parent at 20px.</p>
+                        <p style="font-size:smaller; margin:0;">Child with font-size: smaller;</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
+
+</body>
+</html>
+

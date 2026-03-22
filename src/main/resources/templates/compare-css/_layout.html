@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:fragment="comparePage(pageTitle, pageDescription, selectedPropertyName,optionsFragment, previewFragment)">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle} + ' - Compare CSS'">Compare CSS</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/theme.css}">
+    <link rel="stylesheet" th:href="@{/css/compare.css}">
+    <script th:src="@{/js/compare-utils.js}" defer></script>
+</head>
+<body class="cm-bg m-0 d-flex flex-column min-vh-100">
+<main class="container py-4">
+    <section class="lesson-card p-4">
+
+        <!-- ── Header ─────────────────────────────────────────── -->
+        <div class="compare-header mb-4">
+            <div class="w-100">
+                <h1 class="cm-heading mb-2" th:text="${pageTitle}">CSS Property</h1>
+                <p class="text-muted small mb-3" th:text="${pageDescription}">Property description</p>
+                <div class="compare-header-select-wrap">
+                    <label for="propertySelect" class="compare-section-label mb-2 d-block">CSS Property</label>
+                    <select id="propertySelect" class="form-select compare-property-select">
+                        <option th:each="name : ${allPropertyNames}"
+                                th:value="${name}"
+                                th:text="${name}"
+                                th:selected="${name == selectedPropertyName}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── Interactive Playground ─────────────────────────── -->
+        <div class="interactive-playground">
+
+            <!-- Options Panel (Left) ─────────────────────────── -->
+            <div class="compare-options-panel">
+                <div class="compare-section-label mb-2">Available Options</div>
+                <div class="compare-options-list">
+                    <!-- Child template will replace this block -->
+                    <th:block th:replace="${optionsFragment}"></th:block>
+                </div>
+            </div>
+
+            <!-- Preview Panel (Right) ─────────────────────────── -->
+            <div class="compare-preview-panel">
+                <div class="compare-section-label mb-2">Live Preview</div>
+                <div class="compare-preview-wrap">
+                    <!-- Child template will replace this block -->
+                    <th:block th:replace="${previewFragment}"></th:block>
+                </div>
+            </div>
+
+        </div><!-- /.interactive-playground -->
+    </section>
+</main>
+
+<script>
+    (function () {
+        var sel = document.getElementById('propertySelect');
+        if (sel) {
+            sel.addEventListener('change', function () {
+                if (this.value) window.location.href = '/compare-css/' + encodeURIComponent(this.value);
+            });
+        }
+    })();
+</script>
+</body>
+</html>

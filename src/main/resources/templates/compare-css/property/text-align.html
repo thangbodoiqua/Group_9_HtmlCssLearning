@@ -1,0 +1,90 @@
+<body th:replace="~{compare-css/_layout :: comparePage(
+    'Text Align Variants',
+    'Compare different values of the text-align property.',
+    'text-align',
+    ~{:: #textAlignOptions},
+    ~{:: #textAlignPreviews}
+)}">
+
+<!-- OPTIONS -->
+<th:block id="textAlignOptions">
+    <button class="compare-option-btn" data-option-index="0">
+        <span class="compare-option-row">
+            <code class="compare-option-code">text-align: <span class="compare-value-highlight">left</span>;</code>
+        </span>
+    </button>
+    <button class="compare-option-btn" data-option-index="1">
+        <span class="compare-option-row">
+            <code class="compare-option-code">text-align: <span class="compare-value-highlight">center</span>;</code>
+        </span>
+    </button>
+    <button class="compare-option-btn" data-option-index="2">
+        <span class="compare-option-row">
+            <code class="compare-option-code">text-align: <span class="compare-value-highlight">right</span>;</code>
+        </span>
+    </button>
+    <button class="compare-option-btn" data-option-index="3">
+        <span class="compare-option-row">
+            <code class="compare-option-code">text-align: <span class="compare-value-highlight">justify</span>;</code>
+        </span>
+    </button>
+</th:block>
+
+<!-- PREVIEWS -->
+<th:block id="textAlignPreviews">
+    <!-- left -->
+    <div class="compare-preview-item compare-preview-neutral">
+        <div class="compare-preview-content">
+            <h3>Left</h3>
+            <p>Default for left‑to‑right languages: text starts from the left edge.</p>
+            <div class="compare-css-display">
+                <div style="border:1px dashed var(--cm-border); padding:1rem; background:var(--cm-surface-2); text-align:left;">
+                    <p style="margin:0;">This paragraph is aligned to the left.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- center -->
+    <div class="compare-preview-item compare-preview-neutral" style="display:none;">
+        <div class="compare-preview-content">
+            <h3>Center</h3>
+            <p>Text is centered inside its container.</p>
+            <div class="compare-css-display">
+                <div style="border:1px dashed var(--cm-border); padding:1rem; background:var(--cm-surface-2); text-align:center;">
+                    <p style="margin:0;">This paragraph is centered.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- right -->
+    <div class="compare-preview-item compare-preview-neutral" style="display:none;">
+        <div class="compare-preview-content">
+            <h3>Right</h3>
+            <p>Text is aligned to the right edge of the container.</p>
+            <div class="compare-css-display">
+                <div style="border:1px dashed var(--cm-border); padding:1rem; background:var(--cm-surface-2); text-align:right;">
+                    <p style="margin:0;">This paragraph is aligned to the right.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- justify -->
+    <div class="compare-preview-item compare-preview-neutral" style="display:none;">
+        <div class="compare-preview-content">
+            <h3>Justify</h3>
+            <p>Text stretches so that each line (except the last) has equal width.</p>
+            <div class="compare-css-display">
+                <div style="border:1px dashed var(--cm-border); padding:1rem; background:var(--cm-surface-2); text-align:justify; max-width:26rem;">
+                    <p style="margin:0;">This paragraph is justified, so the browser adjusts spacing so that both the left and right edges line up neatly.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
+
+</body>
+</html>
+
