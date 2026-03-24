@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragment/lesson-layout :: main_layout(title='HTML Introduction - Markuply', content=~{:: #lessonData})}">
+<head>
+  <title>HTML Introduction</title>
+</head>
+<body>
+
+<div id="lessonData">
+
+  <h1 class="cm-heading mb-4 lesson-title">HTML Introduction</h1>
+
+  <div class="highlight-box mb-4">
+    <strong style="color: var(--cm-primary); font-size: 1.1rem;">What is HTML?</strong>
+    <ul class="mb-0 mt-2" style="line-height: 1.8;">
+      <li>HTML stands for <strong>H</strong>yper <strong>T</strong>ext <strong>M</strong>arkup <strong>L</strong>anguage.</li>
+      <li>HTML is the standard markup language for creating Web pages.</li>
+      <li>HTML describes the structure of a Web page.</li>
+      <li>HTML consists of a series of elements.</li>
+      <li>HTML elements tell the browser how to display the content.</li>
+    </ul>
+  </div>
+
+  <hr class="my-5">
+
+  <h2 class="cm-heading mb-3 lesson-section-title">A Simple HTML Document</h2>
+  <p>Let's look at a very basic HTML document structure:</p>
+
+  <section class="lesson-example mb-4" aria-label="Example">
+    <div class="lesson-example-header">
+      <h3 class="lesson-example-title">Example:</h3>
+      <a class="btn btn-sm btn-cm-primary" id="tryNowExampleBtn" th:href="@{/compiler}">Try it Yourself</a>
+    </div>
+    <div class="lesson-example-body">
+                <pre class="lesson-codeblock"><code id="exampleHtmlCode">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Page Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;h1&gt;My First Heading&lt;/h1&gt;
+    &lt;p&gt;My first paragraph.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    </div>
+  </section>
+
+  <h3 class="cm-heading mt-4 mb-3" style="font-size: 1.3rem;">Example Explained</h3>
+  <ul class="mb-4" style="line-height: 1.8;">
+    <li class="mb-2">The <span class="inline-code">&lt;!DOCTYPE html&gt;</span> declaration defines that this document is an HTML5 document.</li>
+    <li class="mb-2">The <span class="inline-code">&lt;html&gt;</span> element is the root element of an HTML page.</li>
+    <li class="mb-2">The <span class="inline-code">&lt;head&gt;</span> element contains meta information about the HTML page (like styles, scripts).</li>
+    <li class="mb-2">The <span class="inline-code">&lt;title&gt;</span> element specifies a title for the HTML page (which is shown in the browser's title bar or in the page's tab).</li>
+    <li class="mb-2">The <span class="inline-code">&lt;body&gt;</span> element defines the document's body, and is a container for all the visible contents, such as headings, paragraphs, images, hyperlinks, tables, lists, etc.</li>
+    <li class="mb-2">The <span class="inline-code">&lt;h1&gt;</span> element defines a large heading.</li>
+    <li class="mb-2">The <span class="inline-code">&lt;p&gt;</span> element defines a paragraph.</li>
+  </ul>
+
+  <hr class="my-5">
+
+  <h2 class="cm-heading mb-3 lesson-section-title">What is an HTML Element?</h2>
+  <p>An HTML element is defined by a start tag, some content, and an end tag:</p>
+
+  <div class="text-center my-4 p-4 bg-light border rounded font-weight-bold shadow-sm" style="font-size: 1.3rem; color: var(--cm-text-main);">
+    <span style="color: #2563eb;">&lt;tagname&gt;</span> Content goes here... <span style="color: #2563eb;">&lt;/tagname&gt;</span>
+  </div>
+
+  <p>The HTML <strong>element</strong> is everything from the start tag to the end tag:</p>
+
+  <div class="text-center my-4 p-4 bg-light border rounded font-weight-bold shadow-sm" style="font-size: 1.3rem; color: var(--cm-text-main);">
+    <span style="color: #2563eb;">&lt;h1&gt;</span> My First Heading <span style="color: #2563eb;">&lt;/h1&gt;</span>
+  </div>
+
+  <div class="highlight-box bg-white border border-warning" style="border-left: 5px solid #eab308 !important;">
+    <strong class="text-warning">Note:</strong> Some HTML elements have no content (like the <span class="inline-code">&lt;br&gt;</span> element). These elements are called empty elements. Empty elements do not have an end tag!
+  </div>
+
+  <hr class="my-5">
+
+  <h2 class="cm-heading mb-3 lesson-section-title">HTML Page Structure</h2>
+  <p>Below is a visual representation of an HTML page structure:</p>
+
+  <div class="border border-secondary p-3 mb-4 rounded shadow-sm" style="background-color: #f8fafc;">
+    <div class="text-muted small font-weight-bold mb-2">&lt;html&gt;</div>
+
+    <div class="border border-secondary p-3 mb-3 rounded" style="background-color: #e2e8f0;">
+      <div class="text-muted small font-weight-bold mb-2">&lt;head&gt;</div>
+      <div class="border border-dark p-2 bg-white rounded text-center">
+        <div class="text-muted small font-weight-bold">&lt;title&gt; Page Title &lt;/title&gt;</div>
+      </div>
+    </div>
+
+    <div class="border border-secondary p-3 rounded bg-white">
+      <div class="text-muted small font-weight-bold mb-2">&lt;body&gt;</div>
+      <div class="border border-dark p-3 mb-2 rounded" style="background-color: #f0fdf4;">
+        <div class="font-weight-bold text-center h5 mb-0">&lt;h1&gt; My First Heading &lt;/h1&gt;</div>
+      </div>
+      <div class="border border-dark p-3 rounded mb-2" style="background-color: #f0fdf4;">
+        <div class="text-center">&lt;p&gt; My first paragraph. &lt;/p&gt;</div>
+      </div>
+      <div class="border border-dark p-3 rounded" style="background-color: #f0fdf4;">
+        <div class="text-center">&lt;p&gt; My second paragraph. &lt;/p&gt;</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="small text-muted font-italic">
+    <span class="text-danger">*</span> <strong>Note:</strong> The content inside the <span class="inline-code">&lt;body&gt;</span> section (the white area above) will be displayed in a browser. The content inside the <span class="inline-code">&lt;title&gt;</span> element will be shown in the browser's title bar or in the page's tab.
+  </p>
+
+  <div class="mt-5 pt-4 border-top d-flex justify-content-between align-items-center flex-wrap lesson-actions">
+    <a class="btn btn-lesson-nav" th:href="${prevLessonUrl}" th:if="${prevLessonUrl != '#'}" aria-label="Previous lesson">← Previous</a>
+    <span th:if="${prevLessonUrl == '#'}"></span> <button class="btn btn-cm-primary px-4 py-2 shadow-sm" type="button">Mark as Completed</button>
+
+    <a class="btn btn-lesson-nav" th:href="${nextLessonUrl}" th:if="${nextLessonUrl != '#'}" aria-label="Next lesson">Next →</a>
+    <span th:if="${nextLessonUrl == '#'}"></span>
+  </div>
+
+</div>
+
+</body>
+</html>
