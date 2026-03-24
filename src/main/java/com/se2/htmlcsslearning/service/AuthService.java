@@ -4,7 +4,7 @@ import java.util.Map;
 
 public interface AuthService {
 
-    void register(Map<String, String> form);
+    void register(String name, String email, String password, String dob);
 
     boolean login(String email, String password);
 

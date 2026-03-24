@@ -42,29 +42,69 @@ public class AuthController {
     public String resetPage() {
         return "auth/forgot-password-reset";
     }
+    @GetMapping("/reset-password-success")
+    public String successPage() {
+        return "auth/reset-password-success";
+    }
 
     // ================= SIGN UP =================
 
     @PostMapping("/signup")
-    public String signupPost(@RequestParam Map<String, String> form) {
-// validate data user up
-        authService.register(form);
+    public String signupPost(
+            @RequestParam String name,
+            @RequestParam String email,
+            @RequestParam String password,
+            @RequestParam String dob,
+            Model model
+    ) {
+
+        if (name == null || name.trim().isEmpty()) {
+            model.addAttribute("error", "Name is required");
+            return "auth/signup";
+        }
+
+        if (email == null || !email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+            model.addAttribute("error", "Invalid email");
+            return "auth/signup";
+        }
+
+        if (password == null || password.length() < 6) {
+            model.addAttribute("error", "Password must be at least 6 characters");
+            return "auth/signup";
+        }
+
+        if (dob == null || dob.trim().isEmpty()) {
+            model.addAttribute("error", "Date of birth is required");
+            return "auth/signup";
+        }
+        authService.register(name, email, password, dob);
 
         return "redirect:/auth/signin";
     }
-
     // ================= SIGN IN =================
 
     @PostMapping("/signin")
-    public String signinPost(@RequestParam Map<String, String> form) {
+    public String signinPost(
+            @RequestParam String email,
+            @RequestParam String password,
+            Model model
+    ) {
 
-        String email = form.get("email");
-        String password = form.get("password");
-
-        if (authService.login(email, password)) {
-            return "redirect:/home";
+        if (email == null || email.isEmpty()) {
+            model.addAttribute("error", "Email is required");
+            return "auth/signin";
         }
 
+        if (password == null || password.isEmpty()) {
+            model.addAttribute("error", "Password is required");
+            return "auth/signin";
+        }
+
+        if (authService.login(email, password)) {
+            return "redirect:/";
+        }
+
+        model.addAttribute("error", "Invalid email or password");
         return "auth/signin";
     }
 
@@ -88,37 +128,50 @@ public class AuthController {
     // ================= VERIFY OTP =================
 
     @PostMapping("/forget/reset")
-    public String verifyOtpAndReset(@RequestParam Map<String, String> form,
-                                    Model model) {
+    public String verifyOtpAndReset(
+            @RequestParam String email,
+            @RequestParam(required = false) String password,
+            @RequestParam(required = false) String otp1,
+            @RequestParam(required = false) String otp2,
+            @RequestParam(required = false) String otp3,
+            @RequestParam(required = false) String otp4,
+            @RequestParam(required = false) String otp5,
+            @RequestParam(required = false) String otp6,
+            Model model
+    ) {
 
-        String email = form.get("email");
+        // ghép OTP
+        String otp = (otp1 == null ? "" : otp1) +
+                (otp2 == null ? "" : otp2) +
+                (otp3 == null ? "" : otp3) +
+                (otp4 == null ? "" : otp4) +
+                (otp5 == null ? "" : otp5) +
+                (otp6 == null ? "" : otp6);
 
-        // ⚠️ GHÉP OTP từ 6 ô (do bạn không sửa HTML)
-        String otp =
-                form.getOrDefault("otp1","") +
-                        form.getOrDefault("otp2","") +
-                        form.getOrDefault("otp3","") +
-                        form.getOrDefault("otp4","") +
-                        form.getOrDefault("otp5","") +
-                        form.getOrDefault("otp6","");
-
-        // nếu có password thì là bước reset
-        String password = form.get("password");
-
-        // STEP 1: verify OTP
+        // ===== STEP 1: VERIFY OTP =====
         if (password == null) {
+
+            if (otp.length() != 6) {
+                return "redirect:/auth/forget/otp";
+            }
 
             if (authService.verifyOTP(email, otp)) {
                 model.addAttribute("email", email);
                 return "auth/forgot-password-reset";
             }
 
-            return "auth/forgot-password-otp";
+            return "redirect:/auth/forget/otp";
         }
 
-        // STEP 2: reset password
+        // ===== STEP 2: RESET PASSWORD =====
+        if (password.length() < 6) {
+            model.addAttribute("error", "Password must be at least 6 characters");
+            model.addAttribute("email", email);
+            return "auth/forgot-password-reset";
+        }
+
         authService.resetPassword(email, password);
 
-        return "auth/reset-password-success";
+        return "redirect:/auth/reset-password-success";
     }
 }

@@ -62,6 +62,7 @@ public class SecurityConfig {
                         .passwordParameter("password")
 
                         .defaultSuccessUrl("/", true)
+                        .failureUrl("/auth/signin?error")
                         .permitAll()
                 )
 

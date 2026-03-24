@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -41,13 +40,17 @@
               <h3 class="font-weight-bold mb-2">Welcome back</h3>
               <p class="cm-text-muted mb-4">Sign in to access your learning dashboard</p>
 
-              <form action="/auth/signin" method="post">
+              <form th:action="@{/auth/signin}" method="post">
 
+                  <div th:if="${error}" class="alert alert-danger">
+                      <span th:text="${error}"></span>
+                  </div>
                 <div class="form-group cm-field">
                   <label class="cm-label">Email</label>
                   <input type="email" name="email"
                          class="form-control cm-input"
                          placeholder="name@example.com"
+                         th:value="${param.email}"
                          required>
                 </div>
 

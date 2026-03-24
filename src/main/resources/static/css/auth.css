@@ -146,7 +146,20 @@ color: #ffffff;
 .cm-auth-footer a {
   font-weight: 600;
 }
+input[type="date"].cm-input {
+    appearance: none;
+    -webkit-appearance: none;
+    position: relative;
+    cursor: pointer;
+    color: var(--cm-text-main);
+}
 
+input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 2px;
+    filter: invert(48%) sepia(13%) saturate(3207%) hue-rotate(195deg) brightness(95%) contrast(100%);
+}
 @media (max-width: 575.98px) {
   .cm-auth-switch .btn {
     display: inline-block;
