@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Grade - CSS Debug</title>
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+  <link rel="stylesheet" th:href="@{/css/theme.css}" />
+  <link rel="stylesheet" th:href="@{/css/practice.css}" />
+  <link rel="stylesheet" th:href="@{/css/ai-grade-css-debug.css}" />
+</head>
+
+<body>
+  <header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
+
+  <main class="container py-4 py-lg-5 ai-debug-page">
+    <section class="ai-debug-hero">
+      <div>
+        <p class="ai-debug-kicker mb-2">AI GRADING - CSS DEBUG MODE</p>
+        <h1 class="h3 mb-2" th:text="'Challenge: ' + ${submission.challenge.challengeTitle}">Challenge: Flexbox Wrap
+          Error</h1>
+        <p class="cm-text-muted mb-0"
+          th:text="${submission.score < 100 ? 'Good effort! You fixed some issues, but there is still room for optimization.' : 'Excellent work! You have perfectly fixed the CSS bug.'}">
+          Good fix overall...</p>
+      </div>
+      <div class="ai-debug-score-wrap">
+        <div class="ai-debug-score" th:text="${submission.score}">82</div>
+        <span class="ai-debug-score-text">/100</span>
+        <span class="badge ai-debug-badge" th:classappend="${submission.score >= 80 ? 'bg-success' : 'bg-warning'}"
+          th:text="${submission.score >= 80 ? 'Pass' : 'Review'}">Pass</span>
+      </div>
+    </section>
+
+    <section class="row mt-4">
+      <div class="col-md-12 mb-3">
+        <div class="ai-debug-panel">
+          <h2 class="h5 mb-3">Your Submission</h2>
+          <iframe id="submissionFrame"
+            style="width: 100%; height: 200px; border: 1px solid #334155; border-radius: 8px;"></iframe>
+          <script th:inline="javascript">
+            window.onload = function () {
+              const userCode = /*[[${submission.submission}]]*/ '';
+              const frame = document.getElementById('submissionFrame');
+              const doc = frame.contentWindow.document;
+              doc.open();
+              doc.write('<html style="height: 100%;"><body>' + userCode + '</body></html>');
+              doc.close();
+            };
+          </script>
+        </div>
+      </div>
+    </section>
+
+    <section class="ai-debug-panel mt-1">
+      <h2 class="h5 mb-3">AI Detailed Feedback</h2>
+      <div class="feedback-content" style="color: var(--cm-text-main); line-height: 1.6;">
+        <p th:text="${submission.feedback}">AI feedback details go here...</p>
+      </div>
+    </section>
+
+    <div class="mt-4 d-flex flex-wrap" style="gap: 10px;">
+      <a th:href="@{/practice/css-debug}" class="btn btn-cm-primary">Try Another</a>
+      <a th:href="@{/progress}" class="btn btn-outline-secondary">View My Progress</a>
+    </div>
+  </main>
+
+</body>
+
+</html>

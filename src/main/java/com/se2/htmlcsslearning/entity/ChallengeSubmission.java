@@ -20,13 +20,13 @@ public class ChallengeSubmission {
     @JoinColumn(name="challenge_id", nullable=false)
     private Challenge challenge;
 
-    @Column(name="submission")
+    @Column(name="submission", columnDefinition = "TEXT")
     private String submission;
 
     @Column(name="score", nullable=false)
     private Integer score;
 
-    @Column(name="feedback", nullable=false)
+    @Column(name="feedback", nullable=false, columnDefinition = "TEXT")
     private String feedback;
 
     @Column(name="created_at")

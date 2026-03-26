@@ -21,9 +21,12 @@ public class Challenge {
     @Column(name = "challenge_difficulty")
     private String challengeDifficulty;
 
-    @Column(name = "challenge_hints")
+    @Column(name = "challenge_hints", columnDefinition = "TEXT")
     private String challengeHints;
 
-    @Column(name = "challenge_instructions")
+    @Column(name = "challenge_instructions", columnDefinition = "TEXT")
     private String challengeInstructions;
+
+    @Column(name = "reference_code", columnDefinition = "TEXT")
+    private String referenceCode;
 }
