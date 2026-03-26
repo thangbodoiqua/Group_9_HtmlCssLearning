@@ -1,0 +1,91 @@
+<body th:replace="~{compare-css/_layout :: comparePage(
+    'Background Shorthand Styling',
+    'Compare common background shorthand combinations with color, image, and overlays.',
+    'background',
+    ~{:: #bgOptions},
+    ~{:: #bgPreviews}
+)}">
+
+<!-- ==========================================
+     FRAGMENT 1: OPTIONS PANEL
+     ========================================== -->
+<th:block id="bgOptions">
+    <button class="compare-option-btn" data-option-index="0">
+        <span class="compare-option-row">
+            <code class="compare-option-code">background: <span class="compare-value-highlight">url('/images/.../background-img.jpg') center/cover no-repeat</span>;</code>
+        </span>
+    </button>
+
+    <button class="compare-option-btn" data-option-index="1">
+        <span class="compare-option-row">
+            <code class="compare-option-code">background: <span class="compare-value-highlight">linear-gradient(135deg,#0ea5e9,#a855f7)</span>;</code>
+        </span>
+    </button>
+
+    <button class="compare-option-btn" data-option-index="2">
+        <span class="compare-option-row">
+            <code class="compare-option-code">background: <span class="compare-value-highlight">linear-gradient(transparent,rgba(0,0,0,0.45)),url('img.jpg')</span>;</code>
+        </span>
+    </button>
+
+    <button class="compare-option-btn" data-option-index="3">
+        <span class="compare-option-row">
+            <code class="compare-option-code">background: <span class="compare-value-highlight">#0f172a url('img.jpg') center/contain repeat-x</span>;</code>
+        </span>
+    </button>
+
+    <button class="compare-option-btn" data-option-index="4">
+        <span class="compare-option-row">
+            <code class="compare-option-code">background: <span class="compare-value-highlight">none</span>;</code>
+        </span>
+    </button>
+</th:block>
+
+<!-- ==========================================
+     FRAGMENT 2: PREVIEWS PANEL
+     ========================================== -->
+<th:block id="bgPreviews">
+    <!-- 0: photo cover -->
+    <div class="compare-preview-item" style="background:url('/images/css-property/background-img.jpg') center/cover no-repeat; color:#ffffff; text-shadow:0 2px 8px rgba(0,0,0,0.45);">
+        <div class="compare-preview-content">
+            <h3>Photo cover</h3>
+            <p>Full-bleed image, centered and covering the area.</p>
+        </div>
+    </div>
+
+    <!-- 1: gradient only -->
+    <div class="compare-preview-item" style="display:none; background:linear-gradient(135deg,#0ea5e9,#a855f7); color:#0b1224;">
+        <div class="compare-preview-content">
+            <h3>Linear gradient</h3>
+            <p>Smooth two-color gradient background.</p>
+        </div>
+    </div>
+
+    <!-- 2: overlay on photo -->
+    <div class="compare-preview-item" style="display:none; background:linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('/images/css-property/background-img.jpg') center/cover no-repeat; color:#ffffff; text-shadow:0 2px 8px rgba(0,0,0,0.45);">
+        <div class="compare-preview-content">
+            <h3>Photo + dark overlay</h3>
+            <p>Overlay keeps text readable without losing the image.</p>
+        </div>
+    </div>
+
+    <!-- 3: color + contain repeat-x -->
+    <div class="compare-preview-item" style="display:none; background:#0f172a url('/images/css-property/background-img.jpg') center/contain repeat-x; color:#e2e8f0;">
+        <div class="compare-preview-content">
+            <h3>Color + contain repeat-x</h3>
+            <p>Base color plus contained image repeating on the x-axis.</p>
+        </div>
+    </div>
+
+    <!-- 4: none -->
+    <div class="compare-preview-item compare-preview-neutral" style="display:none;">
+        <div class="compare-preview-content">
+            <h3>No background</h3>
+            <p>Plain surface when you skip the background layer.</p>
+        </div>
+    </div>
+</th:block>
+
+</body>
+</html>
+

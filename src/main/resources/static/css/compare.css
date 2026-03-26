@@ -118,6 +118,7 @@
     font-family: inherit;
     font-size: inherit;
     color: inherit;
+    margin: 10px 0px;
 }
 
 .compare-option-btn:hover {

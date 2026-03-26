@@ -1,0 +1,66 @@
+<body th:replace="~{compare-css/_layout :: comparePage(
+    'Background Repeat',
+    'See how different repeat modes tile your background image.',
+    'background-repeat',
+    ~{:: #bgRepeatOptions},
+    ~{:: #bgRepeatPreviews}
+)}">
+
+<th:block id="bgRepeatOptions">
+    <button class="compare-option-btn" data-option-index="0">
+        <span class="compare-option-row"><code class="compare-option-code">background-repeat: <span class="compare-value-highlight">no-repeat</span>;</code></span>
+    </button>
+    <button class="compare-option-btn" data-option-index="1">
+        <span class="compare-option-row"><code class="compare-option-code">background-repeat: <span class="compare-value-highlight">repeat</span>;</code></span>
+    </button>
+    <button class="compare-option-btn" data-option-index="2">
+        <span class="compare-option-row"><code class="compare-option-code">background-repeat: <span class="compare-value-highlight">repeat-x</span>;</code></span>
+    </button>
+    <button class="compare-option-btn" data-option-index="3">
+        <span class="compare-option-row"><code class="compare-option-code">background-repeat: <span class="compare-value-highlight">repeat-y</span>;</code></span>
+    </button>
+    <button class="compare-option-btn" data-option-index="4">
+        <span class="compare-option-row"><code class="compare-option-code">background-repeat: <span class="compare-value-highlight">space</span>;</code></span>
+    </button>
+</th:block>
+
+<th:block id="bgRepeatPreviews">
+    <div class="compare-preview-item" style="  background-image:url('/images/css-property/background-img.jpg'); background-repeat:no-repeat; background-size:200px auto; background-position:center; color:#0f172a;">
+        <div class="compare-preview-content" style="color:green">
+            <h3>No repeat</h3>
+            <p>Single image stays in the center; no tiling.</p>
+        </div>
+    </div>
+
+    <div class="compare-preview-item" style=" display:none; background-image:url('/images/css-property/background-img.jpg'); background-repeat:repeat; background-size:140px auto; background-position:top left; color:#0f172a;">
+        <div class="compare-preview-content" style="color:white">
+            <h3>Repeat</h3>
+            <p>Tiles in both directions to fill the area.</p>
+        </div>
+    </div>
+
+    <div class="compare-preview-item" style="  display:none; background-image:url('/images/css-property/background-img.jpg'); background-repeat:repeat-x; background-size:160px auto; background-position:top left; color:#0f172a;">
+        <div class="compare-preview-content">
+            <h3>Repeat-x</h3>
+            <p>Tiles horizontally only.</p>
+        </div>
+    </div>
+
+    <div class="compare-preview-item" style="display:none; background-image:url('/images/css-property/background-img.jpg'); background-repeat:repeat-y; background-size:160px auto; background-position:top left; color:#0f172a;">
+        <div class="compare-preview-content">
+            <h3>Repeat-y</h3>
+            <p>Tiles vertically only.</p>
+        </div>
+    </div>
+
+    <div class="compare-preview-item" style="  display:none; background-image:url('/images/css-property/background-img.jpg'); background-repeat:space; background-size:160px auto; background-position:top left; color:#0f172a;">
+        <div class="compare-preview-content"style="color:green">
+            <h3>Space</h3>
+            <p>Tiles evenly with extra space inserted between copies.</p>
+        </div>
+    </div>
+</th:block>
+
+</body>
+</html>
+

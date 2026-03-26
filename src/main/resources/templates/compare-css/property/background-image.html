@@ -1,0 +1,105 @@
+<body th:replace="~{compare-css/_layout :: comparePage(
+    'Background Image Styling',
+    'Compare common ways to apply background images and overlays.',
+    'background-image',
+    ~{:: #bgImageOptions},
+    ~{:: #bgImagePreviews}
+)}">
+
+<!-- ==========================================
+     FRAGMENT 1: OPTIONS PANEL
+     ========================================== -->
+<th:block id="bgImageOptions">
+    <button class="compare-option-btn" data-option-index="0">
+        <span class="compare-option-row">
+            <code class="compare-option-code">background-image: <span class="compare-value-highlight">url('/images/.../background-img.jpg')</span>;</code>
+        </span>
+    </button>
+
+    <button class="compare-option-btn" data-option-index="1">
+        <span class="compare-option-row">
+            <code class="compare-option-code">background-image: <span class="compare-value-highlight">url('img.jpg')</span>; repeat;</code>
+        </span>
+    </button>
+
+    <button class="compare-option-btn" data-option-index="2">
+        <span class="compare-option-row">
+            <code class="compare-option-code">background-image: <span class="compare-value-highlight">linear-gradient(135deg,#0ea5e9,#a855f7)</span>;</code>
+        </span>
+    </button>
+
+    <button class="compare-option-btn" data-option-index="3">
+        <span class="compare-option-row">
+            <code class="compare-option-code">background-image: <span class="compare-value-highlight">linear-gradient(transparent,rgba(0,0,0,0.45)),url('img.jpg')</span>;</code>
+        </span>
+    </button>
+
+    <button class="compare-option-btn" data-option-index="4">
+        <span class="compare-option-row">
+            <code class="compare-option-code">background-image: <span class="compare-value-highlight">radial-gradient(#22c55e,transparent),url('img.jpg')</span>;</code>
+        </span>
+    </button>
+
+    <button class="compare-option-btn" data-option-index="5">
+        <span class="compare-option-row">
+            <code class="compare-option-code">background-image: <span class="compare-value-highlight">none</span>;</code>
+        </span>
+    </button>
+</th:block>
+
+<!-- ==========================================
+     FRAGMENT 2: PREVIEWS PANEL
+     ========================================== -->
+<th:block id="bgImagePreviews">
+    <!-- 0: single cover -->
+    <div class="compare-preview-item" style="background-image:url('/images/css-property/background-img.jpg'); background-size:cover; background-position:center; color:#ffffff; text-shadow:0 2px 8px rgba(0,0,0,0.45);">
+        <div class="compare-preview-content">
+            <h3>Single cover</h3>
+            <p>One photo fills the area, centered for a hero-style background.</p>
+        </div>
+    </div>
+
+    <!-- 1: tile repeat -->
+    <div class="compare-preview-item" style="color: white; display:none; background-image:url('/images/css-property/background-img.jpg'); background-size:140px auto; background-repeat:repeat; background-position:top left; color:#0f172a;">
+        <div class="compare-preview-content">
+            <h3>Pattern repeat</h3>
+            <p>Tile the image to build a subtle repeating texture.</p>
+        </div>
+    </div>
+
+    <!-- 2: gradient only -->
+    <div class="compare-preview-item" style="color: white; color: white;display:none; background-image:linear-gradient(135deg, #0ea5e9, #a855f7); color:#0b1224;">
+        <div class="compare-preview-content" style="color:white">
+            <h3>Linear gradient</h3>
+            <p>A clean gradient when you do not need a photo.</p>
+        </div>
+    </div>
+
+    <!-- 3: overlay gradient on photo -->
+    <div class="compare-preview-item" style="color: white;display:none; background-image:linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('/images/css-property/background-img.jpg'); background-size:cover; background-position:center; color:#ffffff; text-shadow:0 2px 8px rgba(0,0,0,0.45);">
+        <div class="compare-preview-content" >
+            <h3>Photo with dark overlay</h3>
+            <p>An overlay makes text readable while keeping the image visible.</p>
+        </div>
+    </div>
+
+    <!-- 4: radial highlight -->
+    <div class="compare-preview-item" style="display:none; background-image:radial-gradient(circle at 30% 30%, rgba(34,197,94,0.6), transparent 45%), url('/images/css-property/background-img.jpg'); background-size:cover; background-position:center; color:#ffffff; text-shadow:0 2px 8px rgba(0,0,0,0.45);">
+        <div class="compare-preview-content" style="color:white">
+            <h3>Photo with radial glow</h3>
+            <p>A soft radial highlight to draw attention to a focal spot.</p>
+        </div>
+    </div>
+
+    <!-- 5: none -->
+    <div class="compare-preview-item compare-preview-neutral" style="display:none;">
+        <div class="compare-preview-content">
+            <h3>No background image</h3>
+            <p>A neutral surface when you want plain layout sections.</p>
+        </div>
+    </div>
+</th:block>
+
+</body>
+</html>
+
