@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>HTML Formatting - Markuply</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/theme.css}">
+    <link rel="stylesheet" th:href="@{/css/lesson.css}">
+</head>
+<body class="cm-bg cm-page-shell">
+
+<header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
+
+<div class="lesson-layout">
+    <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
+
+    <main class="lesson-main-content">
+        <div class="lesson-card">
+
+            <div id="lessonData">
+
+                <h1 class="cm-heading mb-4 lesson-title">HTML Text Formatting</h1>
+
+                <p class="lead">HTML contains several elements for defining text with a special meaning.</p>
+
+                <hr class="my-5">
+
+                <h2 class="cm-heading mb-3 lesson-section-title">HTML Formatting Elements</h2>
+                <p>Formatting elements were designed to display special types of text:</p>
+                <ul class="mb-4" style="line-height: 1.8;">
+                    <li><code>&lt;b&gt;</code> - Bold text</li>
+                    <li><code>&lt;strong&gt;</code> - Important text</li>
+                    <li><code>&lt;i&gt;</code> - Italic text</li>
+                    <li><code>&lt;em&gt;</code> - Emphasized text</li>
+                    <li><code>&lt;mark&gt;</code> - Marked text</li>
+                    <li><code>&lt;small&gt;</code> - Smaller text</li>
+                    <li><code>&lt;del&gt;</code> - Deleted text</li>
+                    <li><code>&lt;ins&gt;</code> - Inserted text</li>
+                    <li><code>&lt;sub&gt;</code> - Subscript text</li>
+                    <li><code>&lt;sup&gt;</code> - Superscript text</li>
+                </ul>
+
+                <hr class="my-5">
+
+                <h2 class="cm-heading mb-3 lesson-section-title">HTML &lt;b&gt; and &lt;strong&gt; Elements</h2>
+                <p>The HTML <span class="inline-code">&lt;b&gt;</span> element defines <b>bold</b> text, without any extra importance.</p>
+                <p>The HTML <span class="inline-code">&lt;strong&gt;</span> element defines <strong>strong</strong> text, with added semantic importance.</p>
+
+                <section class="lesson-example mb-4">
+                    <div class="lesson-example-header">
+                        <h3 class="lesson-example-title">Example:</h3>
+                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                    </div>
+                    <div class="lesson-example-body">
+                        <pre class="lesson-codeblock"><code>&lt;b&gt;This text is bold&lt;/b&gt;
+&lt;strong&gt;This text is important!&lt;/strong&gt;</code></pre>
+                    </div>
+                </section>
+
+                <hr class="my-5">
+
+                <h2 class="cm-heading mb-3 lesson-section-title">HTML &lt;i&gt; and &lt;em&gt; Elements</h2>
+                <p>The HTML <span class="inline-code">&lt;i&gt;</span> element defines <i>italic</i> text, without any extra importance.</p>
+                <p>The HTML <span class="inline-code">&lt;em&gt;</span> element defines <em>emphasized</em> text, with added semantic importance.</p>
+
+                <section class="lesson-example mb-4">
+                    <div class="lesson-example-header">
+                        <h3 class="lesson-example-title">Example:</h3>
+                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                    </div>
+                    <div class="lesson-example-body">
+                        <pre class="lesson-codeblock"><code>&lt;i&gt;This text is italic&lt;/i&gt;
+&lt;em&gt;This text is emphasized&lt;/em&gt;</code></pre>
+                    </div>
+                </section>
+
+                <hr class="my-5">
+
+                <h2 class="cm-heading mb-3 lesson-section-title">HTML &lt;small&gt; Element</h2>
+                <p>The HTML <span class="inline-code">&lt;small&gt;</span> element defines <small>smaller</small> text:</p>
+
+                <section class="lesson-example mb-4">
+                    <div class="lesson-example-header">
+                        <h3 class="lesson-example-title">Example:</h3>
+                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                    </div>
+                    <div class="lesson-example-body">
+                        <pre class="lesson-codeblock"><code>&lt;p&gt;This is some &lt;small&gt;smaller&lt;/small&gt; text.&lt;/p&gt;</code></pre>
+                    </div>
+                </section>
+
+                <hr class="my-5">
+
+                <h2 class="cm-heading mb-3 lesson-section-title">HTML &lt;mark&gt; Element</h2>
+                <p>The HTML <span class="inline-code">&lt;mark&gt;</span> element defines text that should be <mark>highlighted</mark>:</p>
+
+                <section class="lesson-example mb-4">
+                    <div class="lesson-example-header">
+                        <h3 class="lesson-example-title">Example:</h3>
+                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                    </div>
+                    <div class="lesson-example-body">
+                        <pre class="lesson-codeblock"><code>&lt;p&gt;Do not forget to buy &lt;mark&gt;milk&lt;/mark&gt; today.&lt;/p&gt;</code></pre>
+                    </div>
+                </section>
+
+                <hr class="my-5">
+
+                <h2 class="cm-heading mb-3 lesson-section-title">HTML &lt;del&gt; Element</h2>
+                <p>The HTML <span class="inline-code">&lt;del&gt;</span> element defines text that has been <del>deleted</del> from a document.</p>
+
+                <section class="lesson-example mb-4">
+                    <div class="lesson-example-header">
+                        <h3 class="lesson-example-title">Example:</h3>
+                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                    </div>
+                    <div class="lesson-example-body">
+                        <pre class="lesson-codeblock"><code>&lt;p&gt;My favorite color is &lt;del&gt;blue&lt;/del&gt; red.&lt;/p&gt;</code></pre>
+                    </div>
+                </section>
+
+                <hr class="my-5">
+
+                <h2 class="cm-heading mb-3 lesson-section-title">HTML &lt;ins&gt; Element</h2>
+                <p>The HTML <span class="inline-code">&lt;ins&gt;</span> element defines a text that has been <ins>inserted</ins> into a document.</p>
+
+                <section class="lesson-example mb-4">
+                    <div class="lesson-example-header">
+                        <h3 class="lesson-example-title">Example:</h3>
+                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                    </div>
+                    <div class="lesson-example-body">
+                        <pre class="lesson-codeblock"><code>&lt;p&gt;My favorite color is &lt;del&gt;blue&lt;/del&gt; &lt;ins&gt;red&lt;/ins&gt;.&lt;/p&gt;</code></pre>
+                    </div>
+                </section>
+
+                <hr class="my-5">
+
+                <h2 class="cm-heading mb-3 lesson-section-title">HTML &lt;sub&gt; and &lt;sup&gt; Elements</h2>
+                <p>The HTML <span class="inline-code">&lt;sub&gt;</span> element defines <sub>subscript</sub> text.</p>
+                <p>The HTML <span class="inline-code">&lt;sup&gt;</span> element defines <sup>superscript</sup> text.</p>
+
+                <section class="lesson-example mb-4">
+                    <div class="lesson-example-header">
+                        <h3 class="lesson-example-title">Example:</h3>
+                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                    </div>
+                    <div class="lesson-example-body">
+                        <pre class="lesson-codeblock"><code>&lt;p&gt;This is &lt;sub&gt;subscripted&lt;/sub&gt; text.&lt;/p&gt;
+&lt;p&gt;This is &lt;sup&gt;superscripted&lt;/sup&gt; text.&lt;/p&gt;</code></pre>
+                    </div>
+                </section>
+
+                <div class="mt-5 pt-4 border-top d-flex justify-content-between align-items-center flex-wrap lesson-actions">
+                    <a class="btn btn-lesson-nav" th:href="${prevLessonUrl}" th:if="${prevLessonUrl != '#'}" aria-label="Previous lesson">← Previous</a>
+                    <span th:if="${prevLessonUrl == '#'}"></span>
+                    <button class="btn btn-cm-primary px-4 py-2 shadow-sm" type="button">Mark as Completed</button>
+                    <a class="btn btn-lesson-nav" th:href="${nextLessonUrl}" th:if="${nextLessonUrl != '#'}" aria-label="Next lesson">Next →</a>
+                    <span th:if="${nextLessonUrl == '#'}"></span>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+</div>
+
+<div th:replace="~{lesson/fragment/notes :: notes}"></div>
+</body>
+</html>

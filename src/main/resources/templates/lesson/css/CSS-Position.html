@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CSS Layout - The position Property - Markuply</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/theme.css}">
+    <link rel="stylesheet" th:href="@{/css/lesson.css}">
+</head>
+<body class="cm-bg cm-page-shell">
+
+<header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
+
+<div class="lesson-layout">
+    <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
+
+    <main class="lesson-main-content">
+        <div class="lesson-card">
+            <div id="lessonData">
+                <h1 class="cm-heading mb-4 lesson-title">CSS Layout - The position Property</h1>
+                <p class="lead">The <code>position</code> property specifies the type of positioning method used for an element.</p>
+
+                <hr class="my-5">
+
+                <h2 class="cm-heading mb-3 lesson-section-title">The position Property</h2>
+                <p>There are five different position values:</p>
+                <ul class="mb-4" style="line-height: 1.8;">
+                    <li><code>static</code></li>
+                    <li><code>relative</code></li>
+                    <li><code>fixed</code></li>
+                    <li><code>absolute</code></li>
+                    <li><code>sticky</code></li>
+                </ul>
+                <p>Elements are then positioned using the top, bottom, left, and right properties. However, these properties will not work unless the <code>position</code> property is set first. They also work differently depending on the position value.</p>
+
+                <hr class="my-5">
+
+                <h2 class="cm-heading mb-3 lesson-section-title">position: static;</h2>
+                <p>HTML elements are positioned static by default.</p>
+                <p>Static positioned elements are not affected by the top, bottom, left, and right properties.</p>
+
+                <hr class="my-5">
+
+                <h2 class="cm-heading mb-3 lesson-section-title">position: relative;</h2>
+                <p>An element with <code>position: relative;</code> is positioned relative to its normal position.</p>
+
+                <section class="lesson-example mb-4">
+                    <div class="lesson-example-header">
+                        <h3 class="lesson-example-title">Example:</h3>
+                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                    </div>
+                    <div class="lesson-example-body">
+                        <pre class="lesson-codeblock"><code>div.relative {
+  position: relative;
+  left: 30px;
+  border: 3px solid #73AD21;
+}</code></pre>
+                    </div>
+                </section>
+
+                <hr class="my-5">
+
+                <h2 class="cm-heading mb-3 lesson-section-title">position: fixed;</h2>
+                <p>An element with <code>position: fixed;</code> is positioned relative to the viewport, which means it always stays in the same place even if the page is scrolled. The top, right, bottom, and left properties are used to position the element.</p>
+
+                <section class="lesson-example mb-4">
+                    <div class="lesson-example-header">
+                        <h3 class="lesson-example-title">Example:</h3>
+                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                    </div>
+                    <div class="lesson-example-body">
+                        <pre class="lesson-codeblock"><code>div.fixed {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 300px;
+  border: 3px solid #73AD21;
+}</code></pre>
+                    </div>
+                </section>
+
+                <hr class="my-5">
+
+                <h2 class="cm-heading mb-3 lesson-section-title">position: absolute;</h2>
+                <p>An element with <code>position: absolute;</code> is positioned relative to the nearest positioned ancestor (instead of positioned relative to the viewport, like fixed).</p>
+
+                <div class="mt-5 pt-4 border-top d-flex justify-content-between align-items-center flex-wrap lesson-actions">
+                    <a class="btn btn-lesson-nav" th:href="${prevLessonUrl}" th:if="${prevLessonUrl != '#'}" aria-label="Previous lesson">← Previous</a>
+                    <span th:if="${prevLessonUrl == '#'}"></span>
+                    <button class="btn btn-cm-primary px-4 py-2 shadow-sm" type="button">Mark as Completed</button>
+                    <a class="btn btn-lesson-nav" th:href="${nextLessonUrl}" th:if="${nextLessonUrl != '#'}" aria-label="Next lesson">Next →</a>
+                    <span th:if="${nextLessonUrl == '#'}"></span>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<div th:replace="~{lesson/fragment/notes :: notes}"></div>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>HTML Quotations - Markuply</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/theme.css}">
+    <link rel="stylesheet" th:href="@{/css/lesson.css}">
+</head>
+<body class="cm-bg cm-page-shell">
+
+<header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
+
+<div class="lesson-layout">
+    <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
+
+    <main class="lesson-main-content">
+        <div class="lesson-card">
+
+            <div id="lessonData">
+
+                <h1 class="cm-heading mb-4 lesson-title">HTML Quotation and Citation Elements</h1>
+
+                <p class="lead">In this chapter we will go through the HTML <code>&lt;blockquote&gt;</code>, <code>&lt;q&gt;</code>, <code>&lt;abbr&gt;</code>, <code>&lt;address&gt;</code>, <code>&lt;cite&gt;</code>, and <code>&lt;bdo&gt;</code> elements.</p>
+
+                <hr class="my-5">
+
+                <h2 class="cm-heading mb-3 lesson-section-title">HTML &lt;blockquote&gt; for Quotations</h2>
+                <p>The HTML <span class="inline-code">&lt;blockquote&gt;</span> element defines a section that is quoted from another source.</p>
+                <p>Browsers usually indent <span class="inline-code">&lt;blockquote&gt;</span> elements:</p>
+
+                <section class="lesson-example mb-4">
+                    <div class="lesson-example-header">
+                        <h3 class="lesson-example-title">Example:</h3>
+                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                    </div>
+                    <div class="lesson-example-body">
+                        <pre class="lesson-codeblock"><code>&lt;blockquote cite="http://www.worldwildlife.org/who/index.html"&gt;
+For 50 years, WWF has been protecting the future of nature.
+The world's leading conservation organization,
+WWF works in 100 countries and is supported by
+1.2 million members in the United States and
+close to 5 million globally.
+&lt;/blockquote&gt;</code></pre>
+                    </div>
+                </section>
+
+                <hr class="my-5">
+
+                <h2 class="cm-heading mb-3 lesson-section-title">HTML &lt;q&gt; for Short Quotations</h2>
+                <p>The HTML <span class="inline-code">&lt;q&gt;</span> tag defines a short quotation.</p>
+                <p>Browsers normally insert quotation marks around the quotation:</p>
+
+                <section class="lesson-example mb-4">
+                    <div class="lesson-example-header">
+                        <h3 class="lesson-example-title">Example:</h3>
+                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                    </div>
+                    <div class="lesson-example-body">
+                        <pre class="lesson-codeblock"><code>&lt;p&gt;WWF's goal is to: &lt;q&gt;Build a future where people live in harmony with nature.&lt;/q&gt;&lt;/p&gt;</code></pre>
+                    </div>
+                </section>
+
+                <hr class="my-5">
+
+                <h2 class="cm-heading mb-3 lesson-section-title">HTML &lt;abbr&gt; for Abbreviations</h2>
+                <p>The HTML <span class="inline-code">&lt;abbr&gt;</span> tag defines an abbreviation or an acronym, like "HTML", "CSS", "Mr.", "Dr.", "ASAP", "ATM".</p>
+                <p>Marking abbreviations can give useful information to browsers, translation systems and search-engines:</p>
+
+                <section class="lesson-example mb-4">
+                    <div class="lesson-example-header">
+                        <h3 class="lesson-example-title">Example:</h3>
+                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                    </div>
+                    <div class="lesson-example-body">
+                        <pre class="lesson-codeblock"><code>&lt;p&gt;The &lt;abbr title="World Health Organization"&gt;WHO&lt;/abbr&gt; was founded in 1948.&lt;/p&gt;</code></pre>
+                    </div>
+                </section>
+
+                <hr class="my-5">
+
+                <h2 class="cm-heading mb-3 lesson-section-title">HTML &lt;address&gt; for Contact Information</h2>
+                <p>The HTML <span class="inline-code">&lt;address&gt;</span> tag defines the contact information for the author/owner of a document or an article.</p>
+                <p>The contact information can be an email address, URL, physical address, phone number, social media handle, etc.</p>
+                <p>The text in the <span class="inline-code">&lt;address&gt;</span> element usually renders in <i>italic</i>, and browsers will always add a line break before and after the element:</p>
+
+                <section class="lesson-example mb-4">
+                    <div class="lesson-example-header">
+                        <h3 class="lesson-example-title">Example:</h3>
+                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                    </div>
+                    <div class="lesson-example-body">
+                        <pre class="lesson-codeblock"><code>&lt;address&gt;
+Written by John Doe.&lt;br&gt;
+Visit us at:&lt;br&gt;
+Example.com&lt;br&gt;
+Box 564, Disneyland&lt;br&gt;
+USA
+&lt;/address&gt;</code></pre>
+                    </div>
+                </section>
+
+                <hr class="my-5">
+
+                <h2 class="cm-heading mb-3 lesson-section-title">HTML &lt;cite&gt; for Work Title</h2>
+                <p>The HTML <span class="inline-code">&lt;cite&gt;</span> tag defines the title of a creative work (e.g. a book, a poem, a song, a movie, a painting, a sculpture, etc.).</p>
+                <p><strong>Note:</strong> A person's name is not the title of a work.</p>
+                <p>The text in the <span class="inline-code">&lt;cite&gt;</span> element usually renders in <i>italic</i>:</p>
+
+                <section class="lesson-example mb-4">
+                    <div class="lesson-example-header">
+                        <h3 class="lesson-example-title">Example:</h3>
+                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                    </div>
+                    <div class="lesson-example-body">
+                        <pre class="lesson-codeblock"><code>&lt;p&gt;&lt;cite&gt;The Scream&lt;/cite&gt; by Edvard Munch. Painted in 1893.&lt;/p&gt;</code></pre>
+                    </div>
+                </section>
+
+                <hr class="my-5">
+
+                <h2 class="cm-heading mb-3 lesson-section-title">HTML &lt;bdo&gt; for Bi-Directional Override</h2>
+                <p>BDO stands for Bi-Directional Override.</p>
+                <p>The HTML <span class="inline-code">&lt;bdo&gt;</span> tag is used to override the current text direction:</p>
+
+                <section class="lesson-example mb-4">
+                    <div class="lesson-example-header">
+                        <h3 class="lesson-example-title">Example:</h3>
+                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                    </div>
+                    <div class="lesson-example-body">
+                        <pre class="lesson-codeblock"><code>&lt;bdo dir="rtl"&gt;This text will be written from right to left&lt;/bdo&gt;</code></pre>
+                    </div>
+                </section>
+
+                <div class="mt-5 pt-4 border-top d-flex justify-content-between align-items-center flex-wrap lesson-actions">
+                    <a class="btn btn-lesson-nav" th:href="${prevLessonUrl}" th:if="${prevLessonUrl != '#'}" aria-label="Previous lesson">← Previous</a>
+                    <span th:if="${prevLessonUrl == '#'}"></span>
+                    <button class="btn btn-cm-primary px-4 py-2 shadow-sm" type="button">Mark as Completed</button>
+                    <a class="btn btn-lesson-nav" th:href="${nextLessonUrl}" th:if="${nextLessonUrl != '#'}" aria-label="Next lesson">Next →</a>
+                    <span th:if="${nextLessonUrl == '#'}"></span>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+</div>
+
+<div th:replace="~{lesson/fragment/notes :: notes}"></div>
+</body>
+</html>

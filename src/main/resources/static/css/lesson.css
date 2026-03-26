@@ -1,4 +1,4 @@
-﻿:root {
+:root {
     --lesson-page-min-height: 100vh;
 
     --lesson-card-max-width: 1060px;
@@ -35,7 +35,7 @@
     --lesson-example-header-gap: 1rem;
     --lesson-example-header-padding-y: 1rem;
     --lesson-example-header-padding-x: 1.25rem;
-    --lesson-example-header-bg: linear-gradient(180deg, var(--cm-surface-2), rgba(255,255,255,0));
+    --lesson-example-header-bg: linear-gradient(180deg, var(--cm-surface-2), rgba(255, 255, 255, 0));
     --lesson-code-padding: 1.25rem;
     --lesson-code-bg: #0b1220;
     --lesson-code-color: #e2e8f0;
@@ -56,7 +56,7 @@
     --lesson-example-preview-grid-bg: radial-gradient(#e5e7eb 1px, transparent 0);
     --lesson-box-preview-bg: #e0e7ff;
     --lesson-box-preview-border: var(--cm-primary);
-    --lesson-box-preview-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    --lesson-box-preview-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 
     --lesson-sidebar-toggle-padding-y: 1.25rem;
     --lesson-sidebar-toggle-padding-x: 1.5rem;
@@ -141,7 +141,8 @@
     border: 1px solid var(--cm-border);
 }
 
-.lesson-card p, .lesson-card li {
+.lesson-card p,
+.lesson-card li {
     font-size: 1.05rem;
     line-height: 1.7;
     color: rgba(15, 23, 42, var(--lesson-text-opacity));
@@ -174,7 +175,9 @@
     transition: all 0.3s ease;
 }
 
-.note-wrapper.show { display: block; }
+.note-wrapper.show {
+    display: block;
+}
 
 .note-textarea {
     width: 100%;
@@ -245,7 +248,7 @@
 
 .lesson-example-body {
     display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--lesson-example-split-gap);
     background: var(--lesson-example-split-divider);
     padding: var(--lesson-example-body-padding);
@@ -262,6 +265,7 @@
     overflow: auto;
     border: 1px solid var(--cm-border);
     border-radius: var(--cm-radius-md);
+    max-height: 450px;
 }
 
 .lesson-codeblock code {
@@ -273,28 +277,38 @@
     border: 1px solid var(--cm-border);
     border-radius: var(--cm-radius-md);
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    max-height: 450px;
 }
 
 .lesson-example-preview-label {
-    padding: 0.65rem var(--lesson-example-header-padding-x);
-    font-size: var(--lesson-example-preview-label-size);
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
     letter-spacing: 0.05em;
     text-transform: uppercase;
     font-weight: 700;
-    color: var(--lesson-example-preview-label-color);
-    background: var(--lesson-example-preview-label-bg);
+    color: #64748b;
+    background: #f8fafc;
     border-bottom: 1px solid var(--cm-border);
 }
 
 .lesson-example-preview-surface {
-    min-height: var(--lesson-example-preview-surface-min-height);
-    padding: 1.5rem;
-    background: var(--lesson-example-preview-surface-bg);
-    color: var(--lesson-example-preview-content-color);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 0.5rem;
+    flex: 1;
+    min-height: 250px;
+    padding: 0;
+    background: #ffffff;
+    color: #0f172a;
+    overflow: hidden;
+    position: relative;
+}
+
+.preview-iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 250px;
+    border: none;
+    display: block;
 }
 
 .lesson-example-preview-surface h1,
@@ -355,9 +369,9 @@
 }
 
 .lesson-note-fab {
+    top: 50%;
     position: fixed;
     right: var(--lesson-fab-right);
-    top: 50%;
     width: var(--lesson-fab-size);
     height: var(--lesson-fab-size);
     border-radius: 999px;
@@ -368,8 +382,6 @@
     color: var(--lesson-fab-color);
     border: none;
     box-shadow: var(--lesson-fab-shadow);
-    transform: translateY(-50%);
-    transform: translateX(-50%);
     z-index: 1200;
 }
 
@@ -389,7 +401,9 @@
     z-index: 1300;
 }
 
-.lesson-note-modal.show { display: flex; }
+.lesson-note-modal.show {
+    display: flex;
+}
 
 .lesson-note-dialog {
     width: 100%;
@@ -430,6 +444,19 @@
     gap: var(--lesson-actions-gap);
 }
 
+.note-item {
+    transition: all 0.2s ease;
+}
+
+.note-item:hover {
+    background-color: #f1f5f9 !important;
+}
+
+.note-item-text {
+    line-height: 1.5;
+    color: var(--cm-text-main);
+}
+
 
 .cm-sidebar-toggle {
     display: none;
@@ -458,7 +485,7 @@
     }
 
     .cm-sidebar {
-      display: block !important;
+        display: block !important;
         width: 100%;
         height: auto;
         position: relative;
@@ -472,17 +499,17 @@
     }
 
     .cm-sidebar-content {
-      display: none;
+        display: none;
         background: var(--cm-surface-1);
         padding: 1.5rem;
     }
 
     .cm-sidebar-content.show {
-      display: block;
+        display: block;
     }
 
     .lesson-main-content {
-      padding: var(--lesson-mobile-padding);
+        padding: var(--lesson-mobile-padding);
     }
 
     .lesson-card {

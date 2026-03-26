@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>HTML Comments - Markuply</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/theme.css}">
+    <link rel="stylesheet" th:href="@{/css/lesson.css}">
+</head>
+<body class="cm-bg cm-page-shell">
+
+<header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
+
+<div class="lesson-layout">
+    <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
+
+    <main class="lesson-main-content">
+        <div class="lesson-card">
+
+            <div id="lessonData">
+
+                <h1 class="cm-heading mb-4 lesson-title">HTML Comments</h1>
+
+                <p class="lead">HTML comments are not displayed in the browser, but they can help document your HTML source code.</p>
+
+                <hr class="my-5">
+
+                <h2 class="cm-heading mb-3 lesson-section-title">HTML Comment Tag</h2>
+                <p>You can add comments to your HTML source by using the following syntax:</p>
+                <div class="bg-light p-3 border rounded mb-4" style="font-family: monospace;">
+                    <code>&lt;!-- Write your comments here --&gt;</code>
+                </div>
+                <p>Notice that there is an exclamation point (!) in the start tag, but not in the end tag.</p>
+
+                <section class="lesson-example mb-4">
+                    <div class="lesson-example-header">
+                        <h3 class="lesson-example-title">Example:</h3>
+                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                    </div>
+                    <div class="lesson-example-body">
+                        <pre class="lesson-codeblock"><code>&lt;!-- This is a comment --&gt;
+
+&lt;p&gt;This is a paragraph.&lt;/p&gt;
+
+&lt;!-- Comments are not displayed in the browser --&gt;</code></pre>
+                    </div>
+                </section>
+
+                <hr class="my-5">
+
+                <h2 class="cm-heading mb-3 lesson-section-title">Add Comments</h2>
+                <p>Comments can be used to insert notes and reminders in your HTML code:</p>
+
+                <section class="lesson-example mb-4">
+                    <div class="lesson-example-header">
+                        <h3 class="lesson-example-title">Example:</h3>
+                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                    </div>
+                    <div class="lesson-example-body">
+                        <pre class="lesson-codeblock"><code>&lt;!-- This is a comment --&gt;
+&lt;p&gt;This is a paragraph.&lt;/p&gt;
+&lt;!-- Remember to add more information here --&gt;</code></pre>
+                    </div>
+                </section>
+
+                <p>Comments are also great for debugging HTML, because you can comment out HTML lines of code, one at a time, to search for errors:</p>
+
+                <section class="lesson-example mb-4">
+                    <div class="lesson-example-header">
+                        <h3 class="lesson-example-title">Example:</h3>
+                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                    </div>
+                    <div class="lesson-example-body">
+                        <pre class="lesson-codeblock"><code>&lt;!-- Do not display this image for now
+&lt;img border="0" src="pic_trulli.jpg" alt="Trulli"&gt;
+--&gt;</code></pre>
+                    </div>
+                </section>
+
+                <hr class="my-5">
+
+                <h2 class="cm-heading mb-3 lesson-section-title">Hide Content</h2>
+                <p>Comments can be used to hide content. This can be helpful if you want to hide content temporarily:</p>
+
+                <section class="lesson-example mb-4">
+                    <div class="lesson-example-header">
+                        <h3 class="lesson-example-title">Example:</h3>
+                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                    </div>
+                    <div class="lesson-example-body">
+                        <pre class="lesson-codeblock"><code>&lt;p&gt;This is a paragraph.&lt;/p&gt;
+&lt;!-- &lt;p&gt;This is another paragraph.&lt;/p&gt; --&gt;
+&lt;p&gt;This is a paragraph.&lt;/p&gt;</code></pre>
+                    </div>
+                </section>
+
+                <p>You can also hide more than one line. Everything between <code>&lt;!--</code> and <code>--&gt;</code> will be hidden from the display:</p>
+
+                <section class="lesson-example mb-4">
+                    <div class="lesson-example-header">
+                        <h3 class="lesson-example-title">Example:</h3>
+                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                    </div>
+                    <div class="lesson-example-body">
+                        <pre class="lesson-codeblock"><code>&lt;!--
+&lt;p&gt;Look at this cool image:&lt;/p&gt;
+&lt;img border="0" src="pic_trulli.jpg" alt="Trulli"&gt;
+--&gt;</code></pre>
+                    </div>
+                </section>
+
+                <hr class="my-5">
+
+                <h2 class="cm-heading mb-3 lesson-section-title">Hide Inline Content</h2>
+                <p>Comments can be used to hide parts of an HTML line:</p>
+
+                <section class="lesson-example mb-4">
+                    <div class="lesson-example-header">
+                        <h3 class="lesson-example-title">Example:</h3>
+                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                    </div>
+                    <div class="lesson-example-body">
+                        <pre class="lesson-codeblock"><code>&lt;p&gt;This &lt;!-- is a --&gt; paragraph.&lt;/p&gt;</code></pre>
+                    </div>
+                </section>
+
+                <div class="mt-5 pt-4 border-top d-flex justify-content-between align-items-center flex-wrap lesson-actions">
+                    <a class="btn btn-lesson-nav" th:href="${prevLessonUrl}" th:if="${prevLessonUrl != '#'}" aria-label="Previous lesson">← Previous</a>
+                    <span th:if="${prevLessonUrl == '#'}"></span>
+                    <button class="btn btn-cm-primary px-4 py-2 shadow-sm" type="button">Mark as Completed</button>
+                    <a class="btn btn-lesson-nav" th:href="${nextLessonUrl}" th:if="${nextLessonUrl != '#'}" aria-label="Next lesson">Next →</a>
+                    <span th:if="${nextLessonUrl == '#'}"></span>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+</div>
+
+<div th:replace="~{lesson/fragment/notes :: notes}"></div>
+</body>
+</html>

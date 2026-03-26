@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CSS Margins - Markuply</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/theme.css}">
+    <link rel="stylesheet" th:href="@{/css/lesson.css}">
+</head>
+<body class="cm-bg cm-page-shell">
+
+<header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
+
+<div class="lesson-layout">
+    <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
+
+    <main class="lesson-main-content">
+        <div class="lesson-card">
+            <div id="lessonData">
+                <h1 class="cm-heading mb-4 lesson-title">CSS Margins</h1>
+                <p class="lead">The CSS <code>margin</code> properties are used to create space around elements, outside of any defined borders.</p>
+
+                <hr class="my-5">
+
+                <h2 class="cm-heading mb-3 lesson-section-title">CSS Margins</h2>
+                <p>With CSS, you have full control over the margins. There are properties for setting the margin for each side of an element (top, right, bottom, and left).</p>
+                <p>CSS has properties for specifying the margin for each side of an element:</p>
+                <ul class="mb-4" style="line-height: 1.8;">
+                    <li><code>margin-top</code></li>
+                    <li><code>margin-right</code></li>
+                    <li><code>margin-bottom</code></li>
+                    <li><code>margin-left</code></li>
+                </ul>
+
+                <section class="lesson-example mb-4">
+                    <div class="lesson-example-header">
+                        <h3 class="lesson-example-title">Example:</h3>
+                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                    </div>
+                    <div class="lesson-example-body">
+                        <pre class="lesson-codeblock"><code>p {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  margin-right: 150px;
+  margin-left: 80px;
+}</code></pre>
+                    </div>
+                </section>
+
+                <hr class="my-5">
+
+                <h2 class="cm-heading mb-3 lesson-section-title">Margin Shorthand Property</h2>
+                <p>To shorten the code, it is possible to specify all the margin properties in one property.</p>
+
+                <section class="lesson-example mb-4">
+                    <div class="lesson-example-header">
+                        <h3 class="lesson-example-title">Example:</h3>
+                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                    </div>
+                    <div class="lesson-example-body">
+                        <pre class="lesson-codeblock"><code>p {
+  margin: 25px 50px 75px 100px;
+}</code></pre>
+                    </div>
+                </section>
+
+                <ul class="mb-4" style="line-height: 1.8;">
+                    <li>top margin is 25px</li>
+                    <li>right margin is 50px</li>
+                    <li>bottom margin is 75px</li>
+                    <li>left margin is 100px</li>
+                </ul>
+
+                <hr class="my-5">
+
+                <h2 class="cm-heading mb-3 lesson-section-title">The auto Value</h2>
+                <p>You can set the margin property to <code>auto</code> to horizontally center the element within its container.</p>
+                <p>The element will then take up the specified width, and the remaining space will be split equally between the left and right margins.</p>
+
+                <section class="lesson-example mb-4">
+                    <div class="lesson-example-header">
+                        <h3 class="lesson-example-title">Example:</h3>
+                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                    </div>
+                    <div class="lesson-example-body">
+                        <pre class="lesson-codeblock"><code>div {
+  width: 300px;
+  margin: auto;
+  border: 1px solid red;
+}</code></pre>
+                    </div>
+                </section>
+
+                <div class="mt-5 pt-4 border-top d-flex justify-content-between align-items-center flex-wrap lesson-actions">
+                    <a class="btn btn-lesson-nav" th:href="${prevLessonUrl}" th:if="${prevLessonUrl != '#'}" aria-label="Previous lesson">← Previous</a>
+                    <span th:if="${prevLessonUrl == '#'}"></span>
+                    <button class="btn btn-cm-primary px-4 py-2 shadow-sm" type="button">Mark as Completed</button>
+                    <a class="btn btn-lesson-nav" th:href="${nextLessonUrl}" th:if="${nextLessonUrl != '#'}" aria-label="Next lesson">Next →</a>
+                    <span th:if="${nextLessonUrl == '#'}"></span>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<div th:replace="~{lesson/fragment/notes :: notes}"></div>
+</body>
+</html>

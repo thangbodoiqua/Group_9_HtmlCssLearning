@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CSS Syntax - Markuply</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/theme.css}">
+    <link rel="stylesheet" th:href="@{/css/lesson.css}">
+</head>
+<body class="cm-bg cm-page-shell">
+
+<header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
+
+<div class="lesson-layout">
+    <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
+
+    <main class="lesson-main-content">
+        <div class="lesson-card">
+            <div id="lessonData">
+                <h1 class="cm-heading mb-4 lesson-title">CSS Syntax</h1>
+                <p class="lead">A CSS rule-set consists of a selector and a declaration block.</p>
+
+                <hr class="my-5">
+
+                <h2 class="cm-heading mb-3 lesson-section-title">CSS Syntax</h2>
+                <div class="bg-light p-4 border rounded text-center mb-4">
+                    <div style="font-family: monospace; font-size: 1.5rem;">
+                        <span style="color: blue;">selector</span> { <span style="color: red;">property</span>: <span style="color: green;">value</span>; }
+                    </div>
+                </div>
+
+                <ul class="mb-4" style="line-height: 1.8;">
+                    <li>The <strong>selector</strong> points to the HTML element you want to style.</li>
+                    <li>The <strong>declaration block</strong> contains one or more declarations separated by semicolons.</li>
+                    <li>Each <strong>declaration</strong> includes a CSS property name and a value, separated by a colon.</li>
+                    <li>Multiple CSS declarations are separated with semicolons, and declaration blocks are surrounded by curly braces.</li>
+                </ul>
+
+                <section class="lesson-example mb-4">
+                    <div class="lesson-example-header">
+                        <h3 class="lesson-example-title">Example:</h3>
+                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                    </div>
+                    <div class="lesson-example-body">
+                        <pre class="lesson-codeblock"><code>p {
+  color: red;
+  text-align: center;
+}</code></pre>
+                    </div>
+                </section>
+
+                <p>In this example all <code>&lt;p&gt;</code> elements will be center-aligned, with a red text color.</p>
+
+                <hr class="my-5">
+
+                <h2 class="cm-heading mb-3 lesson-section-title">Explanation:</h2>
+                <ul class="mb-4" style="line-height: 1.8;">
+                    <li><code>p</code> is a selector in CSS (it points to the HTML element you want to style: <code>&lt;p&gt;</code>).</li>
+                    <li><code>color</code> is a property, and <code>red</code> is the property value.</li>
+                    <li><code>text-align</code> is a property, and <code>center</code> is the property value.</li>
+                </ul>
+
+                <div class="mt-5 pt-4 border-top d-flex justify-content-between align-items-center flex-wrap lesson-actions">
+                    <a class="btn btn-lesson-nav" th:href="${prevLessonUrl}" th:if="${prevLessonUrl != '#'}" aria-label="Previous lesson">← Previous</a>
+                    <span th:if="${prevLessonUrl == '#'}"></span>
+                    <button class="btn btn-cm-primary px-4 py-2 shadow-sm" type="button">Mark as Completed</button>
+                    <a class="btn btn-lesson-nav" th:href="${nextLessonUrl}" th:if="${nextLessonUrl != '#'}" aria-label="Next lesson">Next →</a>
+                    <span th:if="${nextLessonUrl == '#'}"></span>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<div th:replace="~{lesson/fragment/notes :: notes}"></div>
+</body>
+</html>

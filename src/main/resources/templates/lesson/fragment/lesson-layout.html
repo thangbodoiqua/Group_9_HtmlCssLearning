@@ -55,5 +55,6 @@
     document.getElementById("openNoteFab")?.addEventListener("click", openNoteModal);
     document.getElementById("closeNoteBtn")?.addEventListener("click", closeNoteModal);
 </script>
+<div th:replace="~{lesson/fragment/notes :: notes}"></div>
 </body>
 </html>

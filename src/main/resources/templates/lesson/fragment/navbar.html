@@ -1,43 +1,60 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <body>
-<header th:fragment="navbar" class="cm-navbar-container d-flex justify-content-between align-items-center">
-  <a th:href="@{/}" class="text-decoration-none">
-    <h3 class="cm-brand mb-0" style="font-size: 1.5rem">Markuply</h3>
-  </a>
+  <header th:fragment="navbar" class="cm-navbar-container d-flex justify-content-between align-items-center">
+    <a th:href="@{/}" class="text-decoration-none">
+      <h3 class="cm-brand mb-0" style="font-size: 1.5rem">Markuply</h3>
+    </a>
 
-  <button class="btn d-lg-none" onclick="document.querySelector('.cm-nav-links').classList.toggle('show')" style="font-size: 1.5rem; padding: 0; color: var(--cm-text-main)">
-    ☰
-  </button>
+    <button class="btn d-lg-none" onclick="document.querySelector('.cm-nav-links').classList.toggle('show')"
+      style="font-size: 1.5rem; padding: 0; color: var(--cm-text-main)">
+      ☰
+    </button>
 
-  <nav class="cm-nav-links">
-    <a th:href="@{/lesson/html}" class="cm-nav-link" th:classappend="${currentCategory == 'HTML'} ? 'active' : ''">HTML Learning</a>
-    <a th:href="@{/lesson/css}" class="cm-nav-link" th:classappend="${currentCategory == 'CSS'} ? 'active' : ''">CSS Learning</a>
-    <a th:href="@{/compiler}" class="cm-nav-link">Code Compiler</a>
-    <div class="cm-nav-dropdown">
-      <a th:href="@{/practice/pixel-perfect}" class="cm-nav-link">Practice <small class="cm-nav-caret">▼</small></a>
-      <div class="cm-nav-dropdown-menu">
-        <a th:href="@{/practice/pixel-perfect}">Pixel Perfect mode</a>
-        <a th:href="@{/practice/css-debug}">CSS Debug mode</a>
+    <nav class="cm-nav-links">
+      <a th:href="@{/lesson/html}" class="cm-nav-link"
+        th:classappend="${currentCategory == 'HTML'} ? 'active' : ''">HTML Learning</a>
+      <a th:href="@{/lesson/css}" class="cm-nav-link" th:classappend="${currentCategory == 'CSS'} ? 'active' : ''">CSS
+        Learning</a>
+      <a th:href="@{/compiler}" class="cm-nav-link">Code Compiler</a>
+      <div class="cm-nav-dropdown">
+        <a th:href="@{/practice/pixel-perfect}" class="cm-nav-link">Practice <small class="cm-nav-caret">▼</small></a>
+        <div class="cm-nav-dropdown-menu">
+          <a th:href="@{/practice/pixel-perfect}">Pixel Perfect mode</a>
+          <a th:href="@{/practice/css-debug}">CSS Debug mode</a>
+        </div>
+      </div>
+      <a th:href="@{/compare-css}" class="cm-nav-link"
+        th:classappend="${currentCategory == 'COMPARE'} ? 'active' : ''">Compare CSS</a>
+    </nav>
+
+    <div class="user-actions d-none d-lg-block">
+      <div class="profile-dropdown">
+        <div class="d-flex align-items-center">
+          <img src="https://ui-avatars.com/api/?name=Tuan+Dat&background=2563eb&color=fff" alt="Avatar"
+            class="rounded-circle mr-2" width="35" />
+          <span class="font-weight-bold" style="color: var(--cm-text-main)">Tuan Dat <small>▼</small></span>
+        </div>
+        <div class="dropdown-menu-custom">
+          <a th:href="@{/profile}"> Profile</a>
+          <a th:href="@{/progress}"> View Progress</a>
+          <div class="border-top my-1"></div>
+          <a th:href="@{/auth/signin}" class="text-danger"> Logout</a>
+        </div>
       </div>
     </div>
-    <a th:href="@{/templates/compare-css}" class="cm-nav-link">Compare CSS</a>
-  </nav>
 
-  <div class="user-actions d-none d-lg-block">
-    <div class="profile-dropdown">
-      <div class="d-flex align-items-center">
-        <img src="https://ui-avatars.com/api/?name=Tuan+Dat&background=2563eb&color=fff" alt="Avatar" class="rounded-circle mr-2" width="35" />
-        <span class="font-weight-bold" style="color: var(--cm-text-main)">Tuan Dat <small>▼</small></span>
-      </div>
-      <div class="dropdown-menu-custom">
-        <a th:href="@{/profile}"> Profile</a>
-        <a th:href="@{/progress}"> View Progress</a>
-        <div class="border-top my-1"></div>
-        <a th:href="@{/auth/signin}" class="text-danger"> Logout</a>
-      </div>
-    </div>
-  </div>
-</header>
+    <script th:inline="javascript">
+      window.markuplyConfig = {
+        currentCategory: /*[[${currentCategory}]]*/ 'HTML',
+        compilerUrl: /*[[@{/compiler}]]*/ '/compiler'
+      };
+    </script>
+    <script th:src="@{/js/lesson-tryexample.js}"></script>
+    <script th:src="@{/js/lesson-preview.js}"></script>
+  </header>
+<div th:replace="~{lesson/fragment/notes :: notes}"></div>
 </body>
+
 </html>
