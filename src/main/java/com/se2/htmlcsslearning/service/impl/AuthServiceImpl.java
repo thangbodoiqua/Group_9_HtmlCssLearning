@@ -12,9 +12,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Map;
 import java.util.Optional;
+
 
 @Service
 public class AuthServiceImpl implements AuthService, UserDetailsService {
@@ -31,24 +33,12 @@ public class AuthServiceImpl implements AuthService, UserDetailsService {
     public void register(String name, String email, String password, String dob) {
 
         // ===== VALIDATION =====
-        if (name == null || name.trim().isEmpty()) {
-            throw new IllegalArgumentException("Name is required");
+        LocalDate birthDate = LocalDate.parse(dob);
+        if (birthDate.isAfter(LocalDate.now())) {
+            throw new IllegalArgumentException("The birth date cannot be later than the current date.");
         }
-
-        if (email == null || !email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
-            throw new IllegalArgumentException("Invalid email format");
-        }
-
-        if (password == null || password.length() < 6) {
-            throw new IllegalArgumentException("Password must be at least 6 characters");
-        }
-
-        if (dob == null || dob.trim().isEmpty()) {
-            throw new IllegalArgumentException("Date of birth is required");
-        }
-
         if (userRepo.findByEmail(email).isPresent()) {
-            throw new IllegalStateException("Email already exists");
+            throw new IllegalStateException("This email address has already been used.");
         }
         User user = new User();
         user.setEmail(email);
@@ -56,64 +46,52 @@ public class AuthServiceImpl implements AuthService, UserDetailsService {
         user.setDob(dob);
         user.setUserRole(UserRoleConstants.USER.name());
         user.setRegDate(LocalDateTime.now());
-
         user.setPassword(passwordEncoder.encode(password));
-
         userRepo.save(user);
     }
 
-    @Override
-    public boolean login(String email, String password) {
 
-        if (email == null || email.isEmpty()) {
-            throw new IllegalArgumentException("Email is required");
-        }
-
-        if (password == null || password.isEmpty()) {
-            throw new IllegalArgumentException("Password is required");
-        }
-
-        User user = userRepo.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-
-        if (!passwordEncoder.matches(password, user.getPassword())) {
-            throw new IllegalArgumentException("Invalid email or password");
-        }
-        return true;
-    }
     // ================= OTP =================
     @Override
     public String generateOTP(String email) {
         if (email == null || email.isEmpty()) {
             throw new IllegalArgumentException("Email is required");
         }
-        userRepo.findByEmail(email)
+        User user = userRepo.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("Email not registered"));
         String otp = String.valueOf((int)(Math.random() * 900000) + 100000);
-
         VerificationCode code = new VerificationCode();
+        code.setUser(user);
         code.setEmail(email);
         code.setOtp(otp);
         code.setCreatedAt(LocalDateTime.now());
         code.setExpiredAt(LocalDateTime.now().plusMinutes(5));
 
         verifyRepo.save(code);
+        sendEmail(email, otp);
 
         return otp;
+    }
+    @Autowired
+    private org.springframework.mail.javamail.JavaMailSender mailSender;
+    private void sendEmail(String toEmail, String otp) {
+        org.springframework.mail.SimpleMailMessage message = new org.springframework.mail.SimpleMailMessage();
+        message.setFrom("Markuply <tuanh2004@gmail.com>");
+        message.setTo(toEmail);
+        message.setSubject("Mã xác thực khôi phục mật khẩu - Markuply");
+        message.setText("Xin chào,\n\nMã OTP của bạn là: " + otp +
+                "\nMã này có hiệu lực trong 5 phút. Vui lòng không chia sẻ mã này cho bất kỳ ai.");
+        mailSender.send(message);
     }
 
     @Override
     public boolean verifyOTP(String email, String otp) {
-
-
         if (email == null || email.isEmpty()) {
             throw new IllegalArgumentException("Email is required");
         }
-
         if (otp == null || otp.length() != 6) {
             throw new IllegalArgumentException("Invalid OTP format");
         }
-
         Optional<VerificationCode> codeOpt =
                 verifyRepo.findByEmailAndOtp(email, otp);
 
@@ -147,10 +125,11 @@ public class AuthServiceImpl implements AuthService, UserDetailsService {
         userRepo.save(user);
     }
     // ================= Sign In =================
-
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-
+        if (email == null || email.isEmpty()) {
+            throw new UsernameNotFoundException("Email is required");
+        }
         User user = userRepo.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
@@ -160,4 +139,5 @@ public class AuthServiceImpl implements AuthService, UserDetailsService {
                 .authorities(user.getUserRole())
                 .build();
     }
+
 }
