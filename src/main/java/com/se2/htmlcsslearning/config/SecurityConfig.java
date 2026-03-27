@@ -1,5 +1,6 @@
 package com.se2.htmlcsslearning.config;
 
+import com.se2.htmlcsslearning.domain.UserRoleConstants;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -35,25 +36,17 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/",
                                 "/auth/**",
-                                "/css/**", "/js/**", "/images/**",
-
-                                // Guest dùng được
-
-                                "/lessons/view/**",
-                                "/examples/**",
-                                "/code/compile"
+                                "/css/**", "/js/**", "/images/**","/icons/**",
+                                "/lesson/**",
+                                "/compiler/**"
                         ).permitAll()
-
-                        //  learner
                         .requestMatchers(
                                 "/",
                                 "/profile/**",
-                                "/notes/**",
+                                "/note/**",
                                 "/progress/**",
                                 "/practice/**",
-                                "/compare/**",
-                                "/compare/background-color",
-                                "/challenges/**"
+                                "/compare-css/**"
                         ).hasAuthority("USER")
 
                         .anyRequest().authenticated()
@@ -78,7 +71,7 @@ public class SecurityConfig {
                         .logoutUrl("/auth/logout")
                         .logoutSuccessUrl("/auth/signin?logout")
                         .invalidateHttpSession(true)
-                        .permitAll()
+                        .deleteCookies("JSESSIONID")
                 );
 
         return http.build();
