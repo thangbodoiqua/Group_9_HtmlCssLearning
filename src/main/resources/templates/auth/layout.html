@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(title, leftPanel, rightPanel)">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title th:replace="${title}">Auth Page</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/theme.css}" />
+    <link rel="stylesheet" th:href="@{/css/auth.css}" />
+    <link rel="stylesheet" th:href="@{/css/forgot-password.css}" />
+</head>
+
+<body class="cm-bg">
+    <!-- Navbar chung -->
+    <div th:replace="~{fragment/navbar :: navbar}"></div>
+
+    <div class="d-flex align-items-center mt-3">
+        <div class="container pb-5">
+            <div class="row justify-content-center">
+                <div class="col-xl-10 col-lg-11">
+                    <div class="card cm-card cm-auth-card">
+                        <div class="row no-gutters">
+                            <!-- Left Panel -->
+                            <div class="col-md-5 d-none d-md-flex cm-auth-panel p-5">
+                                <div th:replace="${leftPanel}"></div>
+                            </div>
+
+                            <!-- Right Panel -->
+                            <div class="col-md-7 bg-white cm-auth-form p-4" th:classappend="${rightPanelClass != null ? rightPanelClass : ''}">
+                                <div th:replace="${rightPanel}"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
