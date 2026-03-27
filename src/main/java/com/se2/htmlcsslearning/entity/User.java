@@ -3,6 +3,7 @@ package com.se2.htmlcsslearning.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class User {
     private String userName;
 
     @Column(name="dob", nullable=false)
-    private String dob;
+    private LocalDate dob;
 
     @Column(name="reg_date", nullable=false)
     private LocalDateTime regDate;

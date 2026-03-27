@@ -4,6 +4,7 @@ import com.se2.htmlcsslearning.dto.request.ForgotPasswordRequest;
 import com.se2.htmlcsslearning.dto.request.ResetPasswordRequest;
 import com.se2.htmlcsslearning.dto.request.SignUpRequest;
 import com.se2.htmlcsslearning.dto.request.VerifyOtpRequest;
+import com.se2.htmlcsslearning.exception.EmailAlreadyExistsException;
 import com.se2.htmlcsslearning.service.AuthService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,29 +48,40 @@ public class AuthController {
     }
 
     @GetMapping("/signup")
-    public String signupPage(Authentication auth) {
+    public String signupPage(Authentication auth, Model model) {
         if (isLoggedIn(auth)) return "redirect:/";
+        if (!model.containsAttribute("signUpRequest")) {
+            model.addAttribute("signUpRequest", new SignUpRequest());
+        }
         return "auth/signup";
     }
 
     @PostMapping("/signup")
     public String signupPost(@Valid @ModelAttribute("signUpRequest") SignUpRequest request,
                              BindingResult bindingResult,
+                             Model model,
                              RedirectAttributes redirectAttributes) {
-        if (bindingResult.hasErrors()) return "auth/signup";
+        if (!bindingResult.hasFieldErrors("confirmPassword")
+                && request.getPassword() != null
+                && !request.getPassword().equals(request.getConfirmPassword())) {
+            bindingResult.rejectValue("confirmPassword", "error.confirmPassword", "Passwords do not match");
+        }
+
+        if (bindingResult.hasErrors()) {
+            String firstError = bindingResult.getAllErrors().get(0).getDefaultMessage();
+            model.addAttribute("error", firstError);
+            return "auth/signup";
+        }
 
         try {
             authService.register(request);
-            redirectAttributes.addFlashAttribute("successMessage", "Registration successful! Please sign in.");
+            redirectAttributes.addFlashAttribute("message", "Registration successful! Please sign in.");
             return "redirect:/auth/signin";
-        } catch (IllegalStateException e) {
-            bindingResult.rejectValue("email", "error.email", e.getMessage());
-            return "auth/signup";
-        } catch (IllegalArgumentException e) {
-            bindingResult.rejectValue("dob", "error.dob", e.getMessage());
+        } catch (EmailAlreadyExistsException e) {
+            model.addAttribute("error", e.getMessage());
             return "auth/signup";
         } catch (Exception e) {
-            bindingResult.reject("globalError", "Unexpected error. Try again.");
+            model.addAttribute("error", "Unexpected error. Please try again.");
             return "auth/signup";
         }
     }
