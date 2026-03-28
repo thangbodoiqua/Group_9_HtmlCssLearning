@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>HTML Elements - Markuply</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/theme.css}">
+    <link rel="stylesheet" th:href="@{/css/lesson.css}">
+</head>
+
+<body class="cm-bg cm-page-shell">
+
+    <header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
+
+    <div class="lesson-layout">
+        <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
+
+        <main class="lesson-main-content">
+            <div class="lesson-card">
+
+                <div id="lessonData">
+
+                    <h1 class="cm-heading mb-4 lesson-title">HTML Elements</h1>
+
+                    <p class="lead">An HTML element is defined by a start tag, some content, and an end tag.</p>
+
+                    <hr class="my-5">
+
+                    <h2 class="cm-heading mb-3 lesson-section-title">HTML Elements</h2>
+                    <p>The HTML <strong>element</strong> is everything from the start tag to the end tag:</p>
+                    <div class="bg-light p-4 border rounded text-center mb-4"
+                        style="font-size: 1.2rem; font-family: monospace;">
+                        <span style="color: blue;">&lt;tagname&gt;</span> Content goes here... <span
+                            style="color: blue;">&lt;/tagname&gt;</span>
+                    </div>
+
+                    <p>Examples of some HTML elements:</p>
+                    <table class="table table-bordered bg-white">
+                        <thead>
+                            <tr>
+                                <th>Start tag</th>
+                                <th>Element content</th>
+                                <th>End tag</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>&lt;h1&gt;</code></td>
+                                <td>My First Heading</td>
+                                <td><code>&lt;/h1&gt;</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>&lt;p&gt;</code></td>
+                                <td>My first paragraph.</td>
+                                <td><code>&lt;/p&gt;</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>&lt;br&gt;</code></td>
+                                <td><em>none</em></td>
+                                <td><em>none</em></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="highlight-box bg-white border border-info mb-4"
+                        style="border-left: 5px solid #0dcaf0 !important;">
+                        <strong class="text-info">Note:</strong> Some HTML elements have no content (like the <span
+                            class="inline-code">&lt;br&gt;</span> element). These elements are called empty elements.
+                        Empty elements do not have an end tag!
+                    </div>
+
+                    <hr class="my-5">
+
+                    <h2 class="cm-heading mb-3 lesson-section-title">Nested HTML Elements</h2>
+                    <p>HTML elements can be nested (this means that elements can contain other elements).</p>
+                    <p>All HTML documents consist of nested HTML elements.</p>
+                    <p>The following example contains four HTML elements (<span class="inline-code">&lt;html&gt;</span>,
+                        <span class="inline-code">&lt;body&gt;</span>, <span class="inline-code">&lt;h1&gt;</span> and
+                        <span class="inline-code">&lt;p&gt;</span>):
+                    </p>
+
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h1&gt;My First Heading&lt;/h1&gt;
+&lt;p&gt;My first paragraph.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </section>
+
+                    <hr class="my-5">
+
+                    <h2 class="cm-heading mb-3 lesson-section-title">Never Skip the End Tag</h2>
+                    <p>Some HTML elements will display correctly, even if you forget the end tag:</p>
+
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;This is a paragraph
+&lt;p&gt;This is a paragraph
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </section>
+                    <p><strong>However, never rely on this! Unexpected results and errors may occur if you forget the
+                            end tag!</strong></p>
+
+                    <hr class="my-5">
+
+                    <h2 class="cm-heading mb-3 lesson-section-title">Empty HTML Elements</h2>
+                    <p>HTML elements with no content are called empty elements.</p>
+                    <p>The <span class="inline-code">&lt;br&gt;</span> tag defines a line break, and is an empty element
+                        without a closing tag:</p>
+
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre
+                                class="lesson-codeblock"><code>&lt;p&gt;This is a &lt;br&gt; paragraph with a line break.&lt;/p&gt;</code></pre>
+                        </div>
+                    </section>
+
+                    <div
+                        class="mt-5 pt-4 border-top d-flex justify-content-between align-items-center flex-wrap lesson-actions">
+                        <a class="btn btn-lesson-nav" th:href="${prevLessonUrl}" th:if="${prevLessonUrl != '#'}"
+                            aria-label="Previous lesson">← Previous</a>
+                        <span th:if="${prevLessonUrl == '#'}"></span>
+                        <button class="btn btn-cm-primary px-4 py-2 shadow-sm" type="button">Mark as Completed</button>
+                        <a class="btn btn-lesson-nav" th:href="${nextLessonUrl}" th:if="${nextLessonUrl != '#'}"
+                            aria-label="Next lesson">Next →</a>
+                        <span th:if="${nextLessonUrl == '#'}"></span>
+                    </div>
+
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+<div th:replace="~{lesson/fragment/notes :: notes}"></div>
+</body>
+
+</html>

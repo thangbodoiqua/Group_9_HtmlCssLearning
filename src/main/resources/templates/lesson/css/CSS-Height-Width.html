@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CSS Height and Width - Markuply</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/theme.css}">
+    <link rel="stylesheet" th:href="@{/css/lesson.css}">
+</head>
+<body class="cm-bg cm-page-shell">
+
+<header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
+
+<div class="lesson-layout">
+    <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
+
+    <main class="lesson-main-content">
+        <div class="lesson-card">
+            <div id="lessonData">
+                <h1 class="cm-heading mb-4 lesson-title">CSS Height and Width</h1>
+                <p class="lead">The CSS <code>height</code> and <code>width</code> properties are used to set the height and width of an element.</p>
+
+                <hr class="my-5">
+
+                <h2 class="cm-heading mb-3 lesson-section-title">CSS Height and Width</h2>
+                <p>The <code>height</code> and <code>width</code> properties do not include padding, borders, or margins. They set the height/width of the content area of an element.</p>
+                <p>The <code>height</code> and <code>width</code> properties can have the following values:</p>
+                <ul class="mb-4" style="line-height: 1.8;">
+                    <li><code>auto</code> - This is default. The browser calculates the height and width.</li>
+                    <li><code>length</code> - Defines the height/width in px, cm, etc.</li>
+                    <li><code>%</code> - Defines the height/width in percent of the containing block.</li>
+                    <li><code>initial</code> - Sets the height/width to its default value.</li>
+                    <li><code>inherit</code> - The height/width will be inherited from its parent value.</li>
+                </ul>
+
+                <section class="lesson-example mb-4">
+                    <div class="lesson-example-header">
+                        <h3 class="lesson-example-title">Example:</h3>
+                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                    </div>
+                    <div class="lesson-example-body">
+                        <pre class="lesson-codeblock"><code>div {
+  height: 200px;
+  width: 50%;
+  background-color: powderblue;
+}</code></pre>
+                    </div>
+                </section>
+
+                <hr class="my-5">
+
+                <h2 class="cm-heading mb-3 lesson-section-title">CSS max-width</h2>
+                <p>The <code>max-width</code> property is used to set the maximum width of an element.</p>
+                <p>The <code>max-width</code> can be specified in length values, like px, cm, etc., or in percent (%) of the containing block, or set to none (this is default. Means that there is no maximum width).</p>
+
+                <section class="lesson-example mb-4">
+                    <div class="lesson-example-header">
+                        <h3 class="lesson-example-title">Example:</h3>
+                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                    </div>
+                    <div class="lesson-example-body">
+                        <pre class="lesson-codeblock"><code>div {
+  max-width: 500px;
+  height: 100px;
+  background-color: powderblue;
+}</code></pre>
+                    </div>
+                </section>
+
+                <div class="mt-5 pt-4 border-top d-flex justify-content-between align-items-center flex-wrap lesson-actions">
+                    <a class="btn btn-lesson-nav" th:href="${prevLessonUrl}" th:if="${prevLessonUrl != '#'}" aria-label="Previous lesson">← Previous</a>
+                    <span th:if="${prevLessonUrl == '#'}"></span>
+                    <button class="btn btn-cm-primary px-4 py-2 shadow-sm" type="button">Mark as Completed</button>
+                    <a class="btn btn-lesson-nav" th:href="${nextLessonUrl}" th:if="${nextLessonUrl != '#'}" aria-label="Next lesson">Next →</a>
+                    <span th:if="${nextLessonUrl == '#'}"></span>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<div th:replace="~{lesson/fragment/notes :: notes}"></div>
+</body>
+</html>

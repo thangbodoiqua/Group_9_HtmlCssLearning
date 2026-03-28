@@ -1,0 +1,73 @@
+/* ============================
+   Error Pages - error.css
+   ============================ */
+
+.error-page {
+  min-height: calc(100vh - var(--cm-navbar-height));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error-card {
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.error-code {
+  font-size: clamp(6rem, 20vw, 10rem);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  line-height: 1;
+  background: var(--cm-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.error-code--warn {
+  background: linear-gradient(135deg, #f59e0b, #ef4444);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.error-code--danger {
+  background: linear-gradient(135deg, #ef4444, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.error-title {
+  color: var(--cm-text-strong);
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.error-message {
+  color: var(--cm-text-muted);
+  margin-bottom: 2rem;
+}
+
+.error-back-btn {
+  background: var(--cm-gradient);
+  color: white;
+  border: none;
+  border-radius: var(--cm-radius-md);
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  display: inline-block;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.error-back-btn:hover {
+  opacity: 0.88;
+  color: white;
+  transform: translateY(-2px);
+  text-decoration: none;
+}

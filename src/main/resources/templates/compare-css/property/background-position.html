@@ -1,0 +1,66 @@
+<body th:replace="~{compare-css/_layout :: comparePage(
+    'Background Position',
+    'Compare popular background-position values to see how the image is anchored.',
+    'background-position',
+    ~{:: #bgPositionOptions},
+    ~{:: #bgPositionPreviews}
+)}">
+
+<th:block id="bgPositionOptions">
+    <button class="compare-option-btn" data-option-index="0">
+        <span class="compare-option-row"><code class="compare-option-code">background-position: <span class="compare-value-highlight">center</span>;</code></span>
+    </button>
+    <button class="compare-option-btn" data-option-index="1">
+        <span class="compare-option-row"><code class="compare-option-code">background-position: <span class="compare-value-highlight">top left</span>;</code></span>
+    </button>
+    <button class="compare-option-btn" data-option-index="2">
+        <span class="compare-option-row"><code class="compare-option-code">background-position: <span class="compare-value-highlight">bottom right</span>;</code></span>
+    </button>
+    <button class="compare-option-btn" data-option-index="3">
+        <span class="compare-option-row"><code class="compare-option-code">background-position: <span class="compare-value-highlight">50% 20%</span>;</code></span>
+    </button>
+    <button class="compare-option-btn" data-option-index="4">
+        <span class="compare-option-row"><code class="compare-option-code">background-position: <span class="compare-value-highlight">20px 40px</span>;</code></span>
+    </button>
+</th:block>
+
+<th:block id="bgPositionPreviews">
+    <div class="compare-preview-item" style="background-image:url('/images/css-property/background-img.jpg'); background-size:cover; background-repeat:no-repeat; background-position:center; color:#ffffff; text-shadow:0 2px 8px rgba(0,0,0,0.45);">
+        <div class="compare-preview-content">
+            <h3>Center</h3>
+            <p>Image anchored to the center of the container.</p>
+        </div>
+    </div>
+
+    <div class="compare-preview-item" style="color: white;  display:none; background-image:url('/images/css-property/background-img.jpg'); background-size:cover; background-repeat:no-repeat; background-position:top left; color:#ffffff; text-shadow:0 2px 8px rgba(0,0,0,0.45);">
+        <div class="compare-preview-content">
+            <h3>Top left</h3>
+            <p>Image starts from the top-left corner.</p>
+        </div>
+    </div>
+
+    <div class="compare-preview-item" style="color: white;  display:none; background-image:url('/images/css-property/background-img.jpg'); background-size:cover; background-repeat:no-repeat; background-position:bottom right; color:#ffffff; text-shadow:0 2px 8px rgba(0,0,0,0.45);">
+        <div class="compare-preview-content">
+            <h3>Bottom right</h3>
+            <p>Image anchored at the bottom-right corner.</p>
+        </div>
+    </div>
+
+    <div class="compare-preview-item" style="color: white;  display:none; background-image:url('/images/css-property/background-img.jpg'); background-size:cover; background-repeat:no-repeat; background-position:50% 20%; color:#ffffff; text-shadow:0 2px 8px rgba(0,0,0,0.45);">
+        <div class="compare-preview-content">
+            <h3>50% 20%</h3>
+            <p>Custom percentage values reposition the focal point upward.</p>
+        </div>
+    </div>
+
+    <div class="compare-preview-item" style="color: white;  display:none; background-image:url('/images/css-property/background-img.jpg'); background-size:cover; background-repeat:no-repeat; background-position:20px 40px; color:#ffffff; text-shadow:0 2px 8px rgba(0,0,0,0.45);">
+        <div class="compare-preview-content">
+            <h3>20px 40px</h3>
+            <p>Pixel offsets pin the image relative to the top-left corner.</p>
+        </div>
+    </div>
+</th:block>
+
+</body>
+</html>
+

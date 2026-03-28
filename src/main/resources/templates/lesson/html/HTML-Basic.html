@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>HTML Basic - Markuply</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/theme.css}">
+    <link rel="stylesheet" th:href="@{/css/lesson.css}">
+</head>
+
+<body class="cm-bg cm-page-shell">
+
+    <header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
+
+    <div class="lesson-layout">
+        <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
+
+        <main class="lesson-main-content">
+            <div class="lesson-card">
+
+                <div id="lessonData">
+
+                    <h1 class="cm-heading mb-4 lesson-title">HTML Basic Examples</h1>
+
+                    <p class="lead">In this chapter we will show some basic HTML examples.</p>
+                    <p>Don't worry if we use tags you have not learned about yet.</p>
+
+                    <hr class="my-5">
+
+                    <h2 class="cm-heading mb-3 lesson-section-title">HTML Documents</h2>
+                    <p>All HTML documents must start with a document type declaration: <span
+                            class="inline-code">&lt;!DOCTYPE html&gt;</span>.</p>
+                    <p>The HTML document itself begins with <span class="inline-code">&lt;html&gt;</span> and ends with
+                        <span class="inline-code">&lt;/html&gt;</span>.
+                    </p>
+                    <p>The visible part of the HTML document is between <span class="inline-code">&lt;body&gt;</span>
+                        and <span class="inline-code">&lt;/body&gt;</span>.</p>
+
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h1&gt;My First Heading&lt;/h1&gt;
+&lt;p&gt;My first paragraph.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </section>
+
+                    <hr class="my-5">
+
+                    <h2 class="cm-heading mb-3 lesson-section-title">The &lt;!DOCTYPE&gt; Declaration</h2>
+                    <p>The <span class="inline-code">&lt;!DOCTYPE&gt;</span> declaration represents the document type,
+                        and helps browsers to display web pages correctly.</p>
+                    <p>It must only appear once, at the top of the page (before any HTML tags).</p>
+                    <p>The <span class="inline-code">&lt;!DOCTYPE&gt;</span> declaration is not case sensitive.</p>
+                    <p>The <span class="inline-code">&lt;!DOCTYPE&gt;</span> declaration for HTML5 is:</p>
+                    <div class="bg-light p-3 border rounded mb-4">
+                        <code>&lt;!DOCTYPE html&gt;</code>
+                    </div>
+
+                    <hr class="my-5">
+
+                    <h2 class="cm-heading mb-3 lesson-section-title">HTML Headings</h2>
+                    <p>HTML headings are defined with the <span class="inline-code">&lt;h1&gt;</span> to <span
+                            class="inline-code">&lt;h6&gt;</span> tags.</p>
+                    <p><span class="inline-code">&lt;h1&gt;</span> defines the most important heading. <span
+                            class="inline-code">&lt;h6&gt;</span> defines the least important heading:</p>
+
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>&lt;h1&gt;This is heading 1&lt;/h1&gt;
+&lt;h2&gt;This is heading 2&lt;/h2&gt;
+&lt;h3&gt;This is heading 3&lt;/h3&gt;</code></pre>
+                        </div>
+                    </section>
+
+                    <hr class="my-5">
+
+                    <h2 class="cm-heading mb-3 lesson-section-title">HTML Paragraphs</h2>
+                    <p>HTML paragraphs are defined with the <span class="inline-code">&lt;p&gt;</span> tag:</p>
+
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>&lt;p&gt;This is a paragraph.&lt;/p&gt;
+&lt;p&gt;This is another paragraph.&lt;/p&gt;</code></pre>
+                        </div>
+                    </section>
+
+                    <hr class="my-5">
+
+                    <h2 class="cm-heading mb-3 lesson-section-title">HTML Links</h2>
+                    <p>HTML links are defined with the <span class="inline-code">&lt;a&gt;</span> tag:</p>
+
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre
+                                class="lesson-codeblock"><code>&lt;a target="_blank" href="https://study4.com/"&gt;This is a link&lt;/a&gt;</code></pre>
+                        </div>
+                    </section>
+                    <p>The link's destination is specified in the <code>href</code> attribute.</p>
+                    <p>Attributes are used to provide additional information about HTML elements.</p>
+
+                    <hr class="my-5">
+
+                    <h2 class="cm-heading mb-3 lesson-section-title">HTML Images</h2>
+                    <p>HTML images are defined with the <span class="inline-code">&lt;img&gt;</span> tag.</p>
+                    <p>The source file (<code>src</code>), alternative text (<code>alt</code>), <code>width</code>, and
+                        <code>height</code> are provided as attributes:
+                    </p>
+
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre
+                                class="lesson-codeblock"><code>&lt;img src="https://url-shortener.me/II93" alt="W3Schools.com" width="104" height="142"&gt;</code></pre>
+                        </div>
+                    </section>
+
+                    <div
+                        class="mt-5 pt-4 border-top d-flex justify-content-between align-items-center flex-wrap lesson-actions">
+                        <a class="btn btn-lesson-nav" th:href="${prevLessonUrl}" th:if="${prevLessonUrl != '#'}"
+                            aria-label="Previous lesson">← Previous</a>
+                        <span th:if="${prevLessonUrl == '#'}"></span>
+                        <button class="btn btn-cm-primary px-4 py-2 shadow-sm" type="button">Mark as Completed</button>
+                        <a class="btn btn-lesson-nav" th:href="${nextLessonUrl}" th:if="${nextLessonUrl != '#'}"
+                            aria-label="Next lesson">Next →</a>
+                        <span th:if="${nextLessonUrl == '#'}"></span>
+                    </div>
+
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+<div th:replace="~{lesson/fragment/notes :: notes}"></div>
+</body>
+
+</html>

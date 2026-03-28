@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+  <div th:fragment="notes">
+    <button class="lesson-note-fab" type="button" id="openNoteFab" aria-label="Open notes" title="Notes">
+      <span>📝</span>
+    </button>
+
+    <div class="lesson-note-modal" id="noteModal" role="dialog" aria-modal="true">
+      <div class="lesson-note-dialog">
+        <div class="lesson-note-dialog-header">
+          <h6 class="lesson-note-dialog-title">My Notes</h6>
+        </div>
+        <div class="lesson-note-dialog-body">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="text-muted small">Your saved notes:</span>
+          </div>
+          <div id="noteList" class="mb-3" style="max-height: 200px; overflow-y: auto;"></div>
+          <textarea class="note-textarea" id="noteTextarea" placeholder="Write a new note..."></textarea>
+        </div>
+        <div class="lesson-note-dialog-footer">
+          <button class="btn btn-sm btn-light border font-weight-bold" type="button" id="dismissNoteBtn">
+            Cancel
+          </button>
+          <button class="btn btn-sm btn-cm-primary font-weight-bold px-3" type="button" id="saveNoteBtn">
+            Add Note
+          </button>
+        </div>
+      </div>
+    </div>
+    <script th:src="@{/js/lesson-notes.js}"></script>
+  </div>
+  <div th:replace="~{lesson/fragment/notes :: notes}"></div>
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{auth/layout :: layout(~{::title}, ~{::#left-panel}, ~{::#right-panel})}">
+
+<head>
+    <title>Sign up</title>
+</head>
+
+<body>
+    <!-- Left panel content -->
+    <div id="left-panel">
+        <h2 class="cm-heading mb-3">Markuply</h2>
+        <h4 class="font-weight-bold">Start your coding journey</h4>
+        <p class="mt-3 mb-0">
+            Learn HTML & CSS interactively, complete challenges, and build real projects.
+        </p>
+    </div>
+
+    <!-- Right panel content -->
+    <div id="right-panel">
+        <div class="d-flex justify-content-center mb-4 cm-auth-switch">
+            <div class="btn-group">
+                <a th:href="@{/auth/signin}" class="btn btn-light cm-btn-rounded">Sign in</a>
+                <a th:href="@{/auth/signup}" class="btn auth-btn cm-btn-rounded">Sign up</a>
+            </div>
+        </div>
+
+        <h3 class="font-weight-bold mb-2">Create account</h3>
+        <p class="cm-text-muted mb-4">
+            Join Markuply and begin learning today
+        </p>
+
+        <form th:action="@{/auth/signup}" th:object="${signUpRequest}" method="post">
+
+            <!-- Single error banner — same pattern as signin -->
+            <div th:if="${error}" class="alert alert-danger">
+                <span th:text="${error}"></span>
+            </div>
+
+            <div class="form-group cm-field">
+                <label class="cm-label">Full Name</label>
+                <input type="text" th:field="*{name}" class="form-control cm-input">
+            </div>
+
+            <div class="form-group cm-field">
+                <label class="cm-label">Email</label>
+                <input type="email" th:field="*{email}" class="form-control cm-input">
+            </div>
+
+            <div class="form-group cm-field">
+                <label class="cm-label">Password</label>
+                <input type="password" th:field="*{password}" class="form-control cm-input">
+            </div>
+
+            <div class="form-group cm-field">
+                <label class="cm-label">Confirm Password</label>
+                <input type="password" th:field="*{confirmPassword}" class="form-control cm-input">
+            </div>
+
+            <div class="form-group cm-field">
+                <label class="cm-label">Date of birth</label>
+                <input type="date" th:field="*{dob}" class="form-control cm-input">
+            </div>
+
+            <button type="submit" class="btn auth-btn btn-block mt-4 cm-auth-submit">
+                Create Account
+            </button>
+        </form>
+
+        <div class="text-center mt-4 cm-auth-footer">
+            <span class="cm-text-muted">Already have an account?</span>
+            <a th:href="@{/auth/signin}">Sign in</a>
+        </div>
+    </div>
+</body>
+
+</html>

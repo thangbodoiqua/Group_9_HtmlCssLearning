@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CSS Box Model - Markuply</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/theme.css}">
+    <link rel="stylesheet" th:href="@{/css/lesson.css}">
+</head>
+<body class="cm-bg cm-page-shell">
+
+<header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
+
+<div class="lesson-layout">
+    <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
+
+    <main class="lesson-main-content">
+        <div class="lesson-card">
+            <div id="lessonData">
+                <h1 class="cm-heading mb-4 lesson-title">CSS Box Model</h1>
+                <p class="lead">All HTML elements can be considered as boxes. In CSS, the term "box model" is used when talking about design and layout.</p>
+
+                <hr class="my-5">
+
+                <h2 class="cm-heading mb-3 lesson-section-title">The CSS Box Model</h2>
+                <p>The CSS box model is essentially a box that wraps around every HTML element. It consists of: margins, borders, padding, and the actual content.</p>
+                <p>The image below illustrates the box model:</p>
+                <div class="bg-light p-4 border rounded text-center mb-4">
+                    <div style="border: 2px dashed #ccc; padding: 20px; display: inline-block; background: #f9f9f9;">
+                        <div style="border: 1px solid #aaa; padding: 20px; background: #eee;">
+                            <div style="border: 5px solid #333; padding: 20px; background: #ddd;">
+                                <div style="background: #fff; padding: 20px; border: 1px solid #999;">
+                                    Content
+                                </div>
+                                <div class="mt-2 small">Padding</div>
+                            </div>
+                            <div class="mt-2 small">Border</div>
+                        </div>
+                        <div class="mt-2 small">Margin</div>
+                    </div>
+                </div>
+
+                <p>Explanation of the different parts:</p>
+                <ul class="mb-4" style="line-height: 1.8;">
+                    <li><strong>Content</strong> - The content of the box, where text and images appear</li>
+                    <li><strong>Padding</strong> - Clears an area around the content. The padding is transparent</li>
+                    <li><strong>Border</strong> - A border that goes around the padding and content</li>
+                    <li><strong>Margin</strong> - Clears an area outside the border. The margin is transparent</li>
+                </ul>
+
+                <hr class="my-5">
+
+                <h2 class="cm-heading mb-3 lesson-section-title">Width and Height of an Element</h2>
+                <p>In order to set the width and height of an element correctly in all browsers, you need to know how the box model works.</p>
+
+                <section class="lesson-example mb-4">
+                    <div class="lesson-example-header">
+                        <h3 class="lesson-example-title">Example:</h3>
+                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                    </div>
+                    <div class="lesson-example-body">
+                        <pre class="lesson-codeblock"><code>div {
+  width: 320px;
+  padding: 10px;
+  border: 5px solid gray;
+  margin: 20px;
+}</code></pre>
+                    </div>
+                </section>
+
+                <p>Total element width = width + left padding + right padding + left border + right border + left margin + right margin</p>
+
+                <div class="mt-5 pt-4 border-top d-flex justify-content-between align-items-center flex-wrap lesson-actions">
+                    <a class="btn btn-lesson-nav" th:href="${prevLessonUrl}" th:if="${prevLessonUrl != '#'}" aria-label="Previous lesson">← Previous</a>
+                    <span th:if="${prevLessonUrl == '#'}"></span>
+                    <button class="btn btn-cm-primary px-4 py-2 shadow-sm" type="button">Mark as Completed</button>
+                    <a class="btn btn-lesson-nav" th:href="${nextLessonUrl}" th:if="${nextLessonUrl != '#'}" aria-label="Next lesson">Next →</a>
+                    <span th:if="${nextLessonUrl == '#'}"></span>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<div th:replace="~{lesson/fragment/notes :: notes}"></div>
+</body>
+</html>
