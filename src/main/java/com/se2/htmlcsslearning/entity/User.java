@@ -33,12 +33,12 @@ public class User {
     @Column(name="password_hash", nullable=false)
     private String password;
 
-    /*@OneToMany(mappedBy="user", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
     private List<LessonCompleted> lessonCompleteds;
 
     @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
     private List<LessonNote> lessonNotes;
 
     @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
-    private List<ChallengeSubmission> challengeSubmissions;*/
+    private List<ChallengeSubmission> challengeSubmissions;
 }
