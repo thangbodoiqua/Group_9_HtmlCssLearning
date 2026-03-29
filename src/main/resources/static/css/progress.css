@@ -1,0 +1,76 @@
+.dark-card {
+    background: #1e293b;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    border: 1px solid #334155;
+    color: #f8fafc;
+}
+
+.progress-html {
+    color: #10b981;
+}
+
+.cm-progress-bg {
+    background: #334155;
+    height: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.cm-progress-bar {
+    height: 100%;
+    border-radius: 5px;
+    transition: width 0.6s ease;
+}
+
+.saved-note-item-link {
+    text-decoration: none !important;
+    display: block;
+    transition: transform 0.2s;
+}
+
+.saved-note-item-link:hover {
+    transform: translateY(-2px);
+}
+
+.saved-note-item {
+    background: #334155;
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #475569;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.saved-note-item-link:hover .saved-note-item {
+    border-color: #64748b;
+    background: #3d4d63;
+}
+
+.saved-note-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+}
+
+.saved-note-meta strong {
+    color: #f8fafc;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.saved-note-meta span {
+    color: #94a3b8;
+    font-size: 0.8rem;
+}
+
+.saved-note-text {
+    color: #cbd5e1;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 0;
+}

@@ -20,4 +20,6 @@ import java.util.List;
 public interface LessonRepository extends JpaRepository<Lesson, Long> {
     // Tự động generate câu lệnh SQL SELECT ... WHERE category_name = ? ORDER BY lesson_order ASC
     List<Lesson> findByCategory_CategoryNameOrderByLessonOrderAsc(String categoryName);
+
+    long countByCategory_CategoryName(String categoryName);
 }
