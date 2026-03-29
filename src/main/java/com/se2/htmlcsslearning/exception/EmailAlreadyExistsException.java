@@ -6,6 +6,6 @@ package com.se2.htmlcsslearning.exception;
  */
 public class EmailAlreadyExistsException extends AppException {
     public EmailAlreadyExistsException(String email) {
-        super("This email address is already registered: " + email);
+        super("This email address is already registered");
     }
 }

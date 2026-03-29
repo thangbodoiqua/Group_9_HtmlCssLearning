@@ -16,7 +16,6 @@ public class ProfileServiceImpl implements ProfileService {
         sampleUser.setEmail("student.demo@se2.local");
         sampleUser.setUserRole("Learner");
         sampleUser.setUserName("Demo Student");
-        sampleUser.setDob("2004-08-15");
         return sampleUser;
     }
 }
