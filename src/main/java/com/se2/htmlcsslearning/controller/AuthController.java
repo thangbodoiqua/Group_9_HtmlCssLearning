@@ -12,6 +12,7 @@ import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -57,7 +58,7 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public String signupPost(@Valid @ModelAttribute("signUpRequest") SignUpRequest request,
+    public String signupPost(@Validated(SignUpRequest.ValidationOrder.class) @ModelAttribute("signUpRequest") SignUpRequest request,
                              BindingResult bindingResult,
                              Model model,
                              RedirectAttributes redirectAttributes) {
@@ -66,7 +67,6 @@ public class AuthController {
                 && !request.getPassword().equals(request.getConfirmPassword())) {
             bindingResult.rejectValue("confirmPassword", "error.confirmPassword", "Passwords do not match");
         }
-
         if (bindingResult.hasErrors()) {
             String firstError = bindingResult.getAllErrors().get(0).getDefaultMessage();
             model.addAttribute("error", firstError);
@@ -81,11 +81,10 @@ public class AuthController {
             model.addAttribute("error", e.getMessage());
             return "auth/signup";
         } catch (Exception e) {
-            model.addAttribute("error", "Unexpected error. Please try again.");
+                model.addAttribute("error", "Unexpected error. Please try again.");
             return "auth/signup";
         }
     }
-
     @GetMapping("/forget")
     public String forgotPage(Authentication auth, Model model) {
         if (isLoggedIn(auth)) return "redirect:/";
@@ -94,7 +93,6 @@ public class AuthController {
         }
         return "auth/forgot-password";
     }
-
     @PostMapping("/forget")
     public String sendOtp(@Valid @ModelAttribute("forgotPasswordRequest") ForgotPasswordRequest request,
                           BindingResult bindingResult,
@@ -103,7 +101,7 @@ public class AuthController {
         if (bindingResult.hasErrors()) return "auth/forgot-password";
 
         try {
-            authService.generateOTP(request.getEmail());
+            authService.generateOTP(request);
             session.setAttribute("resetEmail", request.getEmail());
             return "redirect:/auth/forget/otp";
         } catch (Exception e) {
@@ -122,7 +120,7 @@ public class AuthController {
 
         if (bindingResult.hasErrors()) return "auth/forgot-password-otp";
 
-        if (!authService.verifyOTP(email, request.getOtp())) {
+        if (!authService.verifyOTP(request)) {
             bindingResult.rejectValue("otp", "error.otp", "Incorrect or expired OTP.");
             return "auth/forgot-password-otp";
         }
@@ -130,7 +128,6 @@ public class AuthController {
         session.setAttribute("isVerified", true);
         return "redirect:/auth/forget/reset";
     }
-
 
     @GetMapping("/forget/reset")
     public String resetPage(Model model, HttpSession session) {
@@ -156,7 +153,7 @@ public class AuthController {
         if (bindingResult.hasErrors()) return "auth/forgot-password-reset";
 
         try {
-            authService.resetPassword(email, request.getNewPassword());
+            authService.resetPassword(request);
             session.invalidate();
             redirectAttributes.addFlashAttribute("successMessage", "Password reset successfully. Please sign in.");
             return "redirect:/auth/signin";

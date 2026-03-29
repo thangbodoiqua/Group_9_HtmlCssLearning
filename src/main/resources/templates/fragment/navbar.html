@@ -42,7 +42,7 @@
     </nav>
 
     <div class="user-actions d-none d-lg-block">
-      <a sec:authorize="!isAuthenticated()" th:href="@{/auth/signin}" class="btn btn-primary" style="background-color: var(--cm-bg-button); color: white;">Sign in</a>
+      <a sec:authorize="!isAuthenticated()" th:href="@{/auth/signin}" class="btn btn-primary" style="background-color: var(--cm-bg-button); color: blue;">Sign in</a>
       <div sec:authorize="isAuthenticated()" class="profile-dropdown">
         <div class="d-flex align-items-center">
           <img th:src="@{'https://ui-avatars.com/api/?name=' + ${#authentication.principal.userName} + '&background=2563eb&color=fff'}" alt="Avatar"
