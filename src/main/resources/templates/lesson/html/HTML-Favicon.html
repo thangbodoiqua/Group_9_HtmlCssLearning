@@ -1,47 +1,54 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>HTML Favicon - Markuply</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/css/theme.css}">
     <link rel="stylesheet" th:href="@{/css/lesson.css}">
 </head>
+
 <body class="cm-bg cm-page-shell">
 
-<header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
+    <header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
 
-<div class="lesson-layout">
-    <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
+    <div class="lesson-layout">
+        <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
 
-    <main class="lesson-main-content">
-        <div class="lesson-card">
+        <main class="lesson-main-content">
+            <div class="lesson-card">
 
-            <div id="lessonData">
+                <div id="lessonData">
 
-                <h1 class="cm-heading mb-4 lesson-title">HTML Favicon</h1>
+                    <h1 class="cm-heading mb-4 lesson-title">HTML Favicon</h1>
 
-                <p class="lead">A favicon is a small image displayed next to the page-title in the browser tab.</p>
+                    <p class="lead">A favicon is a small image displayed next to the page-title in the browser tab.</p>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">How to Add a Favicon to Your Website</h2>
-                <p>You can use any image you like as your favicon. You can also create your own favicon on sites like <a href="https://favicon.io/" target="_blank">favicon.io</a>.</p>
-                <p>A favicon image is displayed on the left side of the browser tab, like this:</p>
-                <div class="bg-light p-3 border rounded mb-4 text-center">
-                    <img th:src="@{/img/favicon_example.png}" alt="Favicon in Browser Tab" class="img-fluid border shadow-sm">
-                    <p class="small text-muted mt-2">Example of a favicon in a browser tab</p>
-                </div>
-
-                <p>To add a favicon to your website, save your favicon image to your web server (e.g., in a folder called "images").</p>
-                <p>Next, add a <code>&lt;link&gt;</code> element to your "index.html" file, after the <code>&lt;title&gt;</code> element, like this:</p>
-
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                    <h2 class="cm-heading mb-3 lesson-section-title">How to Add a Favicon to Your Website</h2>
+                    <p>You can use any image you like as your favicon. You can also create your own favicon on sites
+                        like <a href="https://favicon.io/" target="_blank">favicon.io</a>.</p>
+                    <p>A favicon image is displayed on the left side of the browser tab, like this:</p>
+                    <div class="bg-light p-3 border rounded mb-4 text-center">
+                        <img th:src="@{/img/favicon_example.png}" alt="Favicon in Browser Tab"
+                            class="img-fluid border shadow-sm">
+                        <p class="small text-muted mt-2">Example of a favicon in a browser tab</p>
                     </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>&lt;!DOCTYPE html&gt;
+
+                    <p>To add a favicon to your website, save your favicon image to your web server (e.g., in a folder
+                        called "images").</p>
+                    <p>Next, add a <code>&lt;link&gt;</code> element to your "index.html" file, after the
+                        <code>&lt;title&gt;</code> element, like this:
+                    </p>
+
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
   &lt;title&gt;My Page Title&lt;/title&gt;
@@ -54,82 +61,77 @@
 
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
-                    </div>
-                </section>
+                        </div>
+                    </section>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">Favicon File Format Support</h2>
-                <p>The following table shows the file format support for a favicon image:</p>
-                <table class="table table-bordered bg-white">
-                    <thead>
-                    <tr>
-                        <th>Browser</th>
-                        <th>ICO</th>
-                        <th>PNG</th>
-                        <th>GIF</th>
-                        <th>JPG</th>
-                        <th>SVG</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>Edge</td>
-                        <td>Yes</td>
-                        <td>Yes</td>
-                        <td>Yes</td>
-                        <td>Yes</td>
-                        <td>Yes</td>
-                    </tr>
-                    <tr>
-                        <td>Chrome</td>
-                        <td>Yes</td>
-                        <td>Yes</td>
-                        <td>Yes</td>
-                        <td>Yes</td>
-                        <td>Yes</td>
-                    </tr>
-                    <tr>
-                        <td>Firefox</td>
-                        <td>Yes</td>
-                        <td>Yes</td>
-                        <td>Yes</td>
-                        <td>Yes</td>
-                        <td>Yes</td>
-                    </tr>
-                    <tr>
-                        <td>Opera</td>
-                        <td>Yes</td>
-                        <td>Yes</td>
-                        <td>Yes</td>
-                        <td>Yes</td>
-                        <td>Yes</td>
-                    </tr>
-                    <tr>
-                        <td>Safari</td>
-                        <td>Yes</td>
-                        <td>Yes</td>
-                        <td>Yes</td>
-                        <td>Yes</td>
-                        <td>Yes</td>
-                    </tr>
-                    </tbody>
-                </table>
+                    <h2 class="cm-heading mb-3 lesson-section-title">Favicon File Format Support</h2>
+                    <p>The following table shows the file format support for a favicon image:</p>
+                    <table class="table table-bordered bg-white">
+                        <thead>
+                            <tr>
+                                <th>Browser</th>
+                                <th>ICO</th>
+                                <th>PNG</th>
+                                <th>GIF</th>
+                                <th>JPG</th>
+                                <th>SVG</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Edge</td>
+                                <td>Yes</td>
+                                <td>Yes</td>
+                                <td>Yes</td>
+                                <td>Yes</td>
+                                <td>Yes</td>
+                            </tr>
+                            <tr>
+                                <td>Chrome</td>
+                                <td>Yes</td>
+                                <td>Yes</td>
+                                <td>Yes</td>
+                                <td>Yes</td>
+                                <td>Yes</td>
+                            </tr>
+                            <tr>
+                                <td>Firefox</td>
+                                <td>Yes</td>
+                                <td>Yes</td>
+                                <td>Yes</td>
+                                <td>Yes</td>
+                                <td>Yes</td>
+                            </tr>
+                            <tr>
+                                <td>Opera</td>
+                                <td>Yes</td>
+                                <td>Yes</td>
+                                <td>Yes</td>
+                                <td>Yes</td>
+                                <td>Yes</td>
+                            </tr>
+                            <tr>
+                                <td>Safari</td>
+                                <td>Yes</td>
+                                <td>Yes</td>
+                                <td>Yes</td>
+                                <td>Yes</td>
+                                <td>Yes</td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-                <div class="mt-5 pt-4 border-top d-flex justify-content-between align-items-center flex-wrap lesson-actions">
-                    <a class="btn btn-lesson-nav" th:href="${prevLessonUrl}" th:if="${prevLessonUrl != '#'}" aria-label="Previous lesson">← Previous</a>
-                    <span th:if="${prevLessonUrl == '#'}"></span>
-                    <button class="btn btn-cm-primary px-4 py-2 shadow-sm" type="button">Mark as Completed</button>
-                    <a class="btn btn-lesson-nav" th:href="${nextLessonUrl}" th:if="${nextLessonUrl != '#'}" aria-label="Next lesson">Next →</a>
-                    <span th:if="${nextLessonUrl == '#'}"></span>
+                    <div th:replace="~{lesson/fragment/lesson-actions :: lesson-actions}"></div>
+
                 </div>
 
             </div>
+        </main>
+    </div>
 
-        </div>
-    </main>
-</div>
-
-<div th:replace="~{lesson/fragment/notes :: notes}"></div>
+    <div th:replace="~{lesson/fragment/notes :: notes}"></div>
 </body>
+
 </html>

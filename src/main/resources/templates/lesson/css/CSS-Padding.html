@@ -1,108 +1,111 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>CSS Padding - Markuply</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/css/theme.css}">
     <link rel="stylesheet" th:href="@{/css/lesson.css}">
 </head>
+
 <body class="cm-bg cm-page-shell">
 
-<header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
+    <header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
 
-<div class="lesson-layout">
-    <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
+    <div class="lesson-layout">
+        <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
 
-    <main class="lesson-main-content">
-        <div class="lesson-card">
-            <div id="lessonData">
-                <h1 class="cm-heading mb-4 lesson-title">CSS Padding</h1>
-                <p class="lead">The CSS <code>padding</code> properties are used to create space around an element's content, inside of any defined borders.</p>
+        <main class="lesson-main-content">
+            <div class="lesson-card">
+                <div id="lessonData">
+                    <h1 class="cm-heading mb-4 lesson-title">CSS Padding</h1>
+                    <p class="lead">The CSS <code>padding</code> properties are used to create space around an element's
+                        content, inside of any defined borders.</p>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">CSS Padding</h2>
-                <p>With CSS, you have full control over the padding. There are properties for setting the padding for each side of an element (top, right, bottom, and left).</p>
-                <p>CSS has properties for specifying the padding for each side of an element:</p>
-                <ul class="mb-4" style="line-height: 1.8;">
-                    <li><code>padding-top</code></li>
-                    <li><code>padding-right</code></li>
-                    <li><code>padding-bottom</code></li>
-                    <li><code>padding-left</code></li>
-                </ul>
+                    <h2 class="cm-heading mb-3 lesson-section-title">CSS Padding</h2>
+                    <p>With CSS, you have full control over the padding. There are properties for setting the padding
+                        for each side of an element (top, right, bottom, and left).</p>
+                    <p>CSS has properties for specifying the padding for each side of an element:</p>
+                    <ul class="mb-4" style="line-height: 1.8;">
+                        <li><code>padding-top</code></li>
+                        <li><code>padding-right</code></li>
+                        <li><code>padding-bottom</code></li>
+                        <li><code>padding-left</code></li>
+                    </ul>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>div {
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>div {
   padding-top: 50px;
   padding-right: 30px;
   padding-bottom: 50px;
   padding-left: 80px;
 }</code></pre>
-                    </div>
-                </section>
+                        </div>
+                    </section>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">Padding Shorthand Property</h2>
-                <p>To shorten the code, it is possible to specify all the padding properties in one property.</p>
+                    <h2 class="cm-heading mb-3 lesson-section-title">Padding Shorthand Property</h2>
+                    <p>To shorten the code, it is possible to specify all the padding properties in one property.</p>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>div {
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>div {
   padding: 25px 50px 75px 100px;
 }</code></pre>
-                    </div>
-                </section>
+                        </div>
+                    </section>
 
-                <ul class="mb-4" style="line-height: 1.8;">
-                    <li>top padding is 25px</li>
-                    <li>right padding is 50px</li>
-                    <li>bottom padding is 75px</li>
-                    <li>left padding is 100px</li>
-                </ul>
+                    <ul class="mb-4" style="line-height: 1.8;">
+                        <li>top padding is 25px</li>
+                        <li>right padding is 50px</li>
+                        <li>bottom padding is 75px</li>
+                        <li>left padding is 100px</li>
+                    </ul>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">Padding and Element Width</h2>
-                <p>The CSS <code>width</code> property specifies the width of the element's content area. The content area is the portion inside the padding, border, and margin of an element (the box model).</p>
-                <p>So, if an element has a specified width, the padding added to that element will be added to the total width of the element. This is often an undesirable result.</p>
+                    <h2 class="cm-heading mb-3 lesson-section-title">Padding and Element Width</h2>
+                    <p>The CSS <code>width</code> property specifies the width of the element's content area. The
+                        content area is the portion inside the padding, border, and margin of an element (the box
+                        model).</p>
+                    <p>So, if an element has a specified width, the padding added to that element will be added to the
+                        total width of the element. This is often an undesirable result.</p>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>div {
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>div {
   width: 300px;
   padding: 25px;
 }</code></pre>
-                    </div>
-                </section>
+                        </div>
+                    </section>
 
-                <p>The <code>&lt;div&gt;</code> element above will have a total width of 350px (300px + 25px left padding + 25px right padding).</p>
+                    <p>The <code>&lt;div&gt;</code> element above will have a total width of 350px (300px + 25px left
+                        padding + 25px right padding).</p>
 
-                <div class="mt-5 pt-4 border-top d-flex justify-content-between align-items-center flex-wrap lesson-actions">
-                    <a class="btn btn-lesson-nav" th:href="${prevLessonUrl}" th:if="${prevLessonUrl != '#'}" aria-label="Previous lesson">← Previous</a>
-                    <span th:if="${prevLessonUrl == '#'}"></span>
-                    <button class="btn btn-cm-primary px-4 py-2 shadow-sm" type="button">Mark as Completed</button>
-                    <a class="btn btn-lesson-nav" th:href="${nextLessonUrl}" th:if="${nextLessonUrl != '#'}" aria-label="Next lesson">Next →</a>
-                    <span th:if="${nextLessonUrl == '#'}"></span>
+                    <div th:replace="~{lesson/fragment/lesson-actions :: lesson-actions}"></div>
                 </div>
             </div>
-        </div>
-    </main>
-</div>
+        </main>
+    </div>
 
-<div th:replace="~{lesson/fragment/notes :: notes}"></div>
+    <div th:replace="~{lesson/fragment/notes :: notes}"></div>
 </body>
+
 </html>

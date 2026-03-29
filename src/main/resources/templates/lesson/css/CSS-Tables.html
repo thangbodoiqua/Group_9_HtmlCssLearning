@@ -1,165 +1,164 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <title>CSS Tables - Markuply</title>
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-    <link rel="stylesheet" th:href="@{/css/theme.css}">
-    <link rel="stylesheet" th:href="@{/css/lesson.css}">
+  <title>CSS Tables - Markuply</title>
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+  <link rel="stylesheet" th:href="@{/css/theme.css}">
+  <link rel="stylesheet" th:href="@{/css/lesson.css}">
 </head>
+
 <body class="cm-bg cm-page-shell">
 
-<header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
+  <header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
 
-<div class="lesson-layout">
+  <div class="lesson-layout">
     <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
 
     <main class="lesson-main-content">
-        <div class="lesson-card">
-            <div id="lessonData">
-                <h1 class="cm-heading mb-4 lesson-title">CSS Tables</h1>
-                <p class="lead">The look of an HTML table can be greatly improved with CSS.</p>
+      <div class="lesson-card">
+        <div id="lessonData">
+          <h1 class="cm-heading mb-4 lesson-title">CSS Tables</h1>
+          <p class="lead">The look of an HTML table can be greatly improved with CSS.</p>
 
-                <hr class="my-5">
+          <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">Table Borders</h2>
-                <p>To specify table borders in CSS, use the <code>border</code> property.</p>
+          <h2 class="cm-heading mb-3 lesson-section-title">Table Borders</h2>
+          <p>To specify table borders in CSS, use the <code>border</code> property.</p>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>table, th, td {
+          <section class="lesson-example mb-4">
+            <div class="lesson-example-header">
+              <h3 class="lesson-example-title">Example:</h3>
+              <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+            </div>
+            <div class="lesson-example-body">
+              <pre class="lesson-codeblock"><code>table, th, td {
   border: 1px solid black;
 }</code></pre>
-                    </div>
-                    <template class="lesson-html-context">
-                        <table>
-                          <tr>
-                            <th>Firstname</th>
-                            <th>Lastname</th>
-                          </tr>
-                          <tr>
-                            <td>Peter</td>
-                            <td>Griffin</td>
-                          </tr>
-                          <tr>
-                            <td>Lois</td>
-                            <td>Griffin</td>
-                          </tr>
-                        </table>
-                    </template>
-                </section>
+            </div>
+            <template class="lesson-html-context">
+              <table>
+                <tr>
+                  <th>Firstname</th>
+                  <th>Lastname</th>
+                </tr>
+                <tr>
+                  <td>Peter</td>
+                  <td>Griffin</td>
+                </tr>
+                <tr>
+                  <td>Lois</td>
+                  <td>Griffin</td>
+                </tr>
+              </table>
+            </template>
+          </section>
 
-                <hr class="my-5">
+          <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">Collapse Table Borders</h2>
-                <p>The <code>border-collapse</code> property sets whether the table borders should be collapsed into a single border:</p>
+          <h2 class="cm-heading mb-3 lesson-section-title">Collapse Table Borders</h2>
+          <p>The <code>border-collapse</code> property sets whether the table borders should be collapsed into a single
+            border:</p>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>table {
+          <section class="lesson-example mb-4">
+            <div class="lesson-example-header">
+              <h3 class="lesson-example-title">Example:</h3>
+              <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+            </div>
+            <div class="lesson-example-body">
+              <pre class="lesson-codeblock"><code>table {
   border-collapse: collapse;
 }
 
 table, th, td {
   border: 1px solid black;
 }</code></pre>
-                    </div>
-                    <template class="lesson-html-context">
-                        <table>
-                          <tr>
-                            <th>Firstname</th>
-                            <th>Lastname</th>
-                          </tr>
-                          <tr>
-                            <td>Peter</td>
-                            <td>Griffin</td>
-                          </tr>
-                        </table>
-                    </template>
-                </section>
+            </div>
+            <template class="lesson-html-context">
+              <table>
+                <tr>
+                  <th>Firstname</th>
+                  <th>Lastname</th>
+                </tr>
+                <tr>
+                  <td>Peter</td>
+                  <td>Griffin</td>
+                </tr>
+              </table>
+            </template>
+          </section>
 
-                <hr class="my-5">
+          <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">Table Width and Height</h2>
-                <p>Width and height of a table are defined by the <code>width</code> and <code>height</code> properties.</p>
+          <h2 class="cm-heading mb-3 lesson-section-title">Table Width and Height</h2>
+          <p>Width and height of a table are defined by the <code>width</code> and <code>height</code> properties.</p>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>table {
+          <section class="lesson-example mb-4">
+            <div class="lesson-example-header">
+              <h3 class="lesson-example-title">Example:</h3>
+              <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+            </div>
+            <div class="lesson-example-body">
+              <pre class="lesson-codeblock"><code>table {
   width: 100%;
 }
 
 th {
   height: 70px;
 }</code></pre>
-                    </div>
-                    <template class="lesson-html-context">
-                        <table style="border: 1px solid black;">
-                          <tr>
-                            <th>Firstname</th>
-                            <th>Lastname</th>
-                          </tr>
-                          <tr>
-                            <td>Peter</td>
-                            <td>Griffin</td>
-                          </tr>
-                        </table>
-                    </template>
-                </section>
+            </div>
+            <template class="lesson-html-context">
+              <table style="border: 1px solid black;">
+                <tr>
+                  <th>Firstname</th>
+                  <th>Lastname</th>
+                </tr>
+                <tr>
+                  <td>Peter</td>
+                  <td>Griffin</td>
+                </tr>
+              </table>
+            </template>
+          </section>
 
-                <hr class="my-5">
+          <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">Table Padding</h2>
-                <p>To control the space between the border and the content in a table, use the <code>padding</code> property on <code>&lt;td&gt;</code> and <code>&lt;th&gt;</code> elements:</p>
+          <h2 class="cm-heading mb-3 lesson-section-title">Table Padding</h2>
+          <p>To control the space between the border and the content in a table, use the <code>padding</code> property
+            on <code>&lt;td&gt;</code> and <code>&lt;th&gt;</code> elements:</p>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>th, td {
+          <section class="lesson-example mb-4">
+            <div class="lesson-example-header">
+              <h3 class="lesson-example-title">Example:</h3>
+              <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+            </div>
+            <div class="lesson-example-body">
+              <pre class="lesson-codeblock"><code>th, td {
   padding: 15px;
   text-align: left;
 }</code></pre>
-                    </div>
-                    <template class="lesson-html-context">
-                        <table style="border: 1px solid black; width: 100%;">
-                          <tr>
-                            <th>Firstname</th>
-                            <th>Lastname</th>
-                          </tr>
-                          <tr>
-                            <td>Peter</td>
-                            <td>Griffin</td>
-                          </tr>
-                        </table>
-                    </template>
-                </section>
-
-                <div class="mt-5 pt-4 border-top d-flex justify-content-between align-items-center flex-wrap lesson-actions">
-                    <a class="btn btn-lesson-nav" th:href="${prevLessonUrl}" th:if="${prevLessonUrl != '#'}" aria-label="Previous lesson">← Previous</a>
-                    <span th:if="${prevLessonUrl == '#'}"></span>
-                    <button class="btn btn-cm-primary px-4 py-2 shadow-sm" type="button">Mark as Completed</button>
-                    <a class="btn btn-lesson-nav" th:href="${nextLessonUrl}" th:if="${nextLessonUrl != '#'}" aria-label="Next lesson">Next →</a>
-                    <span th:if="${nextLessonUrl == '#'}"></span>
-                </div>
             </div>
-        </div>
-    </main>
-</div>
+            <template class="lesson-html-context">
+              <table style="border: 1px solid black; width: 100%;">
+                <tr>
+                  <th>Firstname</th>
+                  <th>Lastname</th>
+                </tr>
+                <tr>
+                  <td>Peter</td>
+                  <td>Griffin</td>
+                </tr>
+              </table>
+            </template>
+          </section>
 
-<div th:replace="~{lesson/fragment/notes :: notes}"></div>
+          <div th:replace="~{lesson/fragment/lesson-actions :: lesson-actions}"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div th:replace="~{lesson/fragment/notes :: notes}"></div>
 </body>
+
 </html>

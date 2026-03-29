@@ -1,63 +1,65 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <title>CSS Text - Markuply</title>
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-    <link rel="stylesheet" th:href="@{/css/theme.css}">
-    <link rel="stylesheet" th:href="@{/css/lesson.css}">
+  <title>CSS Text - Markuply</title>
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+  <link rel="stylesheet" th:href="@{/css/theme.css}">
+  <link rel="stylesheet" th:href="@{/css/lesson.css}">
 </head>
+
 <body class="cm-bg cm-page-shell">
 
-<header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
+  <header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
 
-<div class="lesson-layout">
+  <div class="lesson-layout">
     <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
 
     <main class="lesson-main-content">
-        <div class="lesson-card">
-            <div id="lessonData">
-                <h1 class="cm-heading mb-4 lesson-title">CSS Text</h1>
-                <p class="lead">CSS has many properties for formatting text.</p>
+      <div class="lesson-card">
+        <div id="lessonData">
+          <h1 class="cm-heading mb-4 lesson-title">CSS Text</h1>
+          <p class="lead">CSS has many properties for formatting text.</p>
 
-                <hr class="my-5">
+          <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">Text Color</h2>
-                <p>The <code>color</code> property is used to set the color of the text. The color is specified by:</p>
-                <ul class="mb-4" style="line-height: 1.8;">
-                    <li>a color name - like "red"</li>
-                    <li>a HEX value - like "#ff0000"</li>
-                    <li>an RGB value - like "rgb(255,0,0)"</li>
-                </ul>
+          <h2 class="cm-heading mb-3 lesson-section-title">Text Color</h2>
+          <p>The <code>color</code> property is used to set the color of the text. The color is specified by:</p>
+          <ul class="mb-4" style="line-height: 1.8;">
+            <li>a color name - like "red"</li>
+            <li>a HEX value - like "#ff0000"</li>
+            <li>an RGB value - like "rgb(255,0,0)"</li>
+          </ul>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>body {
+          <section class="lesson-example mb-4">
+            <div class="lesson-example-header">
+              <h3 class="lesson-example-title">Example:</h3>
+              <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+            </div>
+            <div class="lesson-example-body">
+              <pre class="lesson-codeblock"><code>body {
   color: blue;
 }
 
 h1 {
   color: green;
 }</code></pre>
-                    </div>
-                </section>
+            </div>
+          </section>
 
-                <hr class="my-5">
+          <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">Text Alignment</h2>
-                <p>The <code>text-align</code> property is used to set the horizontal alignment of a text.</p>
-                <p>A text can be left or right aligned, centered, or justified.</p>
+          <h2 class="cm-heading mb-3 lesson-section-title">Text Alignment</h2>
+          <p>The <code>text-align</code> property is used to set the horizontal alignment of a text.</p>
+          <p>A text can be left or right aligned, centered, or justified.</p>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>h1 {
+          <section class="lesson-example mb-4">
+            <div class="lesson-example-header">
+              <h3 class="lesson-example-title">Example:</h3>
+              <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+            </div>
+            <div class="lesson-example-body">
+              <pre class="lesson-codeblock"><code>h1 {
   text-align: center;
 }
 
@@ -68,22 +70,22 @@ h2 {
 h3 {
   text-align: right;
 }</code></pre>
-                    </div>
-                </section>
+            </div>
+          </section>
 
-                <hr class="my-5">
+          <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">Text Decoration</h2>
-                <p>The <code>text-decoration</code> property is used to add or remove decorations from text.</p>
-                <p>The value <code>text-decoration: none;</code> is often used to remove underlines from links.</p>
+          <h2 class="cm-heading mb-3 lesson-section-title">Text Decoration</h2>
+          <p>The <code>text-decoration</code> property is used to add or remove decorations from text.</p>
+          <p>The value <code>text-decoration: none;</code> is often used to remove underlines from links.</p>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>a {
+          <section class="lesson-example mb-4">
+            <div class="lesson-example-header">
+              <h3 class="lesson-example-title">Example:</h3>
+              <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+            </div>
+            <div class="lesson-example-body">
+              <pre class="lesson-codeblock"><code>a {
   text-decoration: none;
 }
 
@@ -98,21 +100,16 @@ h2 {
 h3 {
   text-decoration: underline;
 }</code></pre>
-                    </div>
-                </section>
-
-                <div class="mt-5 pt-4 border-top d-flex justify-content-between align-items-center flex-wrap lesson-actions">
-                    <a class="btn btn-lesson-nav" th:href="${prevLessonUrl}" th:if="${prevLessonUrl != '#'}" aria-label="Previous lesson">← Previous</a>
-                    <span th:if="${prevLessonUrl == '#'}"></span>
-                    <button class="btn btn-cm-primary px-4 py-2 shadow-sm" type="button">Mark as Completed</button>
-                    <a class="btn btn-lesson-nav" th:href="${nextLessonUrl}" th:if="${nextLessonUrl != '#'}" aria-label="Next lesson">Next →</a>
-                    <span th:if="${nextLessonUrl == '#'}"></span>
-                </div>
             </div>
-        </div>
-    </main>
-</div>
+          </section>
 
-<div th:replace="~{lesson/fragment/notes :: notes}"></div>
+          <div th:replace="~{lesson/fragment/lesson-actions :: lesson-actions}"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div th:replace="~{lesson/fragment/notes :: notes}"></div>
 </body>
+
 </html>

@@ -1,90 +1,90 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>CSS Backgrounds - Markuply</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/css/theme.css}">
     <link rel="stylesheet" th:href="@{/css/lesson.css}">
 </head>
+
 <body class="cm-bg cm-page-shell">
 
-<header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
+    <header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
 
-<div class="lesson-layout">
-    <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
+    <div class="lesson-layout">
+        <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
 
-    <main class="lesson-main-content">
-        <div class="lesson-card">
-            <div id="lessonData">
-                <h1 class="cm-heading mb-4 lesson-title">CSS Backgrounds</h1>
-                <p class="lead">The CSS background properties are used to add background effects for elements.</p>
+        <main class="lesson-main-content">
+            <div class="lesson-card">
+                <div id="lessonData">
+                    <h1 class="cm-heading mb-4 lesson-title">CSS Backgrounds</h1>
+                    <p class="lead">The CSS background properties are used to add background effects for elements.</p>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">CSS background-color</h2>
-                <p>The <code>background-color</code> property specifies the background color of an element.</p>
+                    <h2 class="cm-heading mb-3 lesson-section-title">CSS background-color</h2>
+                    <p>The <code>background-color</code> property specifies the background color of an element.</p>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>body {
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>body {
   background-color: lightblue;
 }</code></pre>
-                    </div>
-                </section>
+                        </div>
+                    </section>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">CSS background-image</h2>
-                <p>The <code>background-image</code> property specifies an image to use as the background of an element.</p>
-                <p>By default, the image is repeated so it covers the entire element.</p>
+                    <h2 class="cm-heading mb-3 lesson-section-title">CSS background-image</h2>
+                    <p>The <code>background-image</code> property specifies an image to use as the background of an
+                        element.</p>
+                    <p>By default, the image is repeated so it covers the entire element.</p>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>body {
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>body {
   background-image: url("paper.gif");
 }</code></pre>
-                    </div>
-                </section>
+                        </div>
+                    </section>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">CSS background-repeat</h2>
-                <p>By default, the <code>background-image</code> property repeats an image both horizontally and vertically.</p>
-                <p>To repeat the image only horizontally, use <code>background-repeat: repeat-x;</code>. For vertical, use <code>repeat-y;</code>. To not repeat, use <code>no-repeat;</code>.</p>
+                    <h2 class="cm-heading mb-3 lesson-section-title">CSS background-repeat</h2>
+                    <p>By default, the <code>background-image</code> property repeats an image both horizontally and
+                        vertically.</p>
+                    <p>To repeat the image only horizontally, use <code>background-repeat: repeat-x;</code>. For
+                        vertical, use <code>repeat-y;</code>. To not repeat, use <code>no-repeat;</code>.</p>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>body {
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>body {
   background-image: url("img_tree.png");
   background-repeat: no-repeat;
 }</code></pre>
-                    </div>
-                </section>
+                        </div>
+                    </section>
 
-                <div class="mt-5 pt-4 border-top d-flex justify-content-between align-items-center flex-wrap lesson-actions">
-                    <a class="btn btn-lesson-nav" th:href="${prevLessonUrl}" th:if="${prevLessonUrl != '#'}" aria-label="Previous lesson">← Previous</a>
-                    <span th:if="${prevLessonUrl == '#'}"></span>
-                    <button class="btn btn-cm-primary px-4 py-2 shadow-sm" type="button">Mark as Completed</button>
-                    <a class="btn btn-lesson-nav" th:href="${nextLessonUrl}" th:if="${nextLessonUrl != '#'}" aria-label="Next lesson">Next →</a>
-                    <span th:if="${nextLessonUrl == '#'}"></span>
+                    <div th:replace="~{lesson/fragment/lesson-actions :: lesson-actions}"></div>
                 </div>
             </div>
-        </div>
-    </main>
-</div>
+        </main>
+    </div>
 
-<div th:replace="~{lesson/fragment/notes :: notes}"></div>
+    <div th:replace="~{lesson/fragment/notes :: notes}"></div>
 </body>
+
 </html>

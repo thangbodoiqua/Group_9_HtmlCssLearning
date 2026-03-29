@@ -1,135 +1,135 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>HTML Styles - Markuply</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/css/theme.css}">
     <link rel="stylesheet" th:href="@{/css/lesson.css}">
 </head>
+
 <body class="cm-bg cm-page-shell">
 
-<header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
+    <header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
 
-<div class="lesson-layout">
-    <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
+    <div class="lesson-layout">
+        <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
 
-    <main class="lesson-main-content">
-        <div class="lesson-card">
+        <main class="lesson-main-content">
+            <div class="lesson-card">
 
-            <div id="lessonData">
+                <div id="lessonData">
 
-                <h1 class="cm-heading mb-4 lesson-title">HTML Styles - CSS</h1>
+                    <h1 class="cm-heading mb-4 lesson-title">HTML Styles - CSS</h1>
 
-                <p class="lead">The HTML <code>style</code> attribute is used to add styles to an element, such as color, font, size, and more.</p>
+                    <p class="lead">The HTML <code>style</code> attribute is used to add styles to an element, such as
+                        color, font, size, and more.</p>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">The HTML Style Attribute</h2>
-                <p>Setting the style of an HTML element, can be done with the <code>style</code> attribute.</p>
-                <p>The HTML <code>style</code> attribute has the following <strong>syntax</strong>:</p>
-                <div class="bg-light p-3 border rounded mb-4" style="font-family: monospace;">
-                    &lt;tagname style="<span style="color: red;">property</span>:<span style="color: blue;">value</span>;"&gt;
-                </div>
-                <p>The <em>property</em> is a CSS property. The <em>value</em> is a CSS value.</p>
-
-                <hr class="my-5">
-
-                <h2 class="cm-heading mb-3 lesson-section-title">Background Color</h2>
-                <p>The <code>background-color</code> property defines the background color for an HTML element:</p>
-
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                    <h2 class="cm-heading mb-3 lesson-section-title">The HTML Style Attribute</h2>
+                    <p>Setting the style of an HTML element, can be done with the <code>style</code> attribute.</p>
+                    <p>The HTML <code>style</code> attribute has the following <strong>syntax</strong>:</p>
+                    <div class="bg-light p-3 border rounded mb-4" style="font-family: monospace;">
+                        &lt;tagname style="<span style="color: red;">property</span>:<span
+                            style="color: blue;">value</span>;"&gt;
                     </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>&lt;body style="background-color:powderblue;"&gt;
+                    <p>The <em>property</em> is a CSS property. The <em>value</em> is a CSS value.</p>
+
+                    <hr class="my-5">
+
+                    <h2 class="cm-heading mb-3 lesson-section-title">Background Color</h2>
+                    <p>The <code>background-color</code> property defines the background color for an HTML element:</p>
+
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>&lt;body style="background-color:powderblue;"&gt;
 
 &lt;h1&gt;This is a heading&lt;/h1&gt;
 &lt;p&gt;This is a paragraph.&lt;/p&gt;
 
 &lt;/body&gt;</code></pre>
-                    </div>
-                </section>
+                        </div>
+                    </section>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">Text Color</h2>
-                <p>The <code>color</code> property defines the text color for an HTML element:</p>
+                    <h2 class="cm-heading mb-3 lesson-section-title">Text Color</h2>
+                    <p>The <code>color</code> property defines the text color for an HTML element:</p>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>&lt;h1 style="color:blue;"&gt;This is a heading&lt;/h1&gt;
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>&lt;h1 style="color:blue;"&gt;This is a heading&lt;/h1&gt;
 &lt;p style="color:red;"&gt;This is a paragraph.&lt;/p&gt;</code></pre>
-                    </div>
-                </section>
+                        </div>
+                    </section>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">Fonts</h2>
-                <p>The <code>font-family</code> property defines the font to be used for an HTML element:</p>
+                    <h2 class="cm-heading mb-3 lesson-section-title">Fonts</h2>
+                    <p>The <code>font-family</code> property defines the font to be used for an HTML element:</p>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>&lt;h1 style="font-family:verdana;"&gt;This is a heading&lt;/h1&gt;
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>&lt;h1 style="font-family:verdana;"&gt;This is a heading&lt;/h1&gt;
 &lt;p style="font-family:courier;"&gt;This is a paragraph.&lt;/p&gt;</code></pre>
-                    </div>
-                </section>
+                        </div>
+                    </section>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">Text Size</h2>
-                <p>The <code>font-size</code> property defines the text size for an HTML element:</p>
+                    <h2 class="cm-heading mb-3 lesson-section-title">Text Size</h2>
+                    <p>The <code>font-size</code> property defines the text size for an HTML element:</p>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>&lt;h1 style="font-size:300%;"&gt;This is a heading&lt;/h1&gt;
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>&lt;h1 style="font-size:300%;"&gt;This is a heading&lt;/h1&gt;
 &lt;p style="font-size:160%;"&gt;This is a paragraph.&lt;/p&gt;</code></pre>
-                    </div>
-                </section>
+                        </div>
+                    </section>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">Text Alignment</h2>
-                <p>The <code>text-align</code> property defines the horizontal text alignment for an HTML element:</p>
+                    <h2 class="cm-heading mb-3 lesson-section-title">Text Alignment</h2>
+                    <p>The <code>text-align</code> property defines the horizontal text alignment for an HTML element:
+                    </p>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>&lt;h1 style="text-align:center;"&gt;Centered Heading&lt;/h1&gt;
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>&lt;h1 style="text-align:center;"&gt;Centered Heading&lt;/h1&gt;
 &lt;p style="text-align:center;"&gt;Centered paragraph.&lt;/p&gt;</code></pre>
-                    </div>
-                </section>
+                        </div>
+                    </section>
 
-                <div class="mt-5 pt-4 border-top d-flex justify-content-between align-items-center flex-wrap lesson-actions">
-                    <a class="btn btn-lesson-nav" th:href="${prevLessonUrl}" th:if="${prevLessonUrl != '#'}" aria-label="Previous lesson">← Previous</a>
-                    <span th:if="${prevLessonUrl == '#'}"></span>
-                    <button class="btn btn-cm-primary px-4 py-2 shadow-sm" type="button">Mark as Completed</button>
-                    <a class="btn btn-lesson-nav" th:href="${nextLessonUrl}" th:if="${nextLessonUrl != '#'}" aria-label="Next lesson">Next →</a>
-                    <span th:if="${nextLessonUrl == '#'}"></span>
+                    <div th:replace="~{lesson/fragment/lesson-actions :: lesson-actions}"></div>
+
                 </div>
 
             </div>
+        </main>
+    </div>
 
-        </div>
-    </main>
-</div>
-
-<div th:replace="~{lesson/fragment/notes :: notes}"></div>
+    <div th:replace="~{lesson/fragment/notes :: notes}"></div>
 </body>
+
 </html>

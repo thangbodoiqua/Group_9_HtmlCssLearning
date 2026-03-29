@@ -6,11 +6,15 @@
 package com.se2.htmlcsslearning.controller;
 
 import com.se2.htmlcsslearning.entity.Lesson;
+import com.se2.htmlcsslearning.entity.User;
+import com.se2.htmlcsslearning.repository.LessonCompletedRepository;
+import com.se2.htmlcsslearning.repository.UserRepository;
 import com.se2.htmlcsslearning.service.LessonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,11 +32,18 @@ public class LessonController {
     private LessonService lessonService;
 
     @Autowired
+    private LessonCompletedRepository lessonCompletedRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private ResourceLoader resourceLoader;
 
     @GetMapping("/{category}/{lessonName}")
     public String showLessonPage(@PathVariable String category,
             @PathVariable String lessonName,
+            Authentication authentication,
             Model model) {
 
         // 1. Chuyển category thành chữ in hoa (HTML hoặc CSS)
@@ -44,9 +55,12 @@ public class LessonController {
         // --- LOGIC XỬ LÝ NÚT NEXT VÀ PREVIOUS ---
         String prevLessonUrl = "#";
         String nextLessonUrl = "#";
-
+        Long currentLessonId = null; // Thêm biến lưu ID bài hiện tại
         for (int i = 0; i < sidebarLessons.size(); i++) {
             if (sidebarLessons.get(i).getLessonName().equals(lessonName)) {
+                // Thêm ID bài học hiện tại vào model để dùng cho JS Mark as Completed
+                model.addAttribute("currentLessonId", sidebarLessons.get(i).getId());
+                currentLessonId = sidebarLessons.get(i).getId(); // Lấy ID bài học
                 // Nếu có bài học trước đó
                 if (i > 0) {
                     prevLessonUrl = "/lesson/" + category.toLowerCase() + "/"
@@ -61,13 +75,27 @@ public class LessonController {
             }
         }
 
+        // --- XỬ LÝ TRẠNG THÁI HOÀN THÀNH ---
+        boolean isCompleted = false;
+        Integer userId = 1; // Default to 1 as current JS hardcoded
+        if (authentication != null && authentication.isAuthenticated()) {
+            String email = authentication.getName();
+            User user = userRepository.findByEmail(email).orElse(null);
+            if (user != null) {
+                userId = user.getId();
+                isCompleted = lessonCompletedRepository.existsByLesson_IdAndUser_Id(currentLessonId, userId);
+            }
+        }
+
         // 3. Gửi toàn bộ dữ liệu này sang cho Thymeleaf
         model.addAttribute("lessons", sidebarLessons);
         model.addAttribute("currentCategory", categoryDbName);
         model.addAttribute("currentLessonName", lessonName);
         model.addAttribute("prevLessonUrl", prevLessonUrl);
         model.addAttribute("nextLessonUrl", nextLessonUrl);
-
+        model.addAttribute("currentLessonId", currentLessonId);
+        model.addAttribute("isCompleted", isCompleted);
+        model.addAttribute("userId", userId);
         // 4. Trả về đúng template bài học theo tên từ URL hoặc theo tên có prefix
         // category.
         return resolveLessonTemplateView(category, lessonName);
@@ -106,4 +134,5 @@ public class LessonController {
         }
         return "redirect:/";
     }
+
 }

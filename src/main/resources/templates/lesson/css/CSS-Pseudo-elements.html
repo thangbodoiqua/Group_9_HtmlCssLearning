@@ -1,107 +1,107 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>CSS Pseudo-elements - Markuply</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/css/theme.css}">
     <link rel="stylesheet" th:href="@{/css/lesson.css}">
 </head>
+
 <body class="cm-bg cm-page-shell">
 
-<header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
+    <header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
 
-<div class="lesson-layout">
-    <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
+    <div class="lesson-layout">
+        <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
 
-    <main class="lesson-main-content">
-        <div class="lesson-card">
-            <div id="lessonData">
-                <h1 class="cm-heading mb-4 lesson-title">CSS Pseudo-elements</h1>
-                <p class="lead">A CSS pseudo-element is used to style specified parts of an element.</p>
+        <main class="lesson-main-content">
+            <div class="lesson-card">
+                <div id="lessonData">
+                    <h1 class="cm-heading mb-4 lesson-title">CSS Pseudo-elements</h1>
+                    <p class="lead">A CSS pseudo-element is used to style specified parts of an element.</p>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">What are Pseudo-elements?</h2>
-                <p>A pseudo-element is used to:</p>
-                <ul class="mb-4" style="line-height: 1.8;">
-                    <li>Style the first letter, or line, of an element</li>
-                    <li>Insert content before, or after, the content of an element</li>
-                </ul>
+                    <h2 class="cm-heading mb-3 lesson-section-title">What are Pseudo-elements?</h2>
+                    <p>A pseudo-element is used to:</p>
+                    <ul class="mb-4" style="line-height: 1.8;">
+                        <li>Style the first letter, or line, of an element</li>
+                        <li>Insert content before, or after, the content of an element</li>
+                    </ul>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">Syntax</h2>
-                <div class="bg-light p-4 border rounded text-center mb-4">
-                    <div style="font-family: monospace; font-size: 1.2rem;">
-                        selector::pseudo-element { property: value; }
+                    <h2 class="cm-heading mb-3 lesson-section-title">Syntax</h2>
+                    <div class="bg-light p-4 border rounded text-center mb-4">
+                        <div style="font-family: monospace; font-size: 1.2rem;">
+                            selector::pseudo-element { property: value; }
+                        </div>
                     </div>
-                </div>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">The ::first-line Pseudo-element</h2>
-                <p>The <code>::first-line</code> pseudo-element is used to add a special style to the first line of a text.</p>
+                    <h2 class="cm-heading mb-3 lesson-section-title">The ::first-line Pseudo-element</h2>
+                    <p>The <code>::first-line</code> pseudo-element is used to add a special style to the first line of
+                        a text.</p>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>p::first-line {
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>p::first-line {
   color: #ff0000;
   font-variant: small-caps;
 }</code></pre>
-                    </div>
-                </section>
+                        </div>
+                    </section>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">The ::first-letter Pseudo-element</h2>
-                <p>The <code>::first-letter</code> pseudo-element is used to add a special style to the first letter of a text.</p>
+                    <h2 class="cm-heading mb-3 lesson-section-title">The ::first-letter Pseudo-element</h2>
+                    <p>The <code>::first-letter</code> pseudo-element is used to add a special style to the first letter
+                        of a text.</p>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>p::first-letter {
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>p::first-letter {
   color: #ff0000;
   font-size: xx-large;
 }</code></pre>
-                    </div>
-                </section>
+                        </div>
+                    </section>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">The ::before Pseudo-element</h2>
-                <p>The <code>::before</code> pseudo-element can be used to insert some content before the content of an element.</p>
+                    <h2 class="cm-heading mb-3 lesson-section-title">The ::before Pseudo-element</h2>
+                    <p>The <code>::before</code> pseudo-element can be used to insert some content before the content of
+                        an element.</p>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>h1::before {
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>h1::before {
   content: url(smiley.gif);
 }</code></pre>
-                    </div>
-                </section>
+                        </div>
+                    </section>
 
-                <div class="mt-5 pt-4 border-top d-flex justify-content-between align-items-center flex-wrap lesson-actions">
-                    <a class="btn btn-lesson-nav" th:href="${prevLessonUrl}" th:if="${prevLessonUrl != '#'}" aria-label="Previous lesson">← Previous</a>
-                    <span th:if="${prevLessonUrl == '#'}"></span>
-                    <button class="btn btn-cm-primary px-4 py-2 shadow-sm" type="button">Mark as Completed</button>
-                    <a class="btn btn-lesson-nav" th:href="${nextLessonUrl}" th:if="${nextLessonUrl != '#'}" aria-label="Next lesson">Next →</a>
-                    <span th:if="${nextLessonUrl == '#'}"></span>
+                    <div th:replace="~{lesson/fragment/lesson-actions :: lesson-actions}"></div>
                 </div>
             </div>
-        </div>
-    </main>
-</div>
+        </main>
+    </div>
 
-<div th:replace="~{lesson/fragment/notes :: notes}"></div>
+    <div th:replace="~{lesson/fragment/notes :: notes}"></div>
 </body>
+
 </html>

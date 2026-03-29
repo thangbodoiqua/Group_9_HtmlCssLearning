@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LessonCompletedRepository extends JpaRepository<LessonCompleted, Long> {
+    boolean existsByLesson_IdAndUser_Id(Long lessonId, Integer userId);
 }
-

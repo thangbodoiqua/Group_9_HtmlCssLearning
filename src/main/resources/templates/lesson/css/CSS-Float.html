@@ -1,83 +1,85 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>CSS Layout - float and clear - Markuply</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/css/theme.css}">
     <link rel="stylesheet" th:href="@{/css/lesson.css}">
 </head>
+
 <body class="cm-bg cm-page-shell">
 
-<header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
+    <header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
 
-<div class="lesson-layout">
-    <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
+    <div class="lesson-layout">
+        <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
 
-    <main class="lesson-main-content">
-        <div class="lesson-card">
-            <div id="lessonData">
-                <h1 class="cm-heading mb-4 lesson-title">CSS Layout - float and clear</h1>
-                <p class="lead">The CSS <code>float</code> property specifies how an element should float.</p>
-                <p class="lead">The CSS <code>clear</code> property specifies what elements can float beside the cleared element and on which side.</p>
+        <main class="lesson-main-content">
+            <div class="lesson-card">
+                <div id="lessonData">
+                    <h1 class="cm-heading mb-4 lesson-title">CSS Layout - float and clear</h1>
+                    <p class="lead">The CSS <code>float</code> property specifies how an element should float.</p>
+                    <p class="lead">The CSS <code>clear</code> property specifies what elements can float beside the
+                        cleared element and on which side.</p>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">The float Property</h2>
-                <p>The <code>float</code> property is used for positioning and formatting content, e.g. let an image float left to the text in a container.</p>
-                <p>The <code>float</code> property can have one of the following values:</p>
-                <ul class="mb-4" style="line-height: 1.8;">
-                    <li><code>left</code> - The element floats to the left of its container</li>
-                    <li><code>right</code> - The element floats to the right of its container</li>
-                    <li><code>none</code> - The element does not float (will be displayed just where it occurs in the text). This is default</li>
-                    <li><code>inherit</code> - The element inherits the float value of its parent</li>
-                </ul>
+                    <h2 class="cm-heading mb-3 lesson-section-title">The float Property</h2>
+                    <p>The <code>float</code> property is used for positioning and formatting content, e.g. let an image
+                        float left to the text in a container.</p>
+                    <p>The <code>float</code> property can have one of the following values:</p>
+                    <ul class="mb-4" style="line-height: 1.8;">
+                        <li><code>left</code> - The element floats to the left of its container</li>
+                        <li><code>right</code> - The element floats to the right of its container</li>
+                        <li><code>none</code> - The element does not float (will be displayed just where it occurs in
+                            the text). This is default</li>
+                        <li><code>inherit</code> - The element inherits the float value of its parent</li>
+                    </ul>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>img {
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>img {
   float: right;
 }</code></pre>
-                    </div>
-                </section>
+                        </div>
+                    </section>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">The clear Property</h2>
-                <p>When we use the <code>float</code> property, and we want the next element below (not on right or left), we will have to use the <code>clear</code> property.</p>
-                <p>The <code>clear</code> property specifies what should happen with the element that is next to a floating element.</p>
+                    <h2 class="cm-heading mb-3 lesson-section-title">The clear Property</h2>
+                    <p>When we use the <code>float</code> property, and we want the next element below (not on right or
+                        left), we will have to use the <code>clear</code> property.</p>
+                    <p>The <code>clear</code> property specifies what should happen with the element that is next to a
+                        floating element.</p>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>.div1 {
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>.div1 {
   float: left;
 }
 
 .div2 {
   clear: left;
 }</code></pre>
-                    </div>
-                </section>
+                        </div>
+                    </section>
 
-                <div class="mt-5 pt-4 border-top d-flex justify-content-between align-items-center flex-wrap lesson-actions">
-                    <a class="btn btn-lesson-nav" th:href="${prevLessonUrl}" th:if="${prevLessonUrl != '#'}" aria-label="Previous lesson">← Previous</a>
-                    <span th:if="${prevLessonUrl == '#'}"></span>
-                    <button class="btn btn-cm-primary px-4 py-2 shadow-sm" type="button">Mark as Completed</button>
-                    <a class="btn btn-lesson-nav" th:href="${nextLessonUrl}" th:if="${nextLessonUrl != '#'}" aria-label="Next lesson">Next →</a>
-                    <span th:if="${nextLessonUrl == '#'}"></span>
+                    <div th:replace="~{lesson/fragment/lesson-actions :: lesson-actions}"></div>
                 </div>
             </div>
-        </div>
-    </main>
-</div>
+        </main>
+    </div>
 
-<div th:replace="~{lesson/fragment/notes :: notes}"></div>
+    <div th:replace="~{lesson/fragment/notes :: notes}"></div>
 </body>
+
 </html>

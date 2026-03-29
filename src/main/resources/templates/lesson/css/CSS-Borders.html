@@ -1,108 +1,108 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>CSS Borders - Markuply</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/css/theme.css}">
     <link rel="stylesheet" th:href="@{/css/lesson.css}">
 </head>
+
 <body class="cm-bg cm-page-shell">
 
-<header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
+    <header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
 
-<div class="lesson-layout">
-    <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
+    <div class="lesson-layout">
+        <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
 
-    <main class="lesson-main-content">
-        <div class="lesson-card">
-            <div id="lessonData">
-                <h1 class="cm-heading mb-4 lesson-title">CSS Borders</h1>
-                <p class="lead">The CSS <code>border</code> properties allow you to specify the style, width, and color of an element's border.</p>
+        <main class="lesson-main-content">
+            <div class="lesson-card">
+                <div id="lessonData">
+                    <h1 class="cm-heading mb-4 lesson-title">CSS Borders</h1>
+                    <p class="lead">The CSS <code>border</code> properties allow you to specify the style, width, and
+                        color of an element's border.</p>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">CSS Border Style</h2>
-                <p>The <code>border-style</code> property specifies what kind of border to display. The following values are allowed:</p>
-                <ul class="mb-4" style="line-height: 1.8;">
-                    <li><code>dotted</code> - Defines a dotted border</li>
-                    <li><code>dashed</code> - Defines a dashed border</li>
-                    <li><code>solid</code> - Defines a solid border</li>
-                    <li><code>double</code> - Defines a double border</li>
-                    <li><code>none</code> - Defines no border</li>
-                </ul>
+                    <h2 class="cm-heading mb-3 lesson-section-title">CSS Border Style</h2>
+                    <p>The <code>border-style</code> property specifies what kind of border to display. The following
+                        values are allowed:</p>
+                    <ul class="mb-4" style="line-height: 1.8;">
+                        <li><code>dotted</code> - Defines a dotted border</li>
+                        <li><code>dashed</code> - Defines a dashed border</li>
+                        <li><code>solid</code> - Defines a solid border</li>
+                        <li><code>double</code> - Defines a double border</li>
+                        <li><code>none</code> - Defines no border</li>
+                    </ul>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>p.dotted {border-style: dotted;}
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>p.dotted {border-style: dotted;}
 p.dashed {border-style: dashed;}
 p.solid {border-style: solid;}</code></pre>
-                    </div>
-                    <template class="lesson-html-context">
-                        <p class="dotted">A dotted border.</p>
-                        <p class="dashed">A dashed border.</p>
-                        <p class="solid">A solid border.</p>
-                    </template>
-                </section>
+                        </div>
+                        <template class="lesson-html-context">
+                            <p class="dotted">A dotted border.</p>
+                            <p class="dashed">A dashed border.</p>
+                            <p class="solid">A solid border.</p>
+                        </template>
+                    </section>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">CSS Border Width</h2>
-                <p>The <code>border-width</code> property specifies the width of the four borders.</p>
-                <p>The width can be set as a specific size (in px, pt, cm, em, etc) or by using one of the three pre-defined values: thin, medium, or thick:</p>
+                    <h2 class="cm-heading mb-3 lesson-section-title">CSS Border Width</h2>
+                    <p>The <code>border-width</code> property specifies the width of the four borders.</p>
+                    <p>The width can be set as a specific size (in px, pt, cm, em, etc) or by using one of the three
+                        pre-defined values: thin, medium, or thick:</p>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>p.one {
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>p.one {
   border-style: solid;
   border-width: 5px;
 }</code></pre>
-                    </div>
-                    <template class="lesson-html-context">
-                        <p class="one">Some text with a 5px solid border.</p>
-                    </template>
-                </section>
+                        </div>
+                        <template class="lesson-html-context">
+                            <p class="one">Some text with a 5px solid border.</p>
+                        </template>
+                    </section>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">CSS Border Color</h2>
-                <p>The <code>border-color</code> property is used to set the color of the four borders.</p>
+                    <h2 class="cm-heading mb-3 lesson-section-title">CSS Border Color</h2>
+                    <p>The <code>border-color</code> property is used to set the color of the four borders.</p>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>p.one {
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>p.one {
   border-style: solid;
   border-color: red;
 }</code></pre>
-                    </div>
-                    <template class="lesson-html-context">
-                        <p class="one">Some text with a solid red border.</p>
-                    </template>
-                </section>
+                        </div>
+                        <template class="lesson-html-context">
+                            <p class="one">Some text with a solid red border.</p>
+                        </template>
+                    </section>
 
-                <div class="mt-5 pt-4 border-top d-flex justify-content-between align-items-center flex-wrap lesson-actions">
-                    <a class="btn btn-lesson-nav" th:href="${prevLessonUrl}" th:if="${prevLessonUrl != '#'}" aria-label="Previous lesson">← Previous</a>
-                    <span th:if="${prevLessonUrl == '#'}"></span>
-                    <button class="btn btn-cm-primary px-4 py-2 shadow-sm" type="button">Mark as Completed</button>
-                    <a class="btn btn-lesson-nav" th:href="${nextLessonUrl}" th:if="${nextLessonUrl != '#'}" aria-label="Next lesson">Next →</a>
-                    <span th:if="${nextLessonUrl == '#'}"></span>
+                    <div th:replace="~{lesson/fragment/lesson-actions :: lesson-actions}"></div>
                 </div>
             </div>
-        </div>
-    </main>
-</div>
+        </main>
+    </div>
 
-<div th:replace="~{lesson/fragment/notes :: notes}"></div>
+    <div th:replace="~{lesson/fragment/notes :: notes}"></div>
 </body>
+
 </html>

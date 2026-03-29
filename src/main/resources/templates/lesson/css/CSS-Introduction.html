@@ -1,46 +1,49 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>CSS Introduction - Markuply</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/css/theme.css}">
     <link rel="stylesheet" th:href="@{/css/lesson.css}">
 </head>
+
 <body class="cm-bg cm-page-shell">
 
-<header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
+    <header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
 
-<div class="lesson-layout">
-    <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
+    <div class="lesson-layout">
+        <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
 
-    <main class="lesson-main-content">
-        <div class="lesson-card">
-            <div id="lessonData">
-                <h1 class="cm-heading mb-4 lesson-title">CSS Introduction</h1>
-                <p class="lead">CSS is the language we use to style a Web page.</p>
+        <main class="lesson-main-content">
+            <div class="lesson-card">
+                <div id="lessonData">
+                    <h1 class="cm-heading mb-4 lesson-title">CSS Introduction</h1>
+                    <p class="lead">CSS is the language we use to style a Web page.</p>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">What is CSS?</h2>
-                <ul class="mb-4" style="line-height: 1.8;">
-                    <li>CSS stands for Cascading Style Sheets</li>
-                    <li>CSS describes how HTML elements are to be displayed on screen, paper, or in other media</li>
-                    <li>CSS saves a lot of work. It can control the layout of multiple web pages all at once</li>
-                    <li>External stylesheets are stored in CSS files</li>
-                </ul>
+                    <h2 class="cm-heading mb-3 lesson-section-title">What is CSS?</h2>
+                    <ul class="mb-4" style="line-height: 1.8;">
+                        <li>CSS stands for Cascading Style Sheets</li>
+                        <li>CSS describes how HTML elements are to be displayed on screen, paper, or in other media</li>
+                        <li>CSS saves a lot of work. It can control the layout of multiple web pages all at once</li>
+                        <li>External stylesheets are stored in CSS files</li>
+                    </ul>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">Why Use CSS?</h2>
-                <p>CSS is used to define styles for your web pages, including the design, layout and variations in display for different devices and screen sizes.</p>
+                    <h2 class="cm-heading mb-3 lesson-section-title">Why Use CSS?</h2>
+                    <p>CSS is used to define styles for your web pages, including the design, layout and variations in
+                        display for different devices and screen sizes.</p>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">CSS Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>body {
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">CSS Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>body {
   background-color: lightblue;
 }
 
@@ -53,32 +56,30 @@ p {
   font-family: verdana;
   font-size: 20px;
 }</code></pre>
-                    </div>
-                </section>
+                        </div>
+                    </section>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">CSS Solved a Big Problem</h2>
-                <p>HTML was NEVER intended to contain tags for formatting a web page!</p>
-                <p>HTML was created to describe the content of a web page, like:</p>
-                <p><code>&lt;h1&gt;This is a heading&lt;/h1&gt;</code></p>
-                <p><code>&lt;p&gt;This is a paragraph.&lt;/p&gt;</code></p>
-                <p>When tags like <code>&lt;font&gt;</code>, and color attributes were added to the HTML 3.2 specification, it started a nightmare for web developers. Development of large websites, where fonts and color information were added to every single page, became a long and expensive process.</p>
-                <p>To solve this problem, the World Wide Web Consortium (W3C) created CSS.</p>
-                <p>CSS removed the style formatting from the HTML page!</p>
+                    <h2 class="cm-heading mb-3 lesson-section-title">CSS Solved a Big Problem</h2>
+                    <p>HTML was NEVER intended to contain tags for formatting a web page!</p>
+                    <p>HTML was created to describe the content of a web page, like:</p>
+                    <p><code>&lt;h1&gt;This is a heading&lt;/h1&gt;</code></p>
+                    <p><code>&lt;p&gt;This is a paragraph.&lt;/p&gt;</code></p>
+                    <p>When tags like <code>&lt;font&gt;</code>, and color attributes were added to the HTML 3.2
+                        specification, it started a nightmare for web developers. Development of large websites, where
+                        fonts and color information were added to every single page, became a long and expensive
+                        process.</p>
+                    <p>To solve this problem, the World Wide Web Consortium (W3C) created CSS.</p>
+                    <p>CSS removed the style formatting from the HTML page!</p>
 
-                <div class="mt-5 pt-4 border-top d-flex justify-content-between align-items-center flex-wrap lesson-actions">
-                    <a class="btn btn-lesson-nav" th:href="${prevLessonUrl}" th:if="${prevLessonUrl != '#'}" aria-label="Previous lesson">← Previous</a>
-                    <span th:if="${prevLessonUrl == '#'}"></span>
-                    <button class="btn btn-cm-primary px-4 py-2 shadow-sm" type="button">Mark as Completed</button>
-                    <a class="btn btn-lesson-nav" th:href="${nextLessonUrl}" th:if="${nextLessonUrl != '#'}" aria-label="Next lesson">Next →</a>
-                    <span th:if="${nextLessonUrl == '#'}"></span>
+                    <div th:replace="~{lesson/fragment/lesson-actions :: lesson-actions}"></div>
                 </div>
             </div>
-        </div>
-    </main>
-</div>
+        </main>
+    </div>
 
-<div th:replace="~{lesson/fragment/notes :: notes}"></div>
+    <div th:replace="~{lesson/fragment/notes :: notes}"></div>
 </body>
+
 </html>

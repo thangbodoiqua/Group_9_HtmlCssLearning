@@ -37,7 +37,8 @@
                     <p>With an external style sheet, you can change the look of an entire website by changing just one
                         file!</p>
                     <p>Each HTML page must include a reference to the external style sheet file inside the
-                        <code>&lt;link&gt;</code> element, inside the head section.</p>
+                        <code>&lt;link&gt;</code> element, inside the head section.
+                    </p>
 
                     <section class="lesson-example mb-4">
                         <div class="lesson-example-header">
@@ -98,22 +99,13 @@ h1 {
                         </div>
                     </section>
 
-                    <div
-                        class="mt-5 pt-4 border-top d-flex justify-content-between align-items-center flex-wrap lesson-actions">
-                        <a class="btn btn-lesson-nav" th:href="${prevLessonUrl}" th:if="${prevLessonUrl != '#'}"
-                            aria-label="Previous lesson">← Previous</a>
-                        <span th:if="${prevLessonUrl == '#'}"></span>
-                        <button class="btn btn-cm-primary px-4 py-2 shadow-sm" type="button">Mark as Completed</button>
-                        <a class="btn btn-lesson-nav" th:href="${nextLessonUrl}" th:if="${nextLessonUrl != '#'}"
-                            aria-label="Next lesson">Next →</a>
-                        <span th:if="${nextLessonUrl == '#'}"></span>
-                    </div>
+                    <div th:replace="~{lesson/fragment/lesson-actions :: lesson-actions}"></div>
                 </div>
             </div>
         </main>
     </div>
 
-<div th:replace="~{lesson/fragment/notes :: notes}"></div>
+    <div th:replace="~{lesson/fragment/notes :: notes}"></div>
 </body>
 
 </html>

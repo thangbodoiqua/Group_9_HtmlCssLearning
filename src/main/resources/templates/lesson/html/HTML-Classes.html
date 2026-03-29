@@ -1,40 +1,48 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>HTML Classes - Markuply</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/css/theme.css}">
     <link rel="stylesheet" th:href="@{/css/lesson.css}">
 </head>
+
 <body class="cm-bg cm-page-shell">
 
-<header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
+    <header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
 
-<div class="lesson-layout">
-    <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
+    <div class="lesson-layout">
+        <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
 
-    <main class="lesson-main-content">
-        <div class="lesson-card">
+        <main class="lesson-main-content">
+            <div class="lesson-card">
 
-            <div id="lessonData">
+                <div id="lessonData">
 
-                <h1 class="cm-heading mb-4 lesson-title">HTML The class Attribute</h1>
+                    <h1 class="cm-heading mb-4 lesson-title">HTML The class Attribute</h1>
 
-                <p class="lead">The HTML <code>class</code> attribute is used to specify a class for an HTML element.</p>
+                    <p class="lead">The HTML <code>class</code> attribute is used to specify a class for an HTML
+                        element.</p>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">Using The class Attribute</h2>
-                <p>The <code>class</code> attribute is often used to point to a class name in a style sheet. It can also be used by a JavaScript to access and manipulate elements with the specific class name.</p>
-                <p>In the following example we have three <span class="inline-code">&lt;div&gt;</span> elements with a <code>class</code> attribute with the value of "city". All three <span class="inline-code">&lt;div&gt;</span> elements will be styled equally according to the <code>.city</code> style definition in the head section:</p>
+                    <h2 class="cm-heading mb-3 lesson-section-title">Using The class Attribute</h2>
+                    <p>The <code>class</code> attribute is often used to point to a class name in a style sheet. It can
+                        also be used by a JavaScript to access and manipulate elements with the specific class name.</p>
+                    <p>In the following example we have three <span class="inline-code">&lt;div&gt;</span> elements with
+                        a <code>class</code> attribute with the value of "city". All three <span
+                            class="inline-code">&lt;div&gt;</span> elements will be styled equally according to the
+                        <code>.city</code> style definition in the head section:
+                    </p>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>&lt;!DOCTYPE html&gt;
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
 &lt;style&gt;
@@ -61,48 +69,46 @@
 
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
+                        </div>
+                    </section>
+
+                    <hr class="my-5">
+
+                    <h2 class="cm-heading mb-3 lesson-section-title">HTML class - Syntax for CSS</h2>
+                    <p>To create a class; write a period (.) character, followed by a class name. Then, define the CSS
+                        properties within curly braces {}:</p>
+                    <div class="bg-light p-3 border rounded mb-4" style="font-family: monospace;">
+                        .city { background-color: tomato; }
                     </div>
-                </section>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">HTML class - Syntax for CSS</h2>
-                <p>To create a class; write a period (.) character, followed by a class name. Then, define the CSS properties within curly braces {}:</p>
-                <div class="bg-light p-3 border rounded mb-4" style="font-family: monospace;">
-                    .city { background-color: tomato; }
-                </div>
+                    <h2 class="cm-heading mb-3 lesson-section-title">Multiple Classes</h2>
+                    <p>HTML elements can belong to more than one class.</p>
+                    <p>To define multiple classes, separate the class names with a space, e.g. <span
+                            class="inline-code">&lt;div class="city main"&gt;</span>. The element will be styled
+                        according to all the classes specified.</p>
 
-                <hr class="my-5">
-
-                <h2 class="cm-heading mb-3 lesson-section-title">Multiple Classes</h2>
-                <p>HTML elements can belong to more than one class.</p>
-                <p>To define multiple classes, separate the class names with a space, e.g. <span class="inline-code">&lt;div class="city main"&gt;</span>. The element will be styled according to all the classes specified.</p>
-
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>&lt;h2 class="city main"&gt;London&lt;/h2&gt;
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>&lt;h2 class="city main"&gt;London&lt;/h2&gt;
 &lt;h2 class="city"&gt;Paris&lt;/h2&gt;</code></pre>
-                    </div>
-                </section>
+                        </div>
+                    </section>
 
-                <div class="mt-5 pt-4 border-top d-flex justify-content-between align-items-center flex-wrap lesson-actions">
-                    <a class="btn btn-lesson-nav" th:href="${prevLessonUrl}" th:if="${prevLessonUrl != '#'}" aria-label="Previous lesson">← Previous</a>
-                    <span th:if="${prevLessonUrl == '#'}"></span>
-                    <button class="btn btn-cm-primary px-4 py-2 shadow-sm" type="button">Mark as Completed</button>
-                    <a class="btn btn-lesson-nav" th:href="${nextLessonUrl}" th:if="${nextLessonUrl != '#'}" aria-label="Next lesson">Next →</a>
-                    <span th:if="${nextLessonUrl == '#'}"></span>
+                    <div th:replace="~{lesson/fragment/lesson-actions :: lesson-actions}"></div>
+
                 </div>
 
             </div>
+        </main>
+    </div>
 
-        </div>
-    </main>
-</div>
-
-<div th:replace="~{lesson/fragment/notes :: notes}"></div>
+    <div th:replace="~{lesson/fragment/notes :: notes}"></div>
 </body>
+
 </html>

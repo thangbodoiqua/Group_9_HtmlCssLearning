@@ -1,89 +1,98 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>HTML Headings - Markuply</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/css/theme.css}">
     <link rel="stylesheet" th:href="@{/css/lesson.css}">
 </head>
+
 <body class="cm-bg cm-page-shell">
 
-<header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
+    <header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
 
-<div class="lesson-layout">
-    <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
+    <div class="lesson-layout">
+        <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
 
-    <main class="lesson-main-content">
-        <div class="lesson-card">
+        <main class="lesson-main-content">
+            <div class="lesson-card">
 
-            <div id="lessonData">
+                <div id="lessonData">
 
-                <h1 class="cm-heading mb-4 lesson-title">HTML Headings</h1>
+                    <h1 class="cm-heading mb-4 lesson-title">HTML Headings</h1>
 
-                <p class="lead">HTML headings are titles or subtitles that you want to display on a webpage.</p>
+                    <p class="lead">HTML headings are titles or subtitles that you want to display on a webpage.</p>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">HTML Headings</h2>
-                <p>HTML headings are defined with the <span class="inline-code">&lt;h1&gt;</span> to <span class="inline-code">&lt;h6&gt;</span> tags.</p>
-                <p><span class="inline-code">&lt;h1&gt;</span> defines the most important heading. <span class="inline-code">&lt;h6&gt;</span> defines the least important heading.</p>
+                    <h2 class="cm-heading mb-3 lesson-section-title">HTML Headings</h2>
+                    <p>HTML headings are defined with the <span class="inline-code">&lt;h1&gt;</span> to <span
+                            class="inline-code">&lt;h6&gt;</span> tags.</p>
+                    <p><span class="inline-code">&lt;h1&gt;</span> defines the most important heading. <span
+                            class="inline-code">&lt;h6&gt;</span> defines the least important heading.</p>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>&lt;h1&gt;Heading 1&lt;/h1&gt;
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>&lt;h1&gt;Heading 1&lt;/h1&gt;
 &lt;h2&gt;Heading 2&lt;/h2&gt;
 &lt;h3&gt;Heading 3&lt;/h3&gt;
 &lt;h4&gt;Heading 4&lt;/h4&gt;
 &lt;h5&gt;Heading 5&lt;/h5&gt;
 &lt;h6&gt;Heading 6&lt;/h6&gt;</code></pre>
+                        </div>
+                    </section>
+
+                    <div class="highlight-box bg-white border border-warning mb-4"
+                        style="border-left: 5px solid #ffc107 !important;">
+                        <strong class="text-warning">Note:</strong> Browsers automatically add some white space (a
+                        margin) before and after a heading.
                     </div>
-                </section>
 
-                <div class="highlight-box bg-white border border-warning mb-4" style="border-left: 5px solid #ffc107 !important;">
-                    <strong class="text-warning">Note:</strong> Browsers automatically add some white space (a margin) before and after a heading.
-                </div>
+                    <hr class="my-5">
 
-                <hr class="my-5">
+                    <h2 class="cm-heading mb-3 lesson-section-title">Headings Are Important</h2>
+                    <p>Search engines use headings to index the structure and content of your web pages.</p>
+                    <p>Users often skim a page by its headings. It is important to use headings to show the document
+                        structure.</p>
+                    <p><span class="inline-code">&lt;h1&gt;</span> headings should be used for main headings, followed
+                        by <span class="inline-code">&lt;h2&gt;</span> headings, then the less important <span
+                            class="inline-code">&lt;h3&gt;</span>, and so on.</p>
+                    <p><strong>Note:</strong> Use HTML headings for headings only. Don't use headings to make text
+                        <strong>BIG</strong> or <strong>bold</strong>.
+                    </p>
 
-                <h2 class="cm-heading mb-3 lesson-section-title">Headings Are Important</h2>
-                <p>Search engines use headings to index the structure and content of your web pages.</p>
-                <p>Users often skim a page by its headings. It is important to use headings to show the document structure.</p>
-                <p><span class="inline-code">&lt;h1&gt;</span> headings should be used for main headings, followed by <span class="inline-code">&lt;h2&gt;</span> headings, then the less important <span class="inline-code">&lt;h3&gt;</span>, and so on.</p>
-                <p><strong>Note:</strong> Use HTML headings for headings only. Don't use headings to make text <strong>BIG</strong> or <strong>bold</strong>.</p>
+                    <hr class="my-5">
 
-                <hr class="my-5">
+                    <h2 class="cm-heading mb-3 lesson-section-title">Bigger Headings</h2>
+                    <p>Each HTML heading has a default size. However, you can specify the size for any heading with the
+                        <code>style</code> attribute, using the CSS <code>font-size</code> property:
+                    </p>
 
-                <h2 class="cm-heading mb-3 lesson-section-title">Bigger Headings</h2>
-                <p>Each HTML heading has a default size. However, you can specify the size for any heading with the <code>style</code> attribute, using the CSS <code>font-size</code> property:</p>
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre
+                                class="lesson-codeblock"><code>&lt;h1 style="font-size:60px;"&gt;Heading 1&lt;/h1&gt;</code></pre>
+                        </div>
+                    </section>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>&lt;h1 style="font-size:60px;"&gt;Heading 1&lt;/h1&gt;</code></pre>
-                    </div>
-                </section>
+                    <div th:replace="~{lesson/fragment/lesson-actions :: lesson-actions}"></div>
 
-                <div class="mt-5 pt-4 border-top d-flex justify-content-between align-items-center flex-wrap lesson-actions">
-                    <a class="btn btn-lesson-nav" th:href="${prevLessonUrl}" th:if="${prevLessonUrl != '#'}" aria-label="Previous lesson">← Previous</a>
-                    <span th:if="${prevLessonUrl == '#'}"></span>
-                    <button class="btn btn-cm-primary px-4 py-2 shadow-sm" type="button">Mark as Completed</button>
-                    <a class="btn btn-lesson-nav" th:href="${nextLessonUrl}" th:if="${nextLessonUrl != '#'}" aria-label="Next lesson">Next →</a>
-                    <span th:if="${nextLessonUrl == '#'}"></span>
                 </div>
 
             </div>
+        </main>
+    </div>
 
-        </div>
-    </main>
-</div>
-
-<div th:replace="~{lesson/fragment/notes :: notes}"></div>
+    <div th:replace="~{lesson/fragment/notes :: notes}"></div>
 </body>
+
 </html>

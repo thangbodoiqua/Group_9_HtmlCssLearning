@@ -1,91 +1,122 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>HTML Colors - Markuply</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/css/theme.css}">
     <link rel="stylesheet" th:href="@{/css/lesson.css}">
 </head>
+
 <body class="cm-bg cm-page-shell">
 
-<header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
+    <header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
 
-<div class="lesson-layout">
-    <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
+    <div class="lesson-layout">
+        <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
 
-    <main class="lesson-main-content">
-        <div class="lesson-card">
+        <main class="lesson-main-content">
+            <div class="lesson-card">
 
-            <div id="lessonData">
+                <div id="lessonData">
 
-                <h1 class="cm-heading mb-4 lesson-title">HTML Colors</h1>
+                    <h1 class="cm-heading mb-4 lesson-title">HTML Colors</h1>
 
-                <p class="lead">HTML colors are specified with predefined color names, or with RGB, HEX, HSL, RGBA, or HSLA values.</p>
+                    <p class="lead">HTML colors are specified with predefined color names, or with RGB, HEX, HSL, RGBA,
+                        or HSLA values.</p>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">Color Names</h2>
-                <p>In HTML, a color can be specified by using a color name:</p>
-                <div class="row text-center mb-4">
-                    <div class="col-md-3 mb-2"><div class="p-3 text-white rounded shadow-sm" style="background-color: Tomato;">Tomato</div></div>
-                    <div class="col-md-3 mb-2"><div class="p-3 text-white rounded shadow-sm" style="background-color: Orange;">Orange</div></div>
-                    <div class="col-md-3 mb-2"><div class="p-3 text-white rounded shadow-sm" style="background-color: DodgerBlue;">DodgerBlue</div></div>
-                    <div class="col-md-3 mb-2"><div class="p-3 text-white rounded shadow-sm" style="background-color: MediumSeaGreen;">MediumSeaGreen</div></div>
-                    <div class="col-md-3 mb-2"><div class="p-3 text-white rounded shadow-sm" style="background-color: Gray;">Gray</div></div>
-                    <div class="col-md-3 mb-2"><div class="p-3 text-white rounded shadow-sm" style="background-color: SlateBlue;">SlateBlue</div></div>
-                    <div class="col-md-3 mb-2"><div class="p-3 text-white rounded shadow-sm" style="background-color: Violet;">Violet</div></div>
-                    <div class="col-md-3 mb-2"><div class="p-3 text-white rounded shadow-sm" style="background-color: LightGray; color: black !important;">LightGray</div></div>
-                </div>
+                    <h2 class="cm-heading mb-3 lesson-section-title">Color Names</h2>
+                    <p>In HTML, a color can be specified by using a color name:</p>
+                    <div class="row text-center mb-4">
+                        <div class="col-md-3 mb-2">
+                            <div class="p-3 text-white rounded shadow-sm" style="background-color: Tomato;">Tomato</div>
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <div class="p-3 text-white rounded shadow-sm" style="background-color: Orange;">Orange</div>
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <div class="p-3 text-white rounded shadow-sm" style="background-color: DodgerBlue;">
+                                DodgerBlue</div>
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <div class="p-3 text-white rounded shadow-sm" style="background-color: MediumSeaGreen;">
+                                MediumSeaGreen</div>
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <div class="p-3 text-white rounded shadow-sm" style="background-color: Gray;">Gray</div>
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <div class="p-3 text-white rounded shadow-sm" style="background-color: SlateBlue;">SlateBlue
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <div class="p-3 text-white rounded shadow-sm" style="background-color: Violet;">Violet</div>
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <div class="p-3 text-white rounded shadow-sm"
+                                style="background-color: LightGray; color: black !important;">LightGray</div>
+                        </div>
+                    </div>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">Background Color</h2>
-                <p>You can set the background color for HTML elements:</p>
-                <div class="p-3 mb-2 text-white rounded" style="background-color: DodgerBlue;">Hello World</div>
-                <div class="p-3 mb-4 text-white rounded" style="background-color: Tomato;">Lorem ipsum dolor sit amet...</div>
+                    <h2 class="cm-heading mb-3 lesson-section-title">Background Color</h2>
+                    <p>You can set the background color for HTML elements:</p>
+                    <div class="p-3 mb-2 text-white rounded" style="background-color: DodgerBlue;">Hello World</div>
+                    <div class="p-3 mb-4 text-white rounded" style="background-color: Tomato;">Lorem ipsum dolor sit
+                        amet...</div>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">Text Color</h2>
-                <p>You can set the color of text:</p>
-                <h3 style="color:Tomato;">Tomato</h3>
-                <p style="color:DodgerBlue;">DodgerBlue</p>
-                <p style="color:MediumSeaGreen;">MediumSeaGreen</p>
+                    <h2 class="cm-heading mb-3 lesson-section-title">Text Color</h2>
+                    <p>You can set the color of text:</p>
+                    <h3 style="color:Tomato;">Tomato</h3>
+                    <p style="color:DodgerBlue;">DodgerBlue</p>
+                    <p style="color:MediumSeaGreen;">MediumSeaGreen</p>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">Border Color</h2>
-                <p>You can set the color of borders:</p>
-                <p class="p-2 border border-danger rounded" style="border-width: 2px !important; border-color: Tomato !important;">Tomato border</p>
-                <p class="p-2 border border-primary rounded" style="border-width: 2px !important; border-color: DodgerBlue !important;">DodgerBlue border</p>
-                <p class="p-2 border border-success rounded" style="border-width: 2px !important; border-color: Violet !important;">Violet border</p>
+                    <h2 class="cm-heading mb-3 lesson-section-title">Border Color</h2>
+                    <p>You can set the color of borders:</p>
+                    <p class="p-2 border border-danger rounded"
+                        style="border-width: 2px !important; border-color: Tomato !important;">Tomato border</p>
+                    <p class="p-2 border border-primary rounded"
+                        style="border-width: 2px !important; border-color: DodgerBlue !important;">DodgerBlue border</p>
+                    <p class="p-2 border border-success rounded"
+                        style="border-width: 2px !important; border-color: Violet !important;">Violet border</p>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">Color Values</h2>
-                <p>In HTML, colors can also be specified using RGB values, HEX values, HSL values, RGBA values, and HSLA values.</p>
-                <p>The following three elements have their background color set with RGB, HEX, and HSL values:</p>
+                    <h2 class="cm-heading mb-3 lesson-section-title">Color Values</h2>
+                    <p>In HTML, colors can also be specified using RGB values, HEX values, HSL values, RGBA values, and
+                        HSLA values.</p>
+                    <p>The following three elements have their background color set with RGB, HEX, and HSL values:</p>
 
-                <div class="row text-center mb-4">
-                    <div class="col-md-4 mb-2"><div class="p-3 text-white rounded" style="background-color: rgb(255, 99, 71);">rgb(255, 99, 71)</div></div>
-                    <div class="col-md-4 mb-2"><div class="p-3 text-white rounded" style="background-color: #ff6347;">#ff6347</div></div>
-                    <div class="col-md-4 mb-2"><div class="p-3 text-white rounded" style="background-color: hsl(9, 100%, 64%);">hsl(9, 100%, 64%)</div></div>
-                </div>
+                    <div class="row text-center mb-4">
+                        <div class="col-md-4 mb-2">
+                            <div class="p-3 text-white rounded" style="background-color: rgb(255, 99, 71);">rgb(255, 99,
+                                71)</div>
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <div class="p-3 text-white rounded" style="background-color: #ff6347;">#ff6347</div>
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <div class="p-3 text-white rounded" style="background-color: hsl(9, 100%, 64%);">hsl(9,
+                                100%, 64%)</div>
+                        </div>
+                    </div>
 
-                <div class="mt-5 pt-4 border-top d-flex justify-content-between align-items-center flex-wrap lesson-actions">
-                    <a class="btn btn-lesson-nav" th:href="${prevLessonUrl}" th:if="${prevLessonUrl != '#'}" aria-label="Previous lesson">← Previous</a>
-                    <span th:if="${prevLessonUrl == '#'}"></span>
-                    <button class="btn btn-cm-primary px-4 py-2 shadow-sm" type="button">Mark as Completed</button>
-                    <a class="btn btn-lesson-nav" th:href="${nextLessonUrl}" th:if="${nextLessonUrl != '#'}" aria-label="Next lesson">Next →</a>
-                    <span th:if="${nextLessonUrl == '#'}"></span>
+                    <div th:replace="~{lesson/fragment/lesson-actions :: lesson-actions}"></div>
+
                 </div>
 
             </div>
+        </main>
+    </div>
 
-        </div>
-    </main>
-</div>
-
-<div th:replace="~{lesson/fragment/notes :: notes}"></div>
+    <div th:replace="~{lesson/fragment/notes :: notes}"></div>
 </body>
+
 </html>

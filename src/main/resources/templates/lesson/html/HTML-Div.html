@@ -1,78 +1,81 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>HTML Div - Markuply</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/css/theme.css}">
     <link rel="stylesheet" th:href="@{/css/lesson.css}">
 </head>
+
 <body class="cm-bg cm-page-shell">
 
-<header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
+    <header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
 
-<div class="lesson-layout">
-    <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
+    <div class="lesson-layout">
+        <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
 
-    <main class="lesson-main-content">
-        <div class="lesson-card">
+        <main class="lesson-main-content">
+            <div class="lesson-card">
 
-            <div id="lessonData">
+                <div id="lessonData">
 
-                <h1 class="cm-heading mb-4 lesson-title">HTML The &lt;div&gt; Element</h1>
+                    <h1 class="cm-heading mb-4 lesson-title">HTML The &lt;div&gt; Element</h1>
 
-                <p class="lead">The <code>&lt;div&gt;</code> element is used as a container for other HTML elements.</p>
+                    <p class="lead">The <code>&lt;div&gt;</code> element is used as a container for other HTML elements.
+                    </p>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">The &lt;div&gt; Element</h2>
-                <p>The <span class="inline-code">&lt;div&gt;</span> element is by default a block-level element, meaning that it takes up the entire width of the page, and it starts on a new line.</p>
-                <p>The <span class="inline-code">&lt;div&gt;</span> element has no required attributes, but <code>style</code>, <code>class</code> and <code>id</code> are common.</p>
-                <p>When used together with CSS, the <span class="inline-code">&lt;div&gt;</span> element can be used to style blocks of content:</p>
+                    <h2 class="cm-heading mb-3 lesson-section-title">The &lt;div&gt; Element</h2>
+                    <p>The <span class="inline-code">&lt;div&gt;</span> element is by default a block-level element,
+                        meaning that it takes up the entire width of the page, and it starts on a new line.</p>
+                    <p>The <span class="inline-code">&lt;div&gt;</span> element has no required attributes, but
+                        <code>style</code>, <code>class</code> and <code>id</code> are common.
+                    </p>
+                    <p>When used together with CSS, the <span class="inline-code">&lt;div&gt;</span> element can be used
+                        to style blocks of content:</p>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>&lt;div style="background-color:black;color:white;padding:20px;"&gt;
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>&lt;div style="background-color:black;color:white;padding:20px;"&gt;
   &lt;h2&gt;London&lt;/h2&gt;
   &lt;p&gt;London is the capital city of England.&lt;/p&gt;
 &lt;/div&gt;</code></pre>
-                    </div>
-                </section>
+                        </div>
+                    </section>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">Center a &lt;div&gt; Element</h2>
-                <p>To center a <span class="inline-code">&lt;div&gt;</span> element, you can use CSS to set the width and set the left and right margins to <code>auto</code>:</p>
+                    <h2 class="cm-heading mb-3 lesson-section-title">Center a &lt;div&gt; Element</h2>
+                    <p>To center a <span class="inline-code">&lt;div&gt;</span> element, you can use CSS to set the
+                        width and set the left and right margins to <code>auto</code>:</p>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>&lt;div style="width:300px;margin:auto;"&gt;
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>&lt;div style="width:300px;margin:auto;"&gt;
   &lt;p&gt;This div is centered.&lt;/p&gt;
 &lt;/div&gt;</code></pre>
-                    </div>
-                </section>
+                        </div>
+                    </section>
 
-                <div class="mt-5 pt-4 border-top d-flex justify-content-between align-items-center flex-wrap lesson-actions">
-                    <a class="btn btn-lesson-nav" th:href="${prevLessonUrl}" th:if="${prevLessonUrl != '#'}" aria-label="Previous lesson">← Previous</a>
-                    <span th:if="${prevLessonUrl == '#'}"></span>
-                    <button class="btn btn-cm-primary px-4 py-2 shadow-sm" type="button">Mark as Completed</button>
-                    <a class="btn btn-lesson-nav" th:href="${nextLessonUrl}" th:if="${nextLessonUrl != '#'}" aria-label="Next lesson">Next →</a>
-                    <span th:if="${nextLessonUrl == '#'}"></span>
+                    <div th:replace="~{lesson/fragment/lesson-actions :: lesson-actions}"></div>
+
                 </div>
 
             </div>
+        </main>
+    </div>
 
-        </div>
-    </main>
-</div>
-
-<div th:replace="~{lesson/fragment/notes :: notes}"></div>
+    <div th:replace="~{lesson/fragment/notes :: notes}"></div>
 </body>
+
 </html>

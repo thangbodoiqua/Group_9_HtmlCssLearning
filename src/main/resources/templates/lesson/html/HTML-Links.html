@@ -1,121 +1,130 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>HTML Links - Markuply</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/css/theme.css}">
     <link rel="stylesheet" th:href="@{/css/lesson.css}">
 </head>
+
 <body class="cm-bg cm-page-shell">
 
-<header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
+    <header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
 
-<div class="lesson-layout">
-    <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
+    <div class="lesson-layout">
+        <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
 
-    <main class="lesson-main-content">
-        <div class="lesson-card">
+        <main class="lesson-main-content">
+            <div class="lesson-card">
 
-            <div id="lessonData">
+                <div id="lessonData">
 
-                <h1 class="cm-heading mb-4 lesson-title">HTML Links - Hyperlinks</h1>
+                    <h1 class="cm-heading mb-4 lesson-title">HTML Links - Hyperlinks</h1>
 
-                <p class="lead">HTML links are hyperlinks. You can click on a link and jump to another document.</p>
+                    <p class="lead">HTML links are hyperlinks. You can click on a link and jump to another document.</p>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">HTML Links - Syntax</h2>
-                <p>The HTML <span class="inline-code">&lt;a&gt;</span> tag defines a hyperlink. It has the following syntax:</p>
-                <div class="bg-light p-3 border rounded mb-4" style="font-family: monospace;">
-                    &lt;a href="<span style="color: red;">url</span>"&gt;<span style="color: blue;">link text</span>&lt;/a&gt;
-                </div>
-                <p>The most important attribute of the <span class="inline-code">&lt;a&gt;</span> element is the <code>href</code> attribute, which indicates the link's destination.</p>
-                <p>The <em>link text</em> is the part that will be visible to the reader.</p>
-                <p>Clicking on the link text, will send the reader to the specified URL address.</p>
-
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                    <h2 class="cm-heading mb-3 lesson-section-title">HTML Links - Syntax</h2>
+                    <p>The HTML <span class="inline-code">&lt;a&gt;</span> tag defines a hyperlink. It has the following
+                        syntax:</p>
+                    <div class="bg-light p-3 border rounded mb-4" style="font-family: monospace;">
+                        &lt;a href="<span style="color: red;">url</span>"&gt;<span style="color: blue;">link
+                            text</span>&lt;/a&gt;
                     </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>&lt;a href="https://www.w3schools.com/"&gt;Visit W3Schools.com!&lt;/a&gt;</code></pre>
-                    </div>
-                </section>
+                    <p>The most important attribute of the <span class="inline-code">&lt;a&gt;</span> element is the
+                        <code>href</code> attribute, which indicates the link's destination.
+                    </p>
+                    <p>The <em>link text</em> is the part that will be visible to the reader.</p>
+                    <p>Clicking on the link text, will send the reader to the specified URL address.</p>
 
-                <hr class="my-5">
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre
+                                class="lesson-codeblock"><code>&lt;a href="https://www.w3schools.com/"&gt;Visit W3Schools.com!&lt;/a&gt;</code></pre>
+                        </div>
+                    </section>
 
-                <h2 class="cm-heading mb-3 lesson-section-title">The target Attribute</h2>
-                <p>By default, the linked page will be displayed in the current browser window. To change this, you must specify another target for the link.</p>
-                <p>The <code>target</code> attribute specifies where to open the linked document:</p>
-                <ul class="mb-4" style="line-height: 1.8;">
-                    <li><code>_self</code> - Default. Opens the document in the same window/tab as it was clicked</li>
-                    <li><code>_blank</code> - Opens the document in a new window or tab</li>
-                    <li><code>_parent</code> - Opens the document in the parent frame</li>
-                    <li><code>_top</code> - Opens the document in the full body of the window</li>
-                </ul>
+                    <hr class="my-5">
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>&lt;a href="https://www.w3schools.com/" target="_blank"&gt;Visit W3Schools!&lt;/a&gt;</code></pre>
-                    </div>
-                </section>
+                    <h2 class="cm-heading mb-3 lesson-section-title">The target Attribute</h2>
+                    <p>By default, the linked page will be displayed in the current browser window. To change this, you
+                        must specify another target for the link.</p>
+                    <p>The <code>target</code> attribute specifies where to open the linked document:</p>
+                    <ul class="mb-4" style="line-height: 1.8;">
+                        <li><code>_self</code> - Default. Opens the document in the same window/tab as it was clicked
+                        </li>
+                        <li><code>_blank</code> - Opens the document in a new window or tab</li>
+                        <li><code>_parent</code> - Opens the document in the parent frame</li>
+                        <li><code>_top</code> - Opens the document in the full body of the window</li>
+                    </ul>
 
-                <hr class="my-5">
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre
+                                class="lesson-codeblock"><code>&lt;a href="https://www.w3schools.com/" target="_blank"&gt;Visit W3Schools!&lt;/a&gt;</code></pre>
+                        </div>
+                    </section>
 
-                <h2 class="cm-heading mb-3 lesson-section-title">Absolute URLs vs. Relative URLs</h2>
-                <p>Both examples above are using an <strong>absolute URL</strong> (a full web address) in the <code>href</code> attribute.</p>
-                <p>A local link (a link to a page within the same website) is specified with a <strong>relative URL</strong> (without "https://www"):</p>
+                    <hr class="my-5">
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>&lt;!-- Absolute URL --&gt;
+                    <h2 class="cm-heading mb-3 lesson-section-title">Absolute URLs vs. Relative URLs</h2>
+                    <p>Both examples above are using an <strong>absolute URL</strong> (a full web address) in the
+                        <code>href</code> attribute.
+                    </p>
+                    <p>A local link (a link to a page within the same website) is specified with a <strong>relative
+                            URL</strong> (without "https://www"):</p>
+
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>&lt;!-- Absolute URL --&gt;
 &lt;a href="https://www.w3.org/"&gt;W3C&lt;/a&gt;
 
 &lt;!-- Relative URL --&gt;
 &lt;a href="html_images.asp"&gt;HTML Images&lt;/a&gt;</code></pre>
-                    </div>
-                </section>
+                        </div>
+                    </section>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">HTML Links - Use an Image as a Link</h2>
-                <p>To use an image as a link, just put the <span class="inline-code">&lt;img&gt;</span> tag inside the <span class="inline-code">&lt;a&gt;</span> tag:</p>
+                    <h2 class="cm-heading mb-3 lesson-section-title">HTML Links - Use an Image as a Link</h2>
+                    <p>To use an image as a link, just put the <span class="inline-code">&lt;img&gt;</span> tag inside
+                        the <span class="inline-code">&lt;a&gt;</span> tag:</p>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>&lt;a href="default.asp"&gt;
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>&lt;a href="default.asp"&gt;
 &lt;img src="smiley.gif" alt="HTML tutorial" style="width:42px;height:42px;"&gt;
 &lt;/a&gt;</code></pre>
-                    </div>
-                </section>
+                        </div>
+                    </section>
 
-                <div class="mt-5 pt-4 border-top d-flex justify-content-between align-items-center flex-wrap lesson-actions">
-                    <a class="btn btn-lesson-nav" th:href="${prevLessonUrl}" th:if="${prevLessonUrl != '#'}" aria-label="Previous lesson">← Previous</a>
-                    <span th:if="${prevLessonUrl == '#'}"></span>
-                    <button class="btn btn-cm-primary px-4 py-2 shadow-sm" type="button">Mark as Completed</button>
-                    <a class="btn btn-lesson-nav" th:href="${nextLessonUrl}" th:if="${nextLessonUrl != '#'}" aria-label="Next lesson">Next →</a>
-                    <span th:if="${nextLessonUrl == '#'}"></span>
+                    <div th:replace="~{lesson/fragment/lesson-actions :: lesson-actions}"></div>
+
                 </div>
 
             </div>
+        </main>
+    </div>
 
-        </div>
-    </main>
-</div>
-
-<div th:replace="~{lesson/fragment/notes :: notes}"></div>
+    <div th:replace="~{lesson/fragment/notes :: notes}"></div>
 </body>
+
 </html>

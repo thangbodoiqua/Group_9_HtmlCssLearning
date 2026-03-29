@@ -1,122 +1,132 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>HTML Images - Markuply</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/css/theme.css}">
     <link rel="stylesheet" th:href="@{/css/lesson.css}">
 </head>
+
 <body class="cm-bg cm-page-shell">
 
-<header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
+    <header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
 
-<div class="lesson-layout">
-    <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
+    <div class="lesson-layout">
+        <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
 
-    <main class="lesson-main-content">
-        <div class="lesson-card">
+        <main class="lesson-main-content">
+            <div class="lesson-card">
 
-            <div id="lessonData">
+                <div id="lessonData">
 
-                <h1 class="cm-heading mb-4 lesson-title">HTML Images</h1>
+                    <h1 class="cm-heading mb-4 lesson-title">HTML Images</h1>
 
-                <p class="lead">Images can improve the design and the appearance of a web page.</p>
+                    <p class="lead">Images can improve the design and the appearance of a web page.</p>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">HTML Images - Syntax</h2>
-                <p>The HTML <span class="inline-code">&lt;img&gt;</span> tag is used to embed an image in a web page.</p>
-                <p>Images are not technically inserted into a web page; images are linked to web pages. The <span class="inline-code">&lt;img&gt;</span> tag creates a holding space for the referenced image.</p>
-                <p>The <span class="inline-code">&lt;img&gt;</span> tag is empty, it contains attributes only, and does not have a closing tag.</p>
-                <p>The <span class="inline-code">&lt;img&gt;</span> tag has two required attributes:</p>
-                <ul class="mb-4" style="line-height: 1.8;">
-                    <li><code>src</code> - Specifies the path to the image</li>
-                    <li><code>alt</code> - Specifies an alternate text for the image</li>
-                </ul>
+                    <h2 class="cm-heading mb-3 lesson-section-title">HTML Images - Syntax</h2>
+                    <p>The HTML <span class="inline-code">&lt;img&gt;</span> tag is used to embed an image in a web
+                        page.</p>
+                    <p>Images are not technically inserted into a web page; images are linked to web pages. The <span
+                            class="inline-code">&lt;img&gt;</span> tag creates a holding space for the referenced image.
+                    </p>
+                    <p>The <span class="inline-code">&lt;img&gt;</span> tag is empty, it contains attributes only, and
+                        does not have a closing tag.</p>
+                    <p>The <span class="inline-code">&lt;img&gt;</span> tag has two required attributes:</p>
+                    <ul class="mb-4" style="line-height: 1.8;">
+                        <li><code>src</code> - Specifies the path to the image</li>
+                        <li><code>alt</code> - Specifies an alternate text for the image</li>
+                    </ul>
 
-                <div class="bg-light p-3 border rounded mb-4" style="font-family: monospace;">
-                    &lt;img src="<span style="color: red;">url</span>" alt="<span style="color: blue;">alternatetext</span>"&gt;
-                </div>
-
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                    <div class="bg-light p-3 border rounded mb-4" style="font-family: monospace;">
+                        &lt;img src="<span style="color: red;">url</span>" alt="<span
+                            style="color: blue;">alternatetext</span>"&gt;
                     </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>&lt;img src="pic_trulli.jpg" alt="Italian Trulli"&gt;</code></pre>
-                    </div>
-                </section>
 
-                <hr class="my-5">
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre
+                                class="lesson-codeblock"><code>&lt;img src="pic_trulli.jpg" alt="Italian Trulli"&gt;</code></pre>
+                        </div>
+                    </section>
 
-                <h2 class="cm-heading mb-3 lesson-section-title">The alt Attribute</h2>
-                <p>The required <code>alt</code> attribute provides an alternate text for an image, if the user for some reason cannot view it (because of slow connection, an error in the src attribute, or if the user uses a screen reader).</p>
-                <p>The value of the <code>alt</code> attribute should describe the image:</p>
+                    <hr class="my-5">
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>&lt;img src="img_chania.jpg" alt="Flowers in Chania"&gt;</code></pre>
-                    </div>
-                </section>
+                    <h2 class="cm-heading mb-3 lesson-section-title">The alt Attribute</h2>
+                    <p>The required <code>alt</code> attribute provides an alternate text for an image, if the user for
+                        some reason cannot view it (because of slow connection, an error in the src attribute, or if the
+                        user uses a screen reader).</p>
+                    <p>The value of the <code>alt</code> attribute should describe the image:</p>
 
-                <p>If a browser cannot find an image, it will display the value of the <code>alt</code> attribute:</p>
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre
+                                class="lesson-codeblock"><code>&lt;img src="img_chania.jpg" alt="Flowers in Chania"&gt;</code></pre>
+                        </div>
+                    </section>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>&lt;img src="wrongname.gif" alt="Flowers in Chania"&gt;</code></pre>
-                    </div>
-                </section>
+                    <p>If a browser cannot find an image, it will display the value of the <code>alt</code> attribute:
+                    </p>
 
-                <hr class="my-5">
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre
+                                class="lesson-codeblock"><code>&lt;img src="wrongname.gif" alt="Flowers in Chania"&gt;</code></pre>
+                        </div>
+                    </section>
 
-                <h2 class="cm-heading mb-3 lesson-section-title">Image Size - Width and Height</h2>
-                <p>You can use the <code>style</code> attribute to specify the width and height of an image.</p>
+                    <hr class="my-5">
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>&lt;img src="img_girl.jpg" alt="Girl in a jacket" style="width:500px;height:600px;"&gt;</code></pre>
-                    </div>
-                </section>
+                    <h2 class="cm-heading mb-3 lesson-section-title">Image Size - Width and Height</h2>
+                    <p>You can use the <code>style</code> attribute to specify the width and height of an image.</p>
 
-                <p>Alternatively, you can use the <code>width</code> and <code>height</code> attributes:</p>
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre
+                                class="lesson-codeblock"><code>&lt;img src="img_girl.jpg" alt="Girl in a jacket" style="width:500px;height:600px;"&gt;</code></pre>
+                        </div>
+                    </section>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>&lt;img src="img_girl.jpg" alt="Girl in a jacket" width="500" height="600"&gt;</code></pre>
-                    </div>
-                </section>
+                    <p>Alternatively, you can use the <code>width</code> and <code>height</code> attributes:</p>
 
-                <div class="mt-5 pt-4 border-top d-flex justify-content-between align-items-center flex-wrap lesson-actions">
-                    <a class="btn btn-lesson-nav" th:href="${prevLessonUrl}" th:if="${prevLessonUrl != '#'}" aria-label="Previous lesson">← Previous</a>
-                    <span th:if="${prevLessonUrl == '#'}"></span>
-                    <button class="btn btn-cm-primary px-4 py-2 shadow-sm" type="button">Mark as Completed</button>
-                    <a class="btn btn-lesson-nav" th:href="${nextLessonUrl}" th:if="${nextLessonUrl != '#'}" aria-label="Next lesson">Next →</a>
-                    <span th:if="${nextLessonUrl == '#'}"></span>
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre
+                                class="lesson-codeblock"><code>&lt;img src="img_girl.jpg" alt="Girl in a jacket" width="500" height="600"&gt;</code></pre>
+                        </div>
+                    </section>
+
+                    <div th:replace="~{lesson/fragment/lesson-actions :: lesson-actions}"></div>
+
                 </div>
 
             </div>
+        </main>
+    </div>
 
-        </div>
-    </main>
-</div>
-
-<div th:replace="~{lesson/fragment/notes :: notes}"></div>
+    <div th:replace="~{lesson/fragment/notes :: notes}"></div>
 </body>
+
 </html>

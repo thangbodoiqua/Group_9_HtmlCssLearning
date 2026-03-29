@@ -1,105 +1,106 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>CSS Selectors - Markuply</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/css/theme.css}">
     <link rel="stylesheet" th:href="@{/css/lesson.css}">
 </head>
+
 <body class="cm-bg cm-page-shell">
 
-<header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
+    <header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
 
-<div class="lesson-layout">
-    <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
+    <div class="lesson-layout">
+        <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
 
-    <main class="lesson-main-content">
-        <div class="lesson-card">
-            <div id="lessonData">
-                <h1 class="cm-heading mb-4 lesson-title">CSS Selectors</h1>
-                <p class="lead">CSS selectors are used to "find" (or select) the HTML elements you want to style.</p>
+        <main class="lesson-main-content">
+            <div class="lesson-card">
+                <div id="lessonData">
+                    <h1 class="cm-heading mb-4 lesson-title">CSS Selectors</h1>
+                    <p class="lead">CSS selectors are used to "find" (or select) the HTML elements you want to style.
+                    </p>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">The CSS element Selector</h2>
-                <p>The element selector selects HTML elements based on the element name.</p>
+                    <h2 class="cm-heading mb-3 lesson-section-title">The CSS element Selector</h2>
+                    <p>The element selector selects HTML elements based on the element name.</p>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>p {
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>p {
   text-align: center;
   color: red;
 }</code></pre>
-                    </div>
-                    <template class="lesson-html-context">
-                        <p>Hello World!</p>
-                        <p>These paragraphs are styled with CSS.</p>
-                    </template>
-                </section>
+                        </div>
+                        <template class="lesson-html-context">
+                            <p>Hello World!</p>
+                            <p>These paragraphs are styled with CSS.</p>
+                        </template>
+                    </section>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">The CSS id Selector</h2>
-                <p>The id selector uses the id attribute of an HTML element to select a specific element.</p>
-                <p>The id of an element is unique within a page, so the id selector is used to select one unique element!</p>
-                <p>To select an element with a specific id, write a hash (#) character, followed by the id of the element.</p>
+                    <h2 class="cm-heading mb-3 lesson-section-title">The CSS id Selector</h2>
+                    <p>The id selector uses the id attribute of an HTML element to select a specific element.</p>
+                    <p>The id of an element is unique within a page, so the id selector is used to select one unique
+                        element!</p>
+                    <p>To select an element with a specific id, write a hash (#) character, followed by the id of the
+                        element.</p>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>#para1 {
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>#para1 {
   text-align: center;
   color: red;
 }</code></pre>
-                    </div>
-                    <template class="lesson-html-context">
-                        <p id="para1">Hello World!</p>
-                        <p>This paragraph is not affected by the style.</p>
-                    </template>
-                </section>
+                        </div>
+                        <template class="lesson-html-context">
+                            <p id="para1">Hello World!</p>
+                            <p>This paragraph is not affected by the style.</p>
+                        </template>
+                    </section>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">The CSS class Selector</h2>
-                <p>The class selector selects HTML elements with a specific class attribute.</p>
-                <p>To select elements with a specific class, write a period (.) character, followed by the name of the class.</p>
+                    <h2 class="cm-heading mb-3 lesson-section-title">The CSS class Selector</h2>
+                    <p>The class selector selects HTML elements with a specific class attribute.</p>
+                    <p>To select elements with a specific class, write a period (.) character, followed by the name of
+                        the class.</p>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>.center {
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>.center {
   text-align: center;
   color: red;
 }</code></pre>
-                    </div>
-                    <template class="lesson-html-context">
-                        <h1 class="center">This heading will be affected</h1>
-                        <p class="center">This paragraph will also be affected.</p>
-                    </template>
-                </section>
+                        </div>
+                        <template class="lesson-html-context">
+                            <h1 class="center">This heading will be affected</h1>
+                            <p class="center">This paragraph will also be affected.</p>
+                        </template>
+                    </section>
 
-                <div class="mt-5 pt-4 border-top d-flex justify-content-between align-items-center flex-wrap lesson-actions">
-                    <a class="btn btn-lesson-nav" th:href="${prevLessonUrl}" th:if="${prevLessonUrl != '#'}" aria-label="Previous lesson">← Previous</a>
-                    <span th:if="${prevLessonUrl == '#'}"></span>
-                    <button class="btn btn-cm-primary px-4 py-2 shadow-sm" type="button">Mark as Completed</button>
-                    <a class="btn btn-lesson-nav" th:href="${nextLessonUrl}" th:if="${nextLessonUrl != '#'}" aria-label="Next lesson">Next →</a>
-                    <span th:if="${nextLessonUrl == '#'}"></span>
+                    <div th:replace="~{lesson/fragment/lesson-actions :: lesson-actions}"></div>
                 </div>
             </div>
-        </div>
-    </main>
-</div>
+        </main>
+    </div>
 
-<div th:replace="~{lesson/fragment/notes :: notes}"></div>
+    <div th:replace="~{lesson/fragment/notes :: notes}"></div>
 </body>
+
 </html>

@@ -1,55 +1,57 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>CSS Pseudo-classes - Markuply</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/css/theme.css}">
     <link rel="stylesheet" th:href="@{/css/lesson.css}">
 </head>
+
 <body class="cm-bg cm-page-shell">
 
-<header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
+    <header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
 
-<div class="lesson-layout">
-    <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
+    <div class="lesson-layout">
+        <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
 
-    <main class="lesson-main-content">
-        <div class="lesson-card">
-            <div id="lessonData">
-                <h1 class="cm-heading mb-4 lesson-title">CSS Pseudo-classes</h1>
-                <p class="lead">A pseudo-class is used to define a special state of an element.</p>
+        <main class="lesson-main-content">
+            <div class="lesson-card">
+                <div id="lessonData">
+                    <h1 class="cm-heading mb-4 lesson-title">CSS Pseudo-classes</h1>
+                    <p class="lead">A pseudo-class is used to define a special state of an element.</p>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">What are Pseudo-classes?</h2>
-                <p>A pseudo-class is used to:</p>
-                <ul class="mb-4" style="line-height: 1.8;">
-                    <li>Style an element when a user mouses over it</li>
-                    <li>Style visited and unvisited links differently</li>
-                    <li>Style an element when it gets focus</li>
-                </ul>
+                    <h2 class="cm-heading mb-3 lesson-section-title">What are Pseudo-classes?</h2>
+                    <p>A pseudo-class is used to:</p>
+                    <ul class="mb-4" style="line-height: 1.8;">
+                        <li>Style an element when a user mouses over it</li>
+                        <li>Style visited and unvisited links differently</li>
+                        <li>Style an element when it gets focus</li>
+                    </ul>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">Syntax</h2>
-                <div class="bg-light p-4 border rounded text-center mb-4">
-                    <div style="font-family: monospace; font-size: 1.2rem;">
-                        selector:pseudo-class { property: value; }
+                    <h2 class="cm-heading mb-3 lesson-section-title">Syntax</h2>
+                    <div class="bg-light p-4 border rounded text-center mb-4">
+                        <div style="font-family: monospace; font-size: 1.2rem;">
+                            selector:pseudo-class { property: value; }
+                        </div>
                     </div>
-                </div>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">Anchor Pseudo-classes</h2>
-                <p>Links can be displayed in different ways:</p>
+                    <h2 class="cm-heading mb-3 lesson-section-title">Anchor Pseudo-classes</h2>
+                    <p>Links can be displayed in different ways:</p>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>/* unvisited link */
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>/* unvisited link */
 a:link {
   color: #FF0000;
 }
@@ -68,38 +70,34 @@ a:hover {
 a:active {
   color: #0000FF;
 }</code></pre>
-                    </div>
-                </section>
+                        </div>
+                    </section>
 
-                <hr class="my-5">
+                    <hr class="my-5">
 
-                <h2 class="cm-heading mb-3 lesson-section-title">The :hover Pseudo-class</h2>
-                <p>The <code>:hover</code> pseudo-class applies when the user designated an element (with some pointing device), but does not activate it. For example, when a user mouses over a link.</p>
+                    <h2 class="cm-heading mb-3 lesson-section-title">The :hover Pseudo-class</h2>
+                    <p>The <code>:hover</code> pseudo-class applies when the user designated an element (with some
+                        pointing device), but does not activate it. For example, when a user mouses over a link.</p>
 
-                <section class="lesson-example mb-4">
-                    <div class="lesson-example-header">
-                        <h3 class="lesson-example-title">Example:</h3>
-                        <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                    </div>
-                    <div class="lesson-example-body">
-                        <pre class="lesson-codeblock"><code>a:hover {
+                    <section class="lesson-example mb-4">
+                        <div class="lesson-example-header">
+                            <h3 class="lesson-example-title">Example:</h3>
+                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
+                        </div>
+                        <div class="lesson-example-body">
+                            <pre class="lesson-codeblock"><code>a:hover {
   background-color: yellow;
 }</code></pre>
-                    </div>
-                </section>
+                        </div>
+                    </section>
 
-                <div class="mt-5 pt-4 border-top d-flex justify-content-between align-items-center flex-wrap lesson-actions">
-                    <a class="btn btn-lesson-nav" th:href="${prevLessonUrl}" th:if="${prevLessonUrl != '#'}" aria-label="Previous lesson">← Previous</a>
-                    <span th:if="${prevLessonUrl == '#'}"></span>
-                    <button class="btn btn-cm-primary px-4 py-2 shadow-sm" type="button">Mark as Completed</button>
-                    <a class="btn btn-lesson-nav" th:href="${nextLessonUrl}" th:if="${nextLessonUrl != '#'}" aria-label="Next lesson">Next →</a>
-                    <span th:if="${nextLessonUrl == '#'}"></span>
+                    <div th:replace="~{lesson/fragment/lesson-actions :: lesson-actions}"></div>
                 </div>
             </div>
-        </div>
-    </main>
-</div>
+        </main>
+    </div>
 
-<div th:replace="~{lesson/fragment/notes :: notes}"></div>
+    <div th:replace="~{lesson/fragment/notes :: notes}"></div>
 </body>
+
 </html>

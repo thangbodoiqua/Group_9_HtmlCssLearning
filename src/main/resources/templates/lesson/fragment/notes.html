@@ -2,7 +2,36 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <body>
-  <div th:fragment="notes">
+  <div th:fragment="notes" id="notesContainer" 
+       th:data-user-id="${userId}" 
+       th:data-lesson-id="${currentLessonId}">
+    <style>
+      .note-toast {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #28a745;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        transform: translateY(-20px);
+        opacity: 0;
+        transition: all 0.3s ease;
+        z-index: 10001; /* High enough to be over everything */
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        pointer-events: none;
+      }
+      .note-toast.show {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      .note-toast-icon {
+        font-size: 1.2rem;
+      }
+    </style>
     <button class="lesson-note-fab" type="button" id="openNoteFab" aria-label="Open notes" title="Notes">
       <span>📝</span>
     </button>
@@ -29,7 +58,7 @@
         </div>
       </div>
     </div>
-    <script th:src="@{/js/lesson-notes.js}"></script>
+    <script th:src="@{/js/lesson-notes.js(v='1.1')}"></script>
   </div>
   <div th:replace="~{lesson/fragment/notes :: notes}"></div>
 </body>
