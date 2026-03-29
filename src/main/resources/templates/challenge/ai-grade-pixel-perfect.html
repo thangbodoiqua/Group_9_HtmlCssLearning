@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Grade - Pixel Perfect</title>
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+  <link rel="stylesheet" th:href="@{/css/theme.css}" />
+  <link rel="stylesheet" th:href="@{/css/practice.css}" />
+  <link rel="stylesheet" th:href="@{/css/ai-grade-pixel-perfect.css}" />
+</head>
+
+<body class="cm-bg">
+  <header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
+
+  <main class="container py-4 py-lg-5 ai-pixel-page">
+    <section class="ai-pixel-hero">
+      <p class="ai-pixel-kicker mb-2">AI GRADING - PIXEL PERFECT MODE</p>
+      <h1 class="h3 mb-1" th:text="'Challenge: ' + ${submission.challenge.challengeTitle}">Challenge: Gradient Button
+      </h1>
+      <p class="cm-text-muted mb-0"
+        th:text="${submission.score < 100 ? 'Your button is visually close, but there are some differences from the target.' : 'Perfect! Your button matches the target design exactly.'}">
+        Your button is visually close...</p>
+    </section>
+
+    <section class="row mt-4 align-items-stretch">
+      <div class="col-lg-7 mb-3">
+        <div class="ai-pixel-card">
+          <h2 class="h5 mb-3">Your Submission</h2>
+          <div class="ai-pixel-compare">
+            <div class="ai-shot" style="width: 100%;">
+              <iframe id="submissionFrame"
+                style="width: 100%; height: 200px; border: 1px solid #334155; border-radius: 8px;"></iframe>
+              <script th:inline="javascript">
+                window.onload = function () {
+                  const userCode = /*[[${submission.submission}]]*/ '';
+                  const frame = document.getElementById('submissionFrame');
+                  const doc = frame.contentWindow.document;
+                  doc.open();
+                  doc.write('<html style="height: 100%; display: flex; justify-content: center; align-items: center; background: #ffffff;"><body>' + userCode + '</body></html>');
+                  doc.close();
+                };
+              </script>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-5 mb-3">
+        <div class="ai-pixel-score-card">
+          <p class="mb-1 text-muted">Score</p>
+          <h2 class="ai-pixel-score mb-2" th:text="${submission.score} + ' / 100'">76 / 100</h2>
+          <div class="progress ai-progress mb-3">
+            <div class="progress-bar" th:style="'width: ' + ${submission.score} + '%;'"></div>
+          </div>
+          <p class="small text-muted mb-0">Evaluation based on AI analysis of your CSS attributes and layout structure.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="ai-pixel-card mt-1">
+      <h2 class="h5 mb-3">AI Feedback</h2>
+      <div class="ai-pixel-feedback-container" style="color: var(--cm-text-main); line-height: 1.6;">
+        <p th:text="${submission.feedback}">AI feedback details go here...</p>
+      </div>
+    </section>
+
+    <div class="mt-4 d-flex flex-wrap" style="gap: 10px;">
+      <a th:href="@{/practice/pixel-perfect}" class="btn btn-cm-primary">Try Another</a>
+      <a th:href="@{/progress}" class="btn btn-outline-secondary">View My Progress</a>
+    </div>
+  </main>
+
+</body>
+
+</html>

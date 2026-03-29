@@ -15,7 +15,8 @@ public class Challenge {
     @JoinColumn(name="challenge_type", referencedColumnName = "challenge_type")
     private ChallengeType challengeType;
 
-    @Column(name = "challenge_title")
+
+    @Column(name = "challenge_title", unique = true)
     private String challengeTitle;
 
     @Column(name = "challenge_difficulty")
@@ -26,4 +27,5 @@ public class Challenge {
 
     @Column(name = "challenge_instructions")
     private String challengeInstructions;
+
 }
