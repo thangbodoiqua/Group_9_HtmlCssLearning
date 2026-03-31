@@ -90,6 +90,12 @@ public class AuthServiceImpl implements AuthService {
         if (codeOpt.isEmpty()) return false;
 
         VerificationCode code = codeOpt.get();
+        if (code.getExpiredAt().isBefore(LocalDateTime.now())) {
+
+            verificationRepository.delete(code);
+            return false;
+        }
+        verificationRepository.delete(code);// not using otp again
         return !code.getExpiredAt().isBefore(LocalDateTime.now());
     }
 
