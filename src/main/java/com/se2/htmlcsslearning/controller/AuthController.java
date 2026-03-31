@@ -98,8 +98,6 @@ public class AuthController {
                           BindingResult bindingResult,
                           HttpSession session,
                           Model model) {
-        if (bindingResult.hasErrors()) return "auth/forgot-password";
-
         try {
             authService.generateOTP(request);
             session.setAttribute("resetEmail", request.getEmail());
@@ -109,24 +107,35 @@ public class AuthController {
             return "auth/forgot-password";
         }
     }
+    @GetMapping("/forget/otp")
+    public String forgotOtpPage() {
+
+        return "auth/forgot-password-otp";
+    }
 
     @PostMapping("/forget/otp")
     public String verifyOtp(@Valid @ModelAttribute("verifyOtpRequest") VerifyOtpRequest request,
                             BindingResult bindingResult,
                             HttpSession session,
                             Model model) {
+
         String email = (String) session.getAttribute("resetEmail");
-        if (email == null) return "redirect:/auth/forget";
 
-        if (bindingResult.hasErrors()) return "auth/forgot-password-otp";
-
-        if (!authService.verifyOTP(request)) {
-            bindingResult.rejectValue("otp", "error.otp", "Incorrect or expired OTP.");
+        if (email == null) {
+            return "redirect:/auth/forget";
+        }
+        request.setEmail(email);
+        if (bindingResult.hasErrors()) {
             return "auth/forgot-password-otp";
         }
 
-        session.setAttribute("isVerified", true);
-        return "redirect:/auth/forget/reset";
+        if (authService.verifyOTP(request)) {
+            session.setAttribute("isVerified", true);
+            return "redirect:/auth/forget/reset";
+        } else {
+            model.addAttribute("error", "Incorrect or expired OTP.");
+            return "auth/forgot-password-otp";
+        }
     }
 
     @GetMapping("/forget/reset")
@@ -145,24 +154,26 @@ public class AuthController {
     public String resetPassword(@Valid @ModelAttribute("resetPasswordRequest") ResetPasswordRequest request,
                                 BindingResult bindingResult,
                                 HttpSession session,
-                                RedirectAttributes redirectAttributes) {
+                                RedirectAttributes redirectAttributes, Model model) {
         String email = (String) session.getAttribute("resetEmail");
         Boolean isVerified = (Boolean) session.getAttribute("isVerified");
         if (email == null || isVerified == null || !isVerified) return "redirect:/auth/forget";
-
+        if (!request.getConfirmPassword().equals(request.getNewPassword())) {
+            model.addAttribute("error", "Confirm  password is not same new password");
+            return "auth/forgot-password-reset";
+        }
         if (bindingResult.hasErrors()) return "auth/forgot-password-reset";
-
+        request.setEmail(email);
         try {
             authService.resetPassword(request);
             session.invalidate();
             redirectAttributes.addFlashAttribute("successMessage", "Password reset successfully. Please sign in.");
-            return "redirect:/auth/signin";
+            return "redirect:/auth/reset-password-success";
         } catch (Exception e) {
             bindingResult.reject("globalError", e.getMessage());
             return "auth/forgot-password-reset";
         }
     }
-
     @GetMapping("/reset-password-success")
     public String successPage() {
         return "auth/reset-password-success";
