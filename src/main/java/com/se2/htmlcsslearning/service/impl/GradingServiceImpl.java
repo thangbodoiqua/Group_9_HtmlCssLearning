@@ -32,13 +32,13 @@ public class GradingServiceImpl implements GradingService {
     private ObjectMapper objectMapper;
 
     @Override
-    public GradingResult evaluate(Challenge challenge, String userCode, String modelId) {
+    public GradingResult evaluate(Challenge challenge, String userCode, String modelId, Double visualScore) {
         String type = challenge.getChallengeType().getChallengeType();
         String folderType = type.equals("CSS_DEBUG") ? "css-debug" : "pixel-perfect";
         String challengeName = challenge.getChallengeTitle();
 
-        // 1. Read Resources and get Context
         GradingContext context = new GradingContext();
+        context.setVisualScore(visualScore);
         try {
             context.setHtmlTemplate(ResourceReaderUtil.readFile(folderType, challengeName, "index.html"));
             context.setReferenceCss(ResourceReaderUtil.readFile(folderType, challengeName, "solution.css"));
@@ -47,26 +47,20 @@ public class GradingServiceImpl implements GradingService {
             throw new RuntimeException("Failed to read necessary resources for evaluation.", e);
         }
 
-        // 2. Select Strategy (Factory Pattern)
         GradingStrategy strategy = strategyFactory.getStrategy(type);
 
-        // 3. Delegate Prompt Generation to Strategy
         String promptText = strategy.generatePrompt(challenge, userCode, context);
 
         logger.info("Sending prompt to AI for challenge: {}", challenge.getChallengeTitle());
         logger.debug("Prompt Text: {}", promptText);
 
-        // 3. Get AI Model (Factory Pattern)
         ChatModel chatModel = aiModelFactory.getModel(modelId);
 
-        // 4. Call AI
         String aiResponse = chatModel.call(promptText);
         logger.info("Raw AI Response received.");
         logger.debug("Raw AI Response Content: {}", aiResponse);
 
         try {
-            // 5. Parse JSON Result
-            // Remove markdown code blocks and keep only the content between { and }
             String cleanedResponse = aiResponse.replaceAll("(?s)```json\\s*", "")
                     .replaceAll("(?s)```\\s*", "")
                     .replaceAll("(?s)^.*?(\\{)", "$1")

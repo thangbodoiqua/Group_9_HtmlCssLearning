@@ -65,7 +65,7 @@ public class ChallengeServiceImpl implements ChallengeService {
         String type = challenge.getChallengeType().getChallengeType();
         String codeToEvaluate = request.getUserCode();
 
-        GradingResult result = gradingService.evaluate(challenge, codeToEvaluate, request.getModelId());
+        GradingResult result = gradingService.evaluate(challenge, codeToEvaluate, request.getModelId(), request.getVisualScore());
 
         try {
             // 3. Save Submission (Persistence Management)

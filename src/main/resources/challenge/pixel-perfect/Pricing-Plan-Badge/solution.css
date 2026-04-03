@@ -1,0 +1,121 @@
+body {
+    background-color: #f3f4f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+.pricing-card {
+    background-color: #ffffff;
+    width: 320px;
+    padding: 48px 32px;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    text-align: center;
+    border: 2px solid #e5e7eb;
+}
+
+.badge {
+    position: absolute;
+    top: 20px;
+    right: -35px;
+    background-color: #f59e0b;
+    color: white;
+    width: 150px;
+    padding: 8px 0;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    transform: rotate(45deg);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.plan-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #6b7280;
+    margin: 0 0 16px 0;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.price {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    margin-bottom: 32px;
+}
+
+.currency {
+    font-size: 24px;
+    font-weight: 700;
+    color: #111827;
+    margin-right: 2px;
+}
+
+.amount {
+    font-size: 56px;
+    font-weight: 800;
+    color: #111827;
+    letter-spacing: -2px;
+}
+
+.period {
+    font-size: 16px;
+    font-weight: 500;
+    color: #9ca3af;
+}
+
+.features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 40px 0;
+    text-align: left;
+}
+
+.features li {
+    font-size: 15px;
+    color: #4b5563;
+    padding: 12px 0;
+    border-bottom: 1px solid #f3f4f6;
+    display: flex;
+    align-items: center;
+}
+
+.features li::before {
+    content: '✓';
+    color: #10b981;
+    font-weight: 900;
+    margin-right: 12px;
+}
+
+.features li:last-child {
+    border-bottom: none;
+}
+
+.get-started {
+    background-color: #111827;
+    color: #ffffff;
+    width: 100%;
+    padding: 16px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.get-started:hover {
+    background-color: #1f2937;
+    transform: translateY(-2px);
+}
+
+.get-started:active {
+    transform: translateY(0);
+}

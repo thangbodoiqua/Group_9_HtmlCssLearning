@@ -8,5 +8,6 @@ public class ChallengeSubmissionRequest {
     private String userCode;
     private String htmlCode;
     private String cssCode;
+    private Double visualScore;
     private String modelId;
 }
