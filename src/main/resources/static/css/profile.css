@@ -1,0 +1,132 @@
+.profile-shell {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.profile-brand {
+  font-size: 1.5rem;
+}
+
+.profile-mobile-toggle {
+  font-size: 1.5rem;
+  padding: 0;
+  color: var(--cm-text-main);
+}
+
+.profile-user-name {
+  color: var(--cm-text-main);
+}
+
+.profile-active-link {
+  color: var(--cm-primary);
+  font-weight: 700;
+}
+
+.profile-page {
+  max-width: 1160px;
+}
+
+.profile-main-card {
+  background: #fff;
+  border: 1px solid var(--cm-border);
+  border-radius: var(--cm-radius-lg);
+  box-shadow: var(--cm-shadow-deep);
+  padding: clamp(1.4rem, 2.6vw, 2.25rem);
+  min-height: 580px;
+}
+
+.profile-avatar {
+  width: 156px;
+  height: 156px;
+  border-radius: 999px;
+  border: 4px solid #fff;
+  box-shadow: var(--cm-shadow-soft);
+}
+
+.profile-top {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--cm-border);
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.profile-identity {
+  gap: 1rem;
+}
+
+.profile-meta h1 {
+  margin: 0;
+  color: var(--cm-text-strong);
+}
+
+.profile-meta p {
+  margin: 0.3rem 0 0;
+  color: var(--cm-text-muted);
+}
+
+.profile-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.65rem;
+}
+
+.profile-chip {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.28rem 0.65rem;
+}
+
+.profile-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 2.5rem;
+}
+
+.profile-readonly {
+  background: #f8fafc;
+  color: #64748b;
+  cursor: not-allowed;
+}
+
+.profile-main-card .form-control {
+  border-radius: var(--cm-radius-sm);
+  min-height: 44px;
+}
+
+@media (max-width: 991.98px) {
+  .profile-page {
+    max-width: 860px;
+  }
+
+  .profile-main-card {
+    min-height: auto;
+  }
+
+  .profile-avatar {
+    width: 132px;
+    height: 132px;
+  }
+}
+
+@media (max-width: 576px) {
+  .profile-main-card {
+    padding: 1.1rem;
+  }
+
+  .profile-avatar {
+    width: 112px;
+    height: 112px;
+  }
+}

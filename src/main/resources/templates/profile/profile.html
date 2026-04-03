@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Markuply</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/theme.css}">
+    <link rel="stylesheet" th:href="@{/css/profile.css}">
+</head>
+<body>
+ <header th:replace="~{lesson/fragment/navbar::navbar}"></header>
+
+<main class="container py-5 flex-grow-1 profile-page">
+    <section class="profile-main-card">
+        <div class="profile-top">
+            <div class="d-flex align-items-center profile-identity">
+                <img th:src="@{'https://ui-avatars.com/api/?name=' + ${#authentication.principal.userName} + '&background=2563eb&color=fff'}" alt="Avatar"/>
+                <div class="profile-meta">
+                    <h1 class="cm-heading h3" th:text="${profile.userName}"></h1>
+                    <p th:text="${profile.email}" ></p>
+                    <div class="profile-chip-list">
+                    </div>
+                </div>
+            </div>
+            <a th:href="@{/progress}" class="btn btn-outline-primary font-weight-bold">View Progress</a>
+        </div>
+
+        <form th:action="@{/profile/update}" th:object="${profile}" method="post"> <input type="hidden" th:field="*{id}">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label class="font-weight-bold cm-text-main">Full Name</label>
+                        <input type="text" class="form-control" th:field="${profile.userName}">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label class="font-weight-bold cm-text-main">Email (Locked)</label>
+                        <input type="email" class="form-control profile-readonly" th:field="${profile.email}" value="dat.tvt@gmail.com" readonly>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label class="font-weight-bold cm-text-main">Date of Birth</label>
+                        <input type="date" class="form-control" th:field="${profile.dob}" value="2004-06-11">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label class="font-weight-bold cm-text-main">Role</label>
+                        <input type="text" class="form-control profile-readonly" th:field="${profile.userRole}" value="Web Developer" readonly>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-actions">
+                <button type="submit" class="btn btn-cm-primary px-4" >Save Changes</button>
+                <a th:href="@{/profile/change-password}"  class="btn btn-outline-secondary font-weight-bold px-4">Change Password</a>
+            </div>
+        </form>
+    </section>
+</main>
+
+</body>
+</html>
