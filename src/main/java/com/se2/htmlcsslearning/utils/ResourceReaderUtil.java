@@ -1,4 +1,4 @@
-package com.se2.htmlcsslearning.service.util;
+package com.se2.htmlcsslearning.utils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -65,3 +65,4 @@ application-*.yml
 # Thư mục cache và đóng gói
 .mvn/wrapper/maven-wrapper.jar
 !target/**/*.jar
+/.apt_generated_tests/

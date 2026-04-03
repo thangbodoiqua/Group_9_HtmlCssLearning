@@ -1,14 +1,14 @@
 package com.se2.htmlcsslearning.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.se2.htmlcsslearning.service.factory.ChatModelFactory;
 import com.se2.htmlcsslearning.entity.Challenge;
 import com.se2.htmlcsslearning.service.GradingService;
-import com.se2.htmlcsslearning.service.dto.GradingContext;
-import com.se2.htmlcsslearning.service.dto.GradingResult;
-import com.se2.htmlcsslearning.service.factory.AiModelFactory;
+import com.se2.htmlcsslearning.dto.GradingContext;
+import com.se2.htmlcsslearning.dto.GradingResult;
 import com.se2.htmlcsslearning.service.factory.GradingStrategyFactory;
 import com.se2.htmlcsslearning.service.strategy.GradingStrategy;
-import com.se2.htmlcsslearning.service.util.ResourceReaderUtil;
+import com.se2.htmlcsslearning.utils.ResourceReaderUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ai.chat.model.ChatModel;
@@ -26,7 +26,7 @@ public class GradingServiceImpl implements GradingService {
     private GradingStrategyFactory strategyFactory;
 
     @Autowired
-    private AiModelFactory aiModelFactory;
+    private ChatModelFactory chatModelFactory;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -37,6 +37,7 @@ public class GradingServiceImpl implements GradingService {
         String folderType = type.equals("CSS_DEBUG") ? "css-debug" : "pixel-perfect";
         String challengeName = challenge.getChallengeTitle();
 
+        // 1. Read Resources and get Context
         GradingContext context = new GradingContext();
         try {
             context.setHtmlTemplate(ResourceReaderUtil.readFile(folderType, challengeName, "index.html"));
@@ -46,15 +47,19 @@ public class GradingServiceImpl implements GradingService {
             throw new RuntimeException("Failed to read necessary resources for evaluation.", e);
         }
 
+        // 2. Select Strategy (Factory Pattern)
         GradingStrategy strategy = strategyFactory.getStrategy(type);
 
+        // 3. Delegate Prompt Generation to Strategy
         String promptText = strategy.generatePrompt(challenge, userCode, context);
 
         logger.info("Sending prompt to AI for challenge: {}", challenge.getChallengeTitle());
         logger.debug("Prompt Text: {}", promptText);
 
-        ChatModel chatModel = aiModelFactory.getModel(modelId);
+        // 3. Get AI Model (Factory Pattern)
+        ChatModel chatModel = chatModelFactory.getModel(modelId);
 
+        // 4. Call AI
         String aiResponse = chatModel.call(promptText);
         logger.info("Raw AI Response received.");
         logger.debug("Raw AI Response Content: {}", aiResponse);

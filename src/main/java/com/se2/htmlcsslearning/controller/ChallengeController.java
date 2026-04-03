@@ -5,7 +5,7 @@ import com.se2.htmlcsslearning.dto.response.ChallengeSubmissionRequest;
 import com.se2.htmlcsslearning.entity.Challenge;
 import com.se2.htmlcsslearning.entity.ChallengeSubmission;
 import com.se2.htmlcsslearning.service.ChallengeService;
-import com.se2.htmlcsslearning.service.util.ResourceReaderUtil;
+import com.se2.htmlcsslearning.utils.ResourceReaderUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

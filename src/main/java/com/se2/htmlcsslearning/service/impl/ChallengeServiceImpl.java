@@ -12,7 +12,7 @@ import com.se2.htmlcsslearning.repository.ChallengeRepository;
 import com.se2.htmlcsslearning.repository.ChallengeSubmissionRepository;
 import com.se2.htmlcsslearning.service.ChallengeService;
 import com.se2.htmlcsslearning.service.GradingService;
-import com.se2.htmlcsslearning.service.dto.GradingResult;
+import com.se2.htmlcsslearning.dto.GradingResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

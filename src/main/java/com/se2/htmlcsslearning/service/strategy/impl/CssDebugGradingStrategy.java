@@ -2,7 +2,7 @@ package com.se2.htmlcsslearning.service.strategy.impl;
 
 import com.se2.htmlcsslearning.entity.Challenge;
 import com.se2.htmlcsslearning.service.builder.AiGradingPromptBuilder;
-import com.se2.htmlcsslearning.service.dto.GradingContext;
+import com.se2.htmlcsslearning.dto.GradingContext;
 import com.se2.htmlcsslearning.service.strategy.GradingStrategy;
 
 public class CssDebugGradingStrategy implements GradingStrategy {

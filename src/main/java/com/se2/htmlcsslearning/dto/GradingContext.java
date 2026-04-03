@@ -1,4 +1,4 @@
-package com.se2.htmlcsslearning.service.dto;
+package com.se2.htmlcsslearning.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
