@@ -16,4 +16,12 @@ public class VerifyOtpRequest {
     @NotBlank(message = "OTP is required")
     @Size(min = 6, max = 6, message = "OTP must be 6 digits")
     private String otp;
+    public void setOtp(String otp) {
+        if (otp != null) {
+            this.otp = otp.replace(",", "").trim();
+        } else {
+            this.otp = null;
+        }
+    }
 }
+
