@@ -8,6 +8,7 @@ package com.se2.htmlcsslearning.controller;
 import com.se2.htmlcsslearning.entity.Lesson;
 import com.se2.htmlcsslearning.entity.User;
 import com.se2.htmlcsslearning.repository.LessonCompletedRepository;
+import com.se2.htmlcsslearning.repository.LessonNoteRepository;
 import com.se2.htmlcsslearning.repository.UserRepository;
 import com.se2.htmlcsslearning.service.LessonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,19 +33,22 @@ public class LessonController {
     private LessonService lessonService;
 
     @Autowired
+    private ResourceLoader resourceLoader;
+
+    @Autowired
     private LessonCompletedRepository lessonCompletedRepository;
+
+    @Autowired
+    private LessonNoteRepository lessonNoteRepository;
 
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private ResourceLoader resourceLoader;
-
     @GetMapping("/{category}/{lessonName}")
     public String showLessonPage(@PathVariable String category,
             @PathVariable String lessonName,
-            Authentication authentication,
-            Model model) {
+            Model model,
+            Authentication authentication) {
 
         // 1. Chuyển category thành chữ in hoa (HTML hoặc CSS)
         String categoryDbName = category.toUpperCase();
@@ -52,15 +56,26 @@ public class LessonController {
         // 2. Lấy danh sách bài học từ DB để làm Sidebar
         List<Lesson> sidebarLessons = lessonService.getLessonsByCategory(categoryDbName);
 
+        Lesson currentLesson = null;
+        for (Lesson lesson : sidebarLessons) {
+            if (lesson.getLessonName().equals(lessonName)) {
+                currentLesson = lesson;
+                break;
+            }
+        }
+
+        if (currentLesson == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Lesson not found");
+        }
+
+        Long currentLessonId = currentLesson.getId();
+
         // --- LOGIC XỬ LÝ NÚT NEXT VÀ PREVIOUS ---
         String prevLessonUrl = "#";
         String nextLessonUrl = "#";
-        Long currentLessonId = null; // Thêm biến lưu ID bài hiện tại
+
         for (int i = 0; i < sidebarLessons.size(); i++) {
             if (sidebarLessons.get(i).getLessonName().equals(lessonName)) {
-                // Thêm ID bài học hiện tại vào model để dùng cho JS Mark as Completed
-                model.addAttribute("currentLessonId", sidebarLessons.get(i).getId());
-                currentLessonId = sidebarLessons.get(i).getId(); // Lấy ID bài học
                 // Nếu có bài học trước đó
                 if (i > 0) {
                     prevLessonUrl = "/lesson/" + category.toLowerCase() + "/"
@@ -75,8 +90,9 @@ public class LessonController {
             }
         }
 
-        // --- XỬ LÝ TRẠNG THÁI HOÀN THÀNH ---
+        // --- XỬ LÝ TRẠNG THÁI HOÀN THÀNH VÀ GHI CHÚ ---
         boolean isCompleted = false;
+        String currentNote = "";
         Integer userId = 1; // Default to 1 as current JS hardcoded
         if (authentication != null && authentication.isAuthenticated()) {
             String email = authentication.getName();
@@ -84,18 +100,26 @@ public class LessonController {
             if (user != null) {
                 userId = user.getId();
                 isCompleted = lessonCompletedRepository.existsByLesson_IdAndUser_Id(currentLessonId, userId);
+                
+                // Lấy ghi chú hiện tại
+                currentNote = lessonNoteRepository.findFirstByUser_IdAndLesson_Id(userId, currentLessonId)
+                        .map(note -> note.getNoteContent())
+                        .orElse("");
             }
         }
 
         // 3. Gửi toàn bộ dữ liệu này sang cho Thymeleaf
         model.addAttribute("lessons", sidebarLessons);
+        model.addAttribute("currentLesson", currentLesson);
+        model.addAttribute("currentLessonId", currentLessonId);
+        model.addAttribute("isCompleted", isCompleted);
+        model.addAttribute("userId", userId);
+        model.addAttribute("currentNote", currentNote);
         model.addAttribute("currentCategory", categoryDbName);
         model.addAttribute("currentLessonName", lessonName);
         model.addAttribute("prevLessonUrl", prevLessonUrl);
         model.addAttribute("nextLessonUrl", nextLessonUrl);
-        model.addAttribute("currentLessonId", currentLessonId);
-        model.addAttribute("isCompleted", isCompleted);
-        model.addAttribute("userId", userId);
+
         // 4. Trả về đúng template bài học theo tên từ URL hoặc theo tên có prefix
         // category.
         return resolveLessonTemplateView(category, lessonName);
@@ -134,5 +158,4 @@ public class LessonController {
         }
         return "redirect:/";
     }
-
 }

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress - Markuply</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/theme.css}">
+    <link rel="stylesheet" th:href="@{/css/progress.css}">
+</head>
+<body class="cm-bg" style="margin: 0; display: flex; flex-direction: column; min-height: 100vh;">
+
+    <header class="cm-navbar-container d-flex justify-content-between align-items-center bg-white">
+        <a th:href="@{/}" class="text-decoration-none">
+            <h3 class="cm-brand mb-0" style="font-size: 1.5rem;">Markuply</h3>
+        </a>
+        
+        <button class="btn d-lg-none" onclick="document.querySelector('.cm-nav-links').classList.toggle('show')" style="font-size: 1.5rem; padding: 0; color: var(--cm-text-main);">☰</button>
+        
+        <nav class="cm-nav-links">
+            <a th:href="@{/lesson/html}" class="cm-nav-link">HTML Learning</a>
+            <a th:href="@{/lesson/css}" class="cm-nav-link">CSS Learning</a>
+            <a th:href="@{/compiler}" class="cm-nav-link">Code Compiler</a>
+            <a th:href="@{/practice/pixel-perfect}" class="cm-nav-link">Practice <small class="cm-nav-caret">▼</small></a>
+            <a th:href="@{/compare-css}" class="cm-nav-link">Compare CSS</a>
+            <a th:href="@{/profile}" class="cm-nav-link mobile-only-logout">Profile</a>
+            <a th:href="@{/progress}" class="cm-nav-link mobile-only-logout active">Progress</a>
+            <a th:href="@{/auth/signin}" class="cm-nav-link mobile-only-logout text-danger">Logout</a>
+        </nav>
+
+        <div class="user-actions d-none d-lg-block">
+            <div class="profile-dropdown">
+                <div class="d-flex align-items-center">
+                    <img th:src="${'https://ui-avatars.com/api/?name=' + user.userName + '&background=2563eb&color=fff'}" alt="Avatar" class="rounded-circle mr-2" width="35">
+                    <span class="font-weight-bold" style="color: var(--cm-text-main);" th:text="${user.userName + ' ▼'}">Tuan Dat <small>▼</small></span>
+                </div>
+                <div class="dropdown-menu-custom">
+                    <a th:href="@{/profile}"> Profile</a>
+                    <a th:href="@{/progress}" class="active" style="color: var(--cm-primary); font-weight: bold;"> View Progress</a>
+                    <div class="border-top my-1"></div>
+                    <a th:href="@{/auth/sigin}" class="text-danger"> Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container py-5 flex-grow-1" style="max-width: 900px;">
+        
+        <div class="text-center mb-5">
+            <h1 class="cm-heading mb-2" th:text="${user.userName}">Tuan Dat</h1>
+            <p style="font-size: 1.1rem;" th:text="${user.email}">dat.tvt@gmail.com</p>
+        </div>
+
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-8">
+                <div class="dark-card text-center">
+                    <h2 class="display-4 font-weight-bold progress-html" th:text="${completedCount + '/' + totalCount}">12/35</h2>
+                    <p class="text-uppercase font-weight-bold mb-0" style="color: #94a3b8; letter-spacing: 1px; font-size: 0.85rem;">Lessons Completed</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="dark-card">
+            <h3 class="cm-heading mb-4 pb-3 text-white" style="border-bottom: 1px solid #475569;">Course Progress</h3>
+            
+            <div class="mb-5">
+                <div class="d-flex justify-content-between font-weight-bold" style="font-size: 1.05rem; color: #f8fafc;">
+                    <span>1. HTML Foundation</span> <span class="progress-html" th:text="${htmlPercent + '%'}">100%</span>
+                </div>
+                <div class="cm-progress-bg">
+                    <div class="cm-progress-bar" th:style="'width: ' + ${htmlPercent} + '%; background: #10b981;'"></div>
+                </div>
+            </div>
+
+            <div class="mb-2">
+                <div class="d-flex justify-content-between font-weight-bold" style="font-size: 1.05rem; color: #f8fafc;">
+                    <span>2. CSS Basics</span> <span style="color: #3b82f6;" th:text="${cssPercent + '%'}">45%</span>
+                </div>
+                <div class="cm-progress-bg">
+                    <div class="cm-progress-bar" th:style="'width: ' + ${cssPercent} + '%; background: #3b82f6;'"></div>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="dark-card mt-4">
+            <h3 class="cm-heading mb-3 text-white">Saved Notes</h3>
+            <p class="text-muted mb-3" th:if="${#lists.isEmpty(notes)}">Notes from your HTML/CSS lessons will appear here.</p>
+            <div class="saved-notes-list">
+                <a th:href="@{/lesson/{category}/{name}(category=${note.lesson.category.categoryName.toLowerCase()}, name=${note.lesson.lessonName})}" 
+                   class="saved-note-item-link" th:each="note : ${notes}">
+                    <article class="saved-note-item">
+                        <div class="saved-note-meta">
+                            <strong th:text="${note.lesson.lessonName}">1. Introduction to HTML &amp; Page Structure</strong>
+                            <span>
+                                <span th:text="${note.lesson.category.categoryName}">HTML</span> Learning
+                            </span>
+                        </div>
+                        <p class="saved-note-text" th:text="${note.noteContent}">This is a sample note preview.</p>
+                    </article>
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+</html>
