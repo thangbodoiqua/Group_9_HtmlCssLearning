@@ -1,0 +1,27 @@
+.feature-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    width: 300px;
+    margin: 50px auto;
+}
+
+.icon {
+    font-size: 32px;
+}
+
+.title {
+    font-family: sans-serif;
+    color: #1a202c;
+}
+
+.description {
+    font-family: sans-serif;
+    color: #4a5568;
+}
+
+.learn-more {
+    background: #4299e1;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+}

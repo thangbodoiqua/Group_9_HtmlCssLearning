@@ -11,14 +11,21 @@ public class PixelPerfectGradingStrategy implements GradingStrategy {
     public String generatePrompt(Challenge challenge, String userCode, GradingContext context) {
         AiGradingPromptBuilder builder = new AiGradingPromptBuilder();
         
-        String systemInstructions = "You are an expert Frontend Developer focusing on Pixel Perfect UI development. You will strictly evaluate visual accuracy.";
+        Double score = context.getVisualScore() != null ? context.getVisualScore() : 0.0;
+        int finalScore = (int) Math.round(score);
+
+        String systemInstructions = "You are a CSS Tutor. A visual pixel-diffing algorithm has ALREADY graded the student's work.\n" +
+                "Your ONLY job is to explain WHY they received this score by analyzing their CSS against the Reference CSS.";
         
         String evaluationRules = String.format(
-                "1. Compare user layout with Reference Code strictly considering positioning, sizes, margins, paddings, and colors.\n" +
-                "2. HTML code provided:\n```html\n%s\n```\n" +
-                "3. Reference Answer:\n```css\n%s\n```\n" +
-                "4. Identify any layout mismatches and provide a score from 0-100.", 
-                context.getHtmlTemplate(), context.getReferenceCss()
+                "1. PRE-CALCULATED SCORE: The student achieved exactly %d/100 visual accuracy.\n" +
+                "2. Reference Design Spec (CSS):\n```css\n%s\n```\n" +
+                "3. Your task is to identify the CSS discrepancies that caused the missing %d points.\n" +
+                "4. OUTPUT FORMAT REQUIREMENTS:\n" +
+                "   - Set your 'score' field EXACTLY to %d.\n" +
+                "   - Provide your explanation in the 'feedback' field.\n" +
+                "   - CRITICAL JSON RULE: DO NOT use double quotes (\") anywhere inside the 'feedback' value. Use single quotes instead to avoid breaking the JSON parser. DO NOT use newlines inside the string, use \\n instead.",
+                finalScore, context.getReferenceCss(), 100 - finalScore, finalScore
         );
 
         return builder

@@ -66,20 +66,20 @@
         </div>
     </div>
 
-    <div class="practice-grid">
+    <div class="practice-grid" style="grid-template-columns: repeat(3, 1fr);">
         <div class="dark-panel">
             <div class="dark-panel-header">
-                <span>Editor</span>
-                <span style="color: #64748b;">Monaco Editor Active</span>
+                <span>1. Code Editor</span>
+                <span class="text-danger small">Match the design below</span>
             </div>
-            <!-- Monaco Container -->
             <div id="monaco-editor-container" style="flex: 1; min-height: 0;"></div>
-            <textarea id="practiceCode" style="display: none;" th:text="${initialCode}"></textarea>
+            <textarea id="htmlCode" style="display: none;" th:text="${initialHtml}"></textarea>
+            <textarea id="cssCode" style="display: none;" th:text="${initialCss}"></textarea>
         </div>
 
         <div class="dark-panel">
             <div class="dark-panel-header">
-                <span>Code output</span>
+                <span>2. Your Output</span>
             </div>
             <div class="preview-stage">
                 <iframe id="practiceFrame" style="width: 100%; height: 100%; border: none;"></iframe>
@@ -88,37 +88,42 @@
 
         <div class="dark-panel">
             <div class="dark-panel-header">
-                <span>Recreate this target</span>
+                <span>3. Target Reference</span>
             </div>
             <div class="target-stage">
-                <button
-                    style="padding: 15px 30px; font-size: 18px; font-weight: bold; color: white; border: none; border-radius: 8px; background: linear-gradient(135deg, #2563eb, #ec4899); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
-                    Hover Me!
-                </button>
+                <iframe id="targetFrame" th:srcdoc="${solutionCombinedHtml}" style="width: 100%; height: 100%; border: none; background: #ffffff;"></iframe>
             </div>
         </div>
     </div>
 
-    <!-- Monaco Editor Scripts -->
+    <!-- Monaco Editor & Pixel Diffing Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs/loader.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/resemblejs/5.0.0/resemble.min.js"></script>
     <script th:src="@{/js/challenge-evaluator.js}"></script>
     <script th:inline="javascript">
         let editor;
-        const initialCode = document.getElementById('practiceCode').value;
-        const challengeId = /*[[${challenge?.id} ?: 0]]*/ 0;
+        const rawHtml = document.getElementById('htmlCode').value;
+        const rawCss = document.getElementById('cssCode').value;
+        const challengeTitle = /*[[${challenge.challengeTitle}]]*/ 'Challenge';
+
+        let initialCombined = '';
+        const headIdx = rawHtml.indexOf('</head>');
+        if (headIdx !== -1) {
+            initialCombined = rawHtml.substring( headIdx) === '' ? rawHtml : rawHtml.substring(0, headIdx) + '<style>\n' + rawCss + '\n</style>\n' + rawHtml.substring(headIdx);
+        } else {
+            initialCombined = '<style>\n' + rawCss + '\n</style>\n' + rawHtml;
+        }
 
         require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs' } });
         require(['vs/editor/editor.main'], function () {
             editor = monaco.editor.create(document.getElementById('monaco-editor-container'), {
-                value: initialCode,
+                value: initialCombined,
                 language: 'html',
                 theme: 'vs-dark',
                 automaticLayout: true,
                 fontSize: 14,
-                minimap: { enabled: false },
-                scrollBeyondLastLine: false,
-                lineHeight: 1.6,
-                padding: { top: 20 }
+                minimap: { enabled: false }
             });
 
             updatePreview();
@@ -128,18 +133,84 @@
 
         function updatePreview() {
             if (!editor) return;
-            const html = editor.getValue();
-            const wrapper = '<html style="height: 100%; display: flex; justify-content: center; align-items: center; background: #ffffff;"><body>' + html + '<\/body><\/html>';
-
+            const combined = editor.getValue();
             const doc = frame.contentWindow.document;
             doc.open();
-            doc.write(wrapper);
+            doc.write(combined);
             doc.close();
         }
 
-        function handleAiSubmit() {
-            const model = document.getElementById('aiModel').value;
-            submitToAi(challengeId, model);
+        async function calculateVisualScore() {
+            try {
+                const pBody = document.getElementById('practiceFrame').contentDocument.body;
+                const tBody = document.getElementById('targetFrame').contentDocument.body;
+                
+                const pCanvas = await html2canvas(pBody, { backgroundColor: '#ffffff', width: pBody.scrollWidth, height: pBody.scrollHeight });
+                const tCanvas = await html2canvas(tBody, { backgroundColor: '#ffffff', width: tBody.scrollWidth, height: tBody.scrollHeight });
+
+                return new Promise((resolve) => {
+                    resemble(pCanvas.toDataURL())
+                        .compareTo(tCanvas.toDataURL())
+                        .ignoreAntialiasing()
+                        .onComplete(data => {
+                            const mismatch = Number(data.misMatchPercentage);
+                            let score = 100 - mismatch;
+                            resolve(Math.max(0, score));
+                        });
+                });
+            } catch (e) {
+                console.error("Visual diffing failed", e);
+                return null; // Fallback
+            }
+        }
+
+        async function handleAiSubmit() {
+            const modelId = document.getElementById('aiModel').value;
+            const btnSubmit = document.getElementById('btnSubmit');
+            const originalText = btnSubmit.innerHTML;
+            const userCode = editor.getValue();
+            
+            btnSubmit.disabled = true;
+            btnSubmit.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Calculating Diff...';
+            
+            const visualScore = await calculateVisualScore();
+            
+            btnSubmit.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Grading...';
+
+            const payload = {
+                challengeTitle: challengeTitle,
+                userCode: userCode,
+                visualScore: visualScore,
+                modelId: modelId
+            };
+            
+            fetch('/practice/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+            .then(response => {
+                if (!response.ok) throw new Error('Submission failed');
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    window.location.href = `/practice/result/${data.submissionId}`;
+                } else {
+                    alert("Error: " + data.message);
+                    resetButton();
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("Evaluation failed: " + error.message);
+                resetButton();
+            });
+            
+            function resetButton() {
+                btnSubmit.disabled = false;
+                btnSubmit.innerHTML = originalText;
+            }
         }
 
         document.addEventListener('click', function (event) {

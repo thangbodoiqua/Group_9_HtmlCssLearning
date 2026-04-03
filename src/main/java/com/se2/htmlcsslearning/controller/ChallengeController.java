@@ -35,19 +35,37 @@ public class ChallengeController {
 
     @GetMapping("/pixel-perfect/{challengeTitle}")
     public String showPixelPerfectPage(@PathVariable String challengeTitle, Model model) {
-        Challenge challenge = challengeService.getChallengeByTitle(challengeTitle).orElseThrow(() -> new RuntimeException("Not found"));
+        Challenge challenge = challengeService.getChallengeByTitle(challengeTitle)
+                .orElseThrow(() -> new RuntimeException("Not found"));
         List<Challenge> allChallenges = challengeService.getChallengesByType("PIXEL_PERFECT");
 
         model.addAttribute("challenge", challenge);
         model.addAttribute("allChallenges", allChallenges);
-        
+
         try {
-            String initialCode = ResourceReaderUtil.readFile("pixel-perfect", challenge.getChallengeTitle(), "index.html");
-            model.addAttribute("initialCode", initialCode);
+            String initialHtml = ResourceReaderUtil.readFile("pixel-perfect", challenge.getChallengeTitle(), "index.html");
+            String solutionCss = ResourceReaderUtil.readFile("pixel-perfect", challenge.getChallengeTitle(), "solution.css");
+            String initialCss = "";
+            try {
+                initialCss = ResourceReaderUtil.readFile("pixel-perfect", challenge.getChallengeTitle(), "style.css");
+            } catch (Exception e) {
+                initialCss = "/* Add your CSS here */";
+            }
+            String solutionCombinedHtml;
+            if (initialHtml.contains("</head>")) {
+                solutionCombinedHtml = initialHtml.replace("</head>", "<style>\n" + solutionCss + "\n</style>\n</head>");
+            } else {
+                solutionCombinedHtml = "<style>\n" + solutionCss + "\n</style>\n" + initialHtml;
+            }
+            model.addAttribute("initialHtml", initialHtml.trim());
+            model.addAttribute("initialCss", initialCss);
+            model.addAttribute("solutionCombinedHtml", solutionCombinedHtml);
         } catch (Exception e) {
-            model.addAttribute("initialCode", "<!-- No sample code found -->");
+            model.addAttribute("initialHtml", "<!-- No sample HTML found -->");
+            model.addAttribute("initialCss", "/* No sample CSS found */");
+            model.addAttribute("solutionCombinedHtml", "<!-- No solution found -->");
         }
-        
+
         return "challenge/practice-pixel-perfect";
     }
 
@@ -62,26 +80,29 @@ public class ChallengeController {
 
     @GetMapping("/css-debug/{challengeTitle}")
     public String showCssDebugPage(@PathVariable String challengeTitle, Model model) {
-        Challenge challenge = challengeService.getChallengeByTitle(challengeTitle).orElseThrow(() -> new RuntimeException("Not found"));
+        Challenge challenge = challengeService.getChallengeByTitle(challengeTitle)
+                .orElseThrow(() -> new RuntimeException("Not found"));
         List<Challenge> allChallenges = challengeService.getChallengesByType("CSS_DEBUG");
 
         model.addAttribute("challenge", challenge);
         model.addAttribute("allChallenges", allChallenges);
-        
+
         try {
             String initialCode = ResourceReaderUtil.readFile("css-debug", challenge.getChallengeTitle(), "index.html");
-            String solutionCss = ResourceReaderUtil.readFile("css-debug", challenge.getChallengeTitle(), "solution.css");
-            
+            String solutionCss = ResourceReaderUtil.readFile("css-debug", challenge.getChallengeTitle(),
+                    "solution.css");
+
             String initialCss = "";
             String initialHtml = initialCode;
             int styleStart = initialCode.indexOf("<style>");
             int styleEnd = initialCode.indexOf("</style>");
             String solutionCombinedHtml;
-            
+
             if (styleStart != -1 && styleEnd != -1) {
                 initialCss = initialCode.substring(styleStart + 7, styleEnd).trim();
                 initialHtml = initialCode.substring(0, styleStart) + initialCode.substring(styleEnd + 8);
-                solutionCombinedHtml = initialCode.substring(0, styleStart) + "<style>\n" + solutionCss + "\n</style>" + initialCode.substring(styleEnd + 8);
+                solutionCombinedHtml = initialCode.substring(0, styleStart) + "<style>\n" + solutionCss + "\n</style>"
+                        + initialCode.substring(styleEnd + 8);
             } else {
                 try {
                     initialCss = ResourceReaderUtil.readFile("css-debug", challenge.getChallengeTitle(), "style.css");
@@ -90,7 +111,8 @@ public class ChallengeController {
                 }
 
                 if (initialCode.contains("</head>")) {
-                    solutionCombinedHtml = initialCode.replace("</head>", "<style>\n" + solutionCss + "\n</style>\n</head>");
+                    solutionCombinedHtml = initialCode.replace("</head>",
+                            "<style>\n" + solutionCss + "\n</style>\n</head>");
                 } else {
                     solutionCombinedHtml = "<style>\n" + solutionCss + "\n</style>\n" + initialCode;
                 }
@@ -111,21 +133,14 @@ public class ChallengeController {
     @GetMapping("/result/{id}")
     public String showResultPage(@PathVariable Integer id, Model model) {
         ChallengeSubmission submission = challengeService.getSubmissionById(id);
-
         model.addAttribute("submission", submission);
+        model.addAttribute("combinedHtml", submission.getSubmission());
 
         String type = submission.getChallenge().getChallengeType().getChallengeType();
         if ("PIXEL_PERFECT".equalsIgnoreCase(type)) {
             return "challenge/ai-grade-pixel-perfect";
-        } else {
-            try {
-                // submission.getSubmission() is now the full combined HTML that the user edited
-                model.addAttribute("combinedHtml", submission.getSubmission());
-            } catch (Exception e) {
-                model.addAttribute("combinedHtml", "<!-- Error loading HTML -->");
-            }
-            return "challenge/ai-grade-css-debug";
         }
+        return "challenge/ai-grade-css-debug";
     }
 
     @PostMapping("/submit")

@@ -10,4 +10,5 @@ import lombok.NoArgsConstructor;
 public class GradingContext {
     private String htmlTemplate;
     private String referenceCss;
+    private Double visualScore;
 }
