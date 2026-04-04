@@ -32,8 +32,8 @@
       <a sec:authorize="!isAuthenticated()" th:href="@{/auth/signin}" class="cm-nav-link d-lg-none text-primary font-weight-bold">Sign In</a>
       <div sec:authorize="isAuthenticated()" class="d-lg-none">
         <div class="px-3 py-2 d-flex align-items-center">
-          <img th:src="@{'https://ui-avatars.com/api/?name=' + ${#authentication.principal.userName} + '&background=2563eb&color=fff'}" alt="Avatar" class="rounded-circle mr-2" width="30" />
-          <span class="font-weight-bold" style="color: var(--cm-text-main)" th:text="${#authentication.principal.userName}"></span>
+          <img th:src="@{'https://ui-avatars.com/api/?name=' + ${displayName ?: #authentication.principal.userName} + '&background=2563eb&color=fff'}" alt="Avatar"/>
+          <span class="font-weight-bold" style="color: var(--cm-text-main)" th:text="${displayName ?: #authentication.principal.userName}"></span>
         </div>
         <a th:href="@{/profile}" class="cm-nav-link pl-4">Profile</a>
         <a th:href="@{/progress}" class="cm-nav-link pl-4">View Progress</a>
@@ -45,9 +45,9 @@
       <a sec:authorize="!isAuthenticated()" th:href="@{/auth/signin}" class="btn btn-primary" style="background-color: var(--cm-bg-button); color: blue;">Sign in</a>
       <div sec:authorize="isAuthenticated()" class="profile-dropdown">
         <div class="d-flex align-items-center">
-          <img th:src="@{'https://ui-avatars.com/api/?name=' + ${#authentication.principal.userName} + '&background=2563eb&color=fff'}" alt="Avatar"
+          <img th:src="@{'https://ui-avatars.com/api/?name=' + ${displayName ?: #authentication.principal.userName} + '&background=2563eb&color=fff'}" alt="Avatar"
             class="rounded-circle mr-2" width="35" />
-          <span class="font-weight-bold" style="color: var(--cm-text-main)"><span th:text="${#authentication.principal.userName}"></span> <small>▼</small></span>
+          <span class="font-weight-bold" style="color: var(--cm-text-main)"><span th:text="${displayName ?: #authentication.principal.userName}"></span> <small>▼</small></span>
         </div>
         <div class="dropdown-menu-custom">
           <a th:href="@{/profile}"> Profile</a>

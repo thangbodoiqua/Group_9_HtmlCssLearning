@@ -7,6 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,9 +28,11 @@ public class ProfileController {
 
   @GetMapping
   public String profilePage(Model model) {
+    ProfileRequest profile = profileService.getCurrentProfile();
     if (!model.containsAttribute("profile")) {
-      model.addAttribute("profile", profileService.getCurrentProfile());
+            model.addAttribute("profile", profileService.getCurrentProfile());
     }
+    model.addAttribute("displayName", profile.getUserName());
     return "profile/profile";
   }
 
@@ -42,11 +45,18 @@ public class ProfileController {
   }
 
   @PostMapping("/update")
-  public String handleUpdateProfile(@Valid @ModelAttribute("profile") ProfileRequest request,
+  public String handleUpdateProfile(@Validated(ProfileRequest.ValidationOrder.class) @ModelAttribute("profile") ProfileRequest request,
                                     BindingResult bindingResult,
-                                    RedirectAttributes ra) {
+                                    RedirectAttributes ra, Model model) {
     if (bindingResult.hasErrors()) {
-      return "redirect:/profile/profile";
+      if (bindingResult.hasFieldErrors("dob")) {
+            model.addAttribute("error", "Invalid date format or value.");
+      } else {
+        model.addAttribute("error", bindingResult.getAllErrors().get(0).getDefaultMessage());
+      }
+      String originalName = profileService.getCurrentProfile().getUserName();
+      model.addAttribute("displayName", originalName);
+      return "profile/profile";
     }
     profileService.updateProfile(request);
     ra.addFlashAttribute("message", "Profile updated successfully.");
@@ -54,20 +64,23 @@ public class ProfileController {
   }
 
   @PostMapping("/change-password")
-  public String handleChangePassword(@Valid @ModelAttribute("passwordRequest") ChangePasswordRequest request,
+  public String handleChangePassword(@Validated(ChangePasswordRequest.ValidationOrder.class) @ModelAttribute("passwordRequest") ChangePasswordRequest request,
                                      BindingResult bindingResult,
                                      RedirectAttributes ra, Model model) {
     if (request.getNewPassword() != null && !request.getNewPassword().equals(request.getConfirmPassword())) {
       bindingResult.rejectValue("confirmPassword", "error.mismatch", "Passwords do not match");
     }
-
-    if (bindingResult.hasErrors()) return "redirect:/profile/change-password";
+    if (bindingResult.hasErrors()) {
+      model.addAttribute("error", bindingResult.getAllErrors().get(0).getDefaultMessage());
+      return "profile/change-password";
+    }
 
     if (profileService.changePassword(request)) {
-      return "redirect:/auth/logout";
+      ra.addFlashAttribute("message","Changed password successfully");
+      return "redirect:/profile";
     } else {
       model.addAttribute("error", "Incorrect current password.");
-      return "redirect:/profile/change-password";
+      return "/profile/change-password";
     }
   }
-  }
+}
