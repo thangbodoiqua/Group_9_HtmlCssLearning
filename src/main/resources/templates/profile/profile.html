@@ -13,11 +13,17 @@
 
 <main class="container py-5 flex-grow-1 profile-page">
     <section class="profile-main-card">
+        <div th:if="${error}" class="alert alert-danger mb-4">
+            <span th:text="${error}"></span>
+        </div>
+        <div th:if="${message}" class="alert alert-success mb-4">
+            <span th:text="${message}"></span>
+        </div>
         <div class="profile-top">
-            <div class="d-flex align-items-center profile-identity">
-                <img th:src="@{'https://ui-avatars.com/api/?name=' + ${#authentication.principal.userName} + '&background=2563eb&color=fff'}" alt="Avatar"/>
+             <div class="d-flex align-items-center profile-identity">
+                <img th:src="@{'https://ui-avatars.com/api/?name=' + ${displayName ?: #authentication.principal.userName} + '&background=2563eb&color=fff'}" alt="Avatar"/>
                 <div class="profile-meta">
-                    <h1 class="cm-heading h3" th:text="${profile.userName}"></h1>
+                    <h1 class="cm-heading h3" th:text="${displayName ?: profile.userName}"></h1>
                     <p th:text="${profile.email}" ></p>
                     <div class="profile-chip-list">
                     </div>
@@ -26,7 +32,7 @@
             <a th:href="@{/progress}" class="btn btn-outline-primary font-weight-bold">View Progress</a>
         </div>
 
-        <form th:action="@{/profile/update}" th:object="${profile}" method="post"> <input type="hidden" th:field="*{id}">
+        <form th:action="@{/profile/update}" th:object="${profile}" method="post"> <input type="hidden" th:field="*{id}" >
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group mb-3">

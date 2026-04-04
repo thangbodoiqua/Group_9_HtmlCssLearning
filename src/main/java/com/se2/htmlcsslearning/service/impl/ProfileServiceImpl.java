@@ -37,7 +37,7 @@ public class ProfileServiceImpl implements ProfileService {
                 .userName(user.getUserName())
                 .email(user.getEmail())
                 .userRole(user.getUserRole())
-                .dob(user.getDob() != null ? user.getDob().toString() : null)
+                .dob(user.getDob())
                 .build();
     }
 
@@ -49,9 +49,7 @@ public class ProfileServiceImpl implements ProfileService {
 
         user.setUserName(dto.getUserName());
 
-        if (dto.getDob() != null && !dto.getDob().isEmpty()) {
-            user.setDob(LocalDate.parse(dto.getDob()));
-        }
+        user.setDob(dto.getDob());
 
         userRepository.save(user);
     }
@@ -70,6 +68,7 @@ public class ProfileServiceImpl implements ProfileService {
         userRepository.save(user);
         return true;
     }
+
 }
 
 
