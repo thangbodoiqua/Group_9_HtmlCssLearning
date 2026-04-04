@@ -22,15 +22,13 @@
 
                 <div th:replace="${content}"></div>
 
-                <!-- Persistent Note Bar (Thanh Note) -->
-                <div id="persistentNoteContainer" 
-                     class="note-wrapper border-top mt-4 d-none" 
-                     th:classappend="${!#strings.isEmpty(currentNote)} ? 'show d-block' : ''">
+                <div id="persistentNoteContainer" class="note-wrapper border-top mt-4 d-none"
+                    th:classappend="${!#strings.isEmpty(currentNote)} ? 'show d-block' : ''">
                     <div class="small text-muted font-weight-bold mb-1">
                         <span class="mr-2">📝</span> My Current Note:
                     </div>
-                    <div id="persistentNoteContent" class="small text-dark" style="white-space: pre-wrap;" 
-                         th:text="${currentNote}"></div>
+                    <div id="persistentNoteContent" class="small text-dark" style="white-space: pre-wrap;"
+                        th:text="${currentNote}"></div>
                 </div>
 
             </div>

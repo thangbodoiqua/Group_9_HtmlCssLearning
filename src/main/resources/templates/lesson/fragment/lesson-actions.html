@@ -6,14 +6,12 @@
 <body>
 
 <div th:fragment="lesson-actions" class="mt-5 pt-4 border-top d-flex justify-content-between align-items-center flex-wrap lesson-actions">
-    
-    <!-- Previous Button -->
+
     <a class="btn btn-lesson-nav" th:href="${prevLessonUrl}" th:if="${prevLessonUrl != '#'}"
        aria-label="Previous lesson">← Previous</a>
     <span th:if="${prevLessonUrl == '#'}"></span>
 
-    <!-- Mark as Completed Button -->
-    <button id="btnMarkCompleted" 
+    <button id="btnMarkCompleted"
             th:class="${isCompleted} ? 'btn btn-success px-4 py-2 shadow-sm' : 'btn btn-cm-primary px-4 py-2 shadow-sm'" 
             type="button"
             th:data-lesson-id="${currentLessonId}"
@@ -23,63 +21,11 @@
         <span th:text="${isCompleted} ? '✔ Completed' : 'Mark as Completed'">Mark as Completed</span>
     </button>
 
-    <!-- Next Button -->
     <a class="btn btn-lesson-nav" th:href="${nextLessonUrl}" th:if="${nextLessonUrl != '#'}"
        aria-label="Next lesson">Next →</a>
     <span th:if="${nextLessonUrl == '#'}"></span>
 
-    <!-- Script for Mark as Completed -->
-    <script th:inline="javascript">
-        document.addEventListener("DOMContentLoaded", function () {
-            const btnCompleted = document.getElementById("btnMarkCompleted");
-
-            if (btnCompleted && !btnCompleted.disabled) {
-                btnCompleted.addEventListener("click", function () {
-                    const lessonId = this.getAttribute("data-lesson-id");
-                    const userId = this.getAttribute("data-user-id");
-
-                    // Sử dụng Fetch API để gửi POST request
-                    fetch('/api/lesson/mark-completed', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                        },
-                        body: new URLSearchParams({
-                            'lessonId': lessonId,
-                            'userId': userId
-                        })
-                    })
-                    .then(async response => {
-                        if (response.ok) {
-                            // Đổi giao diện nút khi thành công
-                            btnCompleted.innerHTML = '✔ Completed';
-                            btnCompleted.classList.remove('btn-cm-primary');
-                            btnCompleted.classList.add('btn-success');
-                            btnCompleted.disabled = true;
-                            btnCompleted.style.pointerEvents = 'none';
-                        } else {
-                            const text = await response.text();
-                            if (text === "Already completed") {
-                                alert("Bạn đã hoàn thành bài học này rồi!");
-                                // Cập nhật luôn trạng thái nút cho đồng bộ
-                                btnCompleted.innerHTML = '✔ Completed';
-                                btnCompleted.classList.remove('btn-cm-primary');
-                                btnCompleted.classList.add('btn-success');
-                                btnCompleted.disabled = true;
-                                btnCompleted.style.pointerEvents = 'none';
-                            } else {
-                                alert("Có lỗi xảy ra: " + text);
-                            }
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        alert("Không thể kết nối đến server.");
-                    });
-                });
-            }
-        });
-    </script>
+    <script th:src="@{/js/lesson-actions.js}"></script>
 </div>
 
 </body>
