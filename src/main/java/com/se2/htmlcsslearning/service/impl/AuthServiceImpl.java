@@ -7,6 +7,7 @@ import com.se2.htmlcsslearning.entity.VerificationCode;
 import com.se2.htmlcsslearning.exception.EmailAlreadyExistsException;
 import com.se2.htmlcsslearning.repository.UserRepository;
 import com.se2.htmlcsslearning.repository.VerificationRepository;
+import com.se2.htmlcsslearning.config.CustomUserDetails;
 import com.se2.htmlcsslearning.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -34,7 +35,6 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     private JavaMailSender mailSender;
 
-    // ================= SIGN UP =================
     @Override
     public void register(SignUpRequest request) {
         if (userRepository.findByEmail(request.getEmail()).isPresent()) {
@@ -51,7 +51,6 @@ public class AuthServiceImpl implements AuthService {
         userRepository.save(user);
     }
 
-    // ================= OTP =================
     @Override
     public String generateOTP(ForgotPasswordRequest request) {
 
@@ -99,7 +98,6 @@ public class AuthServiceImpl implements AuthService {
         return !code.getExpiredAt().isBefore(LocalDateTime.now());
     }
 
-    // ================= RESET =================
     @Override
     public void resetPassword(ResetPasswordRequest request) {
         User user = userRepository.findByEmail(request.getEmail()).orElseThrow();
@@ -107,7 +105,6 @@ public class AuthServiceImpl implements AuthService {
         userRepository.save(user);
     }
 
-    // ================= SIGN IN =================
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         if (email == null || email.isEmpty()) {
@@ -116,6 +113,6 @@ public class AuthServiceImpl implements AuthService {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
-        return new com.se2.htmlcsslearning.security.CustomUserDetails(user);
+        return new CustomUserDetails(user);
     }
 }

@@ -25,7 +25,6 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
-    // ================= PAGE =================
     private boolean isLoggedIn(Authentication auth) {
         return auth != null && auth.isAuthenticated()
                 && !(auth instanceof AnonymousAuthenticationToken);

@@ -5,6 +5,7 @@ import com.se2.htmlcsslearning.dto.request.ProfileRequest;
 import com.se2.htmlcsslearning.entity.User;
 import com.se2.htmlcsslearning.repository.UserRepository;
 import com.se2.htmlcsslearning.service.ProfileService;
+import com.se2.htmlcsslearning.utils.SecurityUtils;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,13 +24,11 @@ public class ProfileServiceImpl implements ProfileService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    private String getCurrentUserEmail() {
-        return SecurityContextHolder.getContext().getAuthentication().getName();
-    }
-
     @Override
     public ProfileRequest getCurrentProfile() {
-        User user = userRepository.findByEmail(getCurrentUserEmail())
+        User curUser = SecurityUtils.getCurrentUser();
+
+        User user = userRepository.findByEmail(curUser.getEmail())
                 .orElseThrow(() -> new UsernameNotFoundException("User Not Found"));
 
         return ProfileRequest.builder()
@@ -54,12 +53,16 @@ public class ProfileServiceImpl implements ProfileService {
         }
 
         userRepository.save(user);
+
+        SecurityUtils.refreshAuthentication(user);
     }
 
     @Transactional
     @Override
     public boolean changePassword(ChangePasswordRequest request) {
-        User user = userRepository.findByEmail(getCurrentUserEmail())
+        User curUser = SecurityUtils.getCurrentUser();
+
+        User user = userRepository.findByEmail(curUser.getEmail())
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
         if (!passwordEncoder.matches(request.getCurrentPassword(), user.getPassword())) {
