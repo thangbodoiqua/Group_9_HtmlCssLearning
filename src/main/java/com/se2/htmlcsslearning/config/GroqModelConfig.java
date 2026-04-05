@@ -1,4 +1,4 @@
-package com.se2.htmlcsslearning.ai;
+package com.se2.htmlcsslearning.config;
 
 import com.se2.htmlcsslearning.constant.ModelConstants;
 import org.springframework.ai.chat.model.ChatModel;

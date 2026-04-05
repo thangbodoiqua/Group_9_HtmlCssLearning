@@ -51,21 +51,19 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public String signupPost(@Validated @ModelAttribute("signUpRequest") SignUpRequest request,
+    public String signupPost(@Validated(SignUpRequest.ValidationOrder.class) @ModelAttribute("signUpRequest") SignUpRequest request,
                              BindingResult bindingResult,
                              Model model,
                              RedirectAttributes redirectAttributes) {
-
-        if (bindingResult.hasErrors()) {
-            String firstError = bindingResult.getAllErrors().getFirst().getDefaultMessage();
-            model.addAttribute("error", firstError);
-            return "auth/signup";
-        }
-
         if (!bindingResult.hasFieldErrors("confirmPassword")
                 && request.getPassword() != null
                 && !request.getPassword().equals(request.getConfirmPassword())) {
             bindingResult.rejectValue("confirmPassword", "error.confirmPassword", "Passwords do not match");
+        }
+        if (bindingResult.hasErrors()) {
+            String firstError = bindingResult.getAllErrors().get(0).getDefaultMessage();
+            model.addAttribute("error", firstError);
+            return "auth/signup";
         }
 
         try {
@@ -76,7 +74,7 @@ public class AuthController {
             model.addAttribute("error", e.getMessage());
             return "auth/signup";
         } catch (Exception e) {
-                model.addAttribute("error", "Unexpected error. Please try again.");
+            model.addAttribute("error", "Unexpected error. Please try again.");
             return "auth/signup";
         }
     }
