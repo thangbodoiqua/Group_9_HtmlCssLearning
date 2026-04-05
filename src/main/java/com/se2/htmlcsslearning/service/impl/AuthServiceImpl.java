@@ -1,6 +1,5 @@
 package com.se2.htmlcsslearning.service.impl;
 
-import com.se2.htmlcsslearning.domain.UserRoleConstants;
 import com.se2.htmlcsslearning.dto.request.*;
 import com.se2.htmlcsslearning.entity.User;
 import com.se2.htmlcsslearning.entity.VerificationCode;
@@ -45,7 +44,7 @@ public class AuthServiceImpl implements AuthService {
         user.setEmail(request.getEmail());
         user.setUserName(request.getName());
         user.setDob(request.getDob());
-        user.setUserRole(UserRoleConstants.USER.name());
+        user.setUserRole("USER");
         user.setRegDate(LocalDateTime.now());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         userRepository.save(user);
