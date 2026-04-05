@@ -17,18 +17,28 @@
 
         <!-- ── Header ─────────────────────────────────────────── -->
         <div class="compare-header mb-4">
-            <div class="w-100">
+            <div>
                 <h1 class="cm-heading mb-2" th:text="${pageTitle}">CSS Property</h1>
-                <p class="text-muted small mb-3" th:text="${pageDescription}">Property description</p>
-                <div class="compare-header-select-wrap">
-                    <label for="propertySelect" class="compare-section-label mb-2 d-block">CSS Property</label>
-                    <select id="propertySelect" class="form-select compare-property-select">
-                        <option th:each="name : ${allPropertyNames}"
-                                th:value="${name}"
-                                th:text="${name}"
-                                th:selected="${name == selectedPropertyName}">
-                        </option>
-                    </select>
+                <p class="text-muted small mb-0" th:text="${pageDescription}">Property description</p>
+            </div>
+            <div class="compare-header-select-wrap">
+                <label class="compare-section-label mb-2 d-block">CSS Property</label>
+                <!-- Custom Dropdown Selector -->
+                <div class="custom-select-wrapper" id="propertySelectWrapper">
+                    <div class="custom-select-trigger" id="propertySelectTrigger">
+                        <span th:text="${selectedPropertyName}">Select Property</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="custom-select-options" id="propertySelectOptions">
+                        <div th:each="name : ${allPropertyNames}"
+                             class="custom-select-option"
+                             th:classappend="${name == selectedPropertyName} ? 'selected' : ''"
+                             th:data-value="${name}">
+                             <span th:text="${name}"></span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -60,10 +70,31 @@
 
 <script>
     (function () {
-        var sel = document.getElementById('propertySelect');
-        if (sel) {
-            sel.addEventListener('change', function () {
-                if (this.value) window.location.href = '/compare-css/' + encodeURIComponent(this.value);
+        var wrapper = document.getElementById('propertySelectWrapper');
+        var trigger = document.getElementById('propertySelectTrigger');
+        var options = document.getElementById('propertySelectOptions');
+
+        if (trigger && options) {
+            // Toggle dropdown dropdown
+            trigger.addEventListener('click', function(e) {
+                wrapper.classList.toggle('open');
+                e.stopPropagation();
+            });
+
+            // Handle option selection
+            var optionElements = options.querySelectorAll('.custom-select-option');
+            optionElements.forEach(function(opt) {
+                opt.addEventListener('click', function(e) {
+                    var val = this.getAttribute('data-value');
+                    if (val) window.location.href = '/compare-css/' + encodeURIComponent(val);
+                });
+            });
+
+            // Close dropdown if clicked outside
+            document.addEventListener('click', function(e) {
+                if (wrapper && !wrapper.contains(e.target)) {
+                    wrapper.classList.remove('open');
+                }
             });
         }
     })();

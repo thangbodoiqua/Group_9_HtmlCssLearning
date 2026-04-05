@@ -1,7 +1,5 @@
 package com.se2.htmlcsslearning.controller;
 
-import com.se2.htmlcsslearning.entity.CssProperty;
-import com.se2.htmlcsslearning.repository.CssPropertyRepository;
 import com.se2.htmlcsslearning.service.CssPropertyService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/compare-css")
@@ -36,6 +34,7 @@ public class CssPropertyController {
         if(!allPropertyNames.contains(cssPropertyName)){
             return "redirect:" + FALL_PATH;
         }
+        Collections.sort(allPropertyNames);
         model.addAttribute("allPropertyNames", allPropertyNames);
         model.addAttribute("selectedPropertyName", cssPropertyName);
         return FILE_PATH + cssPropertyName;

@@ -16,7 +16,6 @@ import java.util.logging.Logger;
 @Controller
 public class CompilerController {
 
-    private static final Logger logger = Logger.getLogger(CompilerController.class.getName());
     private static final String DEFAULT_CODE_PATH = "compiler/default-code.html";
 
     private String getDefaultCode() {
@@ -24,7 +23,6 @@ public class CompilerController {
             ClassPathResource resource = new ClassPathResource(DEFAULT_CODE_PATH);
             return StreamUtils.copyToString(resource.getInputStream(), StandardCharsets.UTF_8);
         } catch (IOException e) {
-            logger.severe("Could not read default code file: " + e.getMessage());
             return "<!DOCTYPE html><html><body><h1>Error loading default code</h1></body></html>";
         }
     }

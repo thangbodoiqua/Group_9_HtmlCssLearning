@@ -1,23 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-
-<head>
-    <title>CSS Flexbox - Markuply</title>
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-    <link rel="stylesheet" th:href="@{/css/theme.css}">
-    <link rel="stylesheet" th:href="@{/css/lesson.css}">
-</head>
-
-<body class="cm-bg cm-page-shell">
-
-    <header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
-
-    <div class="lesson-layout">
-        <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
-
-        <main class="lesson-main-content">
-            <div class="lesson-card">
-                <div id="lessonData">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{lesson/fragment/lesson-layout :: main_layout(title='CSS Flexbox - Markuply', content=~{::#lessonData})}">
+<body>
+    <div id="lessonData">
                     <h1 class="cm-heading mb-4 lesson-title">CSS Flexbox</h1>
                     <p class="lead">Flexbox is a layout model that allows elements to align and distribute space within
                         a container.</p>
@@ -107,11 +91,5 @@
 
                     <div th:replace="~{lesson/fragment/lesson-actions :: lesson-actions}"></div>
                 </div>
-            </div>
-        </main>
-    </div>
-
-    <div th:replace="~{lesson/fragment/notes :: notes}"></div>
 </body>
-
 </html>

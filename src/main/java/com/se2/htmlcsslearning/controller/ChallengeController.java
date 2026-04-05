@@ -1,7 +1,7 @@
 package com.se2.htmlcsslearning.controller;
 
-import com.se2.htmlcsslearning.controller.dto.ChallengeResponse;
-import com.se2.htmlcsslearning.controller.dto.ChallengeSubmissionRequest;
+import com.se2.htmlcsslearning.dto.response.ChallengeResponse;
+import com.se2.htmlcsslearning.dto.response.ChallengeSubmissionRequest;
 import com.se2.htmlcsslearning.entity.Challenge;
 import com.se2.htmlcsslearning.entity.ChallengeSubmission;
 import com.se2.htmlcsslearning.service.ChallengeService;
@@ -28,9 +28,9 @@ public class ChallengeController {
     public String defaultPixelPerfect() {
         List<Challenge> challenges = challengeService.getChallengesByType("PIXEL_PERFECT");
         if (!challenges.isEmpty()) {
-            return "redirect:/practice/pixel-perfect/" + challenges.get(0).getChallengeTitle();
+            return "redirect:/practice/pixel-perfect/" + challenges.getFirst().getChallengeTitle();
         }
-        return "redirect:/"; // fallback
+        return "redirect:/";
     }
 
     @GetMapping("/pixel-perfect/{challengeTitle}")
@@ -73,9 +73,9 @@ public class ChallengeController {
     public String defaultCssDebug() {
         List<Challenge> challenges = challengeService.getChallengesByType("CSS_DEBUG");
         if (!challenges.isEmpty()) {
-            return "redirect:/practice/css-debug/" + challenges.get(0).getChallengeTitle();
+            return "redirect:/practice/css-debug/" + challenges.getFirst().getChallengeTitle();
         }
-        return "redirect:/"; // fallback
+        return "redirect:/";
     }
 
     @GetMapping("/css-debug/{challengeTitle}")

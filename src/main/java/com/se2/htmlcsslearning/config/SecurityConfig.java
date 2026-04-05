@@ -1,6 +1,5 @@
 package com.se2.htmlcsslearning.config;
 
-import com.se2.htmlcsslearning.domain.UserRoleConstants;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.http.SessionCreationPolicy;

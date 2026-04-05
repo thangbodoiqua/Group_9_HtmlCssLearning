@@ -6,14 +6,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const currentNoteDisplay = document.getElementById("currentNoteDisplay");
     const noteContentDiv = document.getElementById("noteContent");
 
-    let lastNoteContent = ""; // Store the last saved note content
+    let lastNoteContent = "";
 
     if (!lessonId) {
         console.warn("No lessonId found for notes feature.");
         return;
     }
 
-    // Function to show premium toasts
     function showToast(message, type = 'success') {
         let container = document.querySelector('.cm-toast-container');
         if (!container) {
@@ -25,32 +24,28 @@ document.addEventListener('DOMContentLoaded', function () {
         const toast = document.createElement('div');
         toast.className = `cm-toast ${type}`;
         const icon = type === 'success' ? '✓' : '✕';
-        
+
         toast.innerHTML = `
             <div class="cm-toast-icon">${icon}</div>
             <div class="cm-toast-message">${message}</div>
         `;
 
         container.appendChild(toast);
-        
-        // Remove toast after animation
+
         setTimeout(() => {
             toast.style.opacity = '0';
-            setTimeout(() => toast.remove(), 400); // 400ms for fade out
+            setTimeout(() => toast.remove(), 400);
         }, 3000);
     }
 
-    // Common function to render note in both Modal and Persistent Bar
     function renderNote(content) {
         const persistentContainer = document.getElementById("persistentNoteContainer");
         const persistentContent = document.getElementById("persistentNoteContent");
 
         if (content && content.trim() !== "") {
-            // Update Modal Preview
             if (noteContentDiv) noteContentDiv.textContent = content;
             if (currentNoteDisplay) currentNoteDisplay.classList.remove("d-none");
 
-            // Update Persistent Bar (Thanh Note)
             if (persistentContent) persistentContent.textContent = content;
             if (persistentContainer) {
                 persistentContainer.classList.add("show");
@@ -58,7 +53,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             lastNoteContent = content; // Keep sync
         } else {
-            // Hide everything if no content
             if (currentNoteDisplay) currentNoteDisplay.classList.add("d-none");
             if (persistentContainer) {
                 persistentContainer.classList.remove("show");
@@ -68,7 +62,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Fetch the single note for this lesson
     async function fetchNote() {
         try {
             const response = await fetch(`/api/notes?userId=${userId}&lessonId=${lessonId}`);
@@ -130,10 +123,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function openModal() {
         if (modal) {
-            if (textarea) textarea.value = ""; // Clear initially as per request
+            if (textarea) textarea.value = "";
             modal.classList.add("show");
             textarea?.focus();
-            fetchNote(); // Refresh content on open
+            fetchNote();
         }
     }
 
@@ -162,11 +155,10 @@ document.addEventListener('DOMContentLoaded', function () {
         if (e.key === "Escape") closeModal();
     });
 
-    // Initialize display with existing content from model (if any)
     const initialContent = document.getElementById("persistentNoteContent")?.textContent?.trim();
     if (initialContent) {
         renderNote(initialContent);
     } else {
-        fetchNote(); // Fallback to fetch if not pre-rendered
+        fetchNote();
     }
 });

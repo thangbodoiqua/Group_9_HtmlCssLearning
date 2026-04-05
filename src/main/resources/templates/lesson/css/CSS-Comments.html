@@ -1,23 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-
-<head>
-    <title>CSS Comments - Markuply</title>
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-    <link rel="stylesheet" th:href="@{/css/theme.css}">
-    <link rel="stylesheet" th:href="@{/css/lesson.css}">
-</head>
-
-<body class="cm-bg cm-page-shell">
-
-    <header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
-
-    <div class="lesson-layout">
-        <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
-
-        <main class="lesson-main-content">
-            <div class="lesson-card">
-                <div id="lessonData">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{lesson/fragment/lesson-layout :: main_layout(title='CSS Comments - Markuply', content=~{::#lessonData})}">
+<body>
+    <div id="lessonData">
                     <h1 class="cm-heading mb-4 lesson-title">CSS Comments</h1>
                     <p class="lead">CSS comments are not displayed in the browser, but they can help document your
                         source code.</p>
@@ -67,11 +51,5 @@ comment */</code></pre>
 
                     <div th:replace="~{lesson/fragment/lesson-actions :: lesson-actions}"></div>
                 </div>
-            </div>
-        </main>
-    </div>
-
-    <div th:replace="~{lesson/fragment/notes :: notes}"></div>
 </body>
-
 </html>

@@ -9,7 +9,7 @@
     <link rel="stylesheet" th:href="@{/css/profile.css}">
 </head>
 <body>
- <header th:replace="~{lesson/fragment/navbar::navbar}"></header>
+<header th:replace="~{fragment/navbar :: navbar}"></header>
 
 <main class="container py-5 flex-grow-1 profile-page">
     <section class="profile-main-card">
@@ -44,12 +44,6 @@
                     <div class="form-group mb-3">
                         <label class="font-weight-bold cm-text-main">Date of Birth</label>
                         <input type="date" class="form-control" th:field="${profile.dob}" value="2004-06-11">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group mb-3">
-                        <label class="font-weight-bold cm-text-main">Role</label>
-                        <input type="text" class="form-control profile-readonly" th:field="${profile.userRole}" value="Web Developer" readonly>
                     </div>
                 </div>
             </div>

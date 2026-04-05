@@ -1,23 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-
-<head>
-    <title>CSS Box Model - Markuply</title>
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-    <link rel="stylesheet" th:href="@{/css/theme.css}">
-    <link rel="stylesheet" th:href="@{/css/lesson.css}">
-</head>
-
-<body class="cm-bg cm-page-shell">
-
-    <header th:replace="~{lesson/fragment/navbar :: navbar}"></header>
-
-    <div class="lesson-layout">
-        <aside th:replace="~{lesson/fragment/sidebar :: sidebar}"></aside>
-
-        <main class="lesson-main-content">
-            <div class="lesson-card">
-                <div id="lessonData">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{lesson/fragment/lesson-layout :: main_layout(title='CSS Box Model - Markuply', content=~{::#lessonData})}">
+<body>
+    <div id="lessonData">
                     <h1 class="cm-heading mb-4 lesson-title">CSS Box Model</h1>
                     <p class="lead">All HTML elements can be considered as boxes. In CSS, the term "box model" is used
                         when talking about design and layout.</p>
@@ -43,47 +27,5 @@
                             <div class="mt-2 small">Margin</div>
                         </div>
                     </div>
-
-                    <p>Explanation of the different parts:</p>
-                    <ul class="mb-4" style="line-height: 1.8;">
-                        <li><strong>Content</strong> - The content of the box, where text and images appear</li>
-                        <li><strong>Padding</strong> - Clears an area around the content. The padding is transparent
-                        </li>
-                        <li><strong>Border</strong> - A border that goes around the padding and content</li>
-                        <li><strong>Margin</strong> - Clears an area outside the border. The margin is transparent</li>
-                    </ul>
-
-                    <hr class="my-5">
-
-                    <h2 class="cm-heading mb-3 lesson-section-title">Width and Height of an Element</h2>
-                    <p>In order to set the width and height of an element correctly in all browsers, you need to know
-                        how the box model works.</p>
-
-                    <section class="lesson-example mb-4">
-                        <div class="lesson-example-header">
-                            <h3 class="lesson-example-title">Example:</h3>
-                            <a class="btn btn-sm btn-cm-primary" th:href="@{/compiler}">Try it Yourself</a>
-                        </div>
-                        <div class="lesson-example-body">
-                            <pre class="lesson-codeblock"><code>div {
-  width: 320px;
-  padding: 10px;
-  border: 5px solid gray;
-  margin: 20px;
-}</code></pre>
-                        </div>
-                    </section>
-
-                    <p>Total element width = width + left padding + right padding + left border + right border + left
-                        margin + right margin</p>
-
-                    <div th:replace="~{lesson/fragment/lesson-actions :: lesson-actions}"></div>
-                </div>
-            </div>
-        </main>
-    </div>
-
-    <div th:replace="~{lesson/fragment/notes :: notes}"></div>
 </body>
-
 </html>

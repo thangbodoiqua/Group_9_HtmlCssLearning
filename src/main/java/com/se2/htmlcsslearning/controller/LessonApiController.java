@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 
-@RestController // Thay vì @Controller, dùng @RestController cho API
-@RequestMapping("/api/lesson") // Tách hẳn tiền tố /api ra ngoài
+@RestController
+@RequestMapping("/api/lesson")
 public class LessonApiController {
 
     @Autowired
@@ -20,7 +20,7 @@ public class LessonApiController {
     @PostMapping("/mark-completed")
     public ResponseEntity<?> markAsCompleted(@RequestParam Long lessonId, @RequestParam Integer userId) {
 
-        if (completedRepository.existsByLesson_IdAndUser_Id(lessonId, userId)) {
+        if (completedRepository.existsByLessonIdAndUserId(lessonId, userId)) {
             return ResponseEntity.badRequest().body("Already completed");
         }
 
