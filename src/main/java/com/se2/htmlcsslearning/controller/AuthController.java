@@ -9,7 +9,6 @@ import com.se2.htmlcsslearning.service.AuthService;
 import com.se2.htmlcsslearning.utils.SecurityUtil;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
