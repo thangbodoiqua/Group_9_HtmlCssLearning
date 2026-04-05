@@ -10,6 +10,7 @@ import com.se2.htmlcsslearning.utils.SecurityUtil;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -51,19 +52,21 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public String signupPost(@Validated(SignUpRequest.ValidationOrder.class) @ModelAttribute("signUpRequest") SignUpRequest request,
+    public String signupPost(@Validated @ModelAttribute("signUpRequest") SignUpRequest request,
                              BindingResult bindingResult,
                              Model model,
                              RedirectAttributes redirectAttributes) {
+
+        if (bindingResult.hasErrors()) {
+            String firstError = bindingResult.getAllErrors().getFirst().getDefaultMessage();
+            model.addAttribute("error", firstError);
+            return "auth/signup";
+        }
+
         if (!bindingResult.hasFieldErrors("confirmPassword")
                 && request.getPassword() != null
                 && !request.getPassword().equals(request.getConfirmPassword())) {
             bindingResult.rejectValue("confirmPassword", "error.confirmPassword", "Passwords do not match");
-        }
-        if (bindingResult.hasErrors()) {
-            String firstError = bindingResult.getAllErrors().get(0).getDefaultMessage();
-            model.addAttribute("error", firstError);
-            return "auth/signup";
         }
 
         try {
@@ -78,28 +81,41 @@ public class AuthController {
             return "auth/signup";
         }
     }
+
     @GetMapping("/forget")
-    public String forgotPage(Authentication auth, Model model) {
+    public String forgotPage(Model model) {
         if (SecurityUtil.isAuthenticated()) return "redirect:/";
         if (!model.containsAttribute("forgotPasswordRequest")) {
             model.addAttribute("forgotPasswordRequest", new ForgotPasswordRequest());
         }
         return "auth/forgot-password";
     }
+
     @PostMapping("/forget")
     public String sendOtp(@Valid @ModelAttribute("forgotPasswordRequest") ForgotPasswordRequest request,
                           BindingResult bindingResult,
                           HttpSession session,
                           Model model) {
+
+        if (bindingResult.hasErrors()) {
+            String firstError = bindingResult.getAllErrors().getFirst().getDefaultMessage();
+            model.addAttribute("error", firstError);
+            return "auth/forgot-password";
+        }
+
         try {
             authService.sendOtp(request);
             session.setAttribute("resetEmail", request.getEmail());
             return "redirect:/auth/forget/otp";
+        }catch (UsernameNotFoundException e){
+            model.addAttribute("error", "Email not found");
+            return "auth/forgot-password";
         } catch (Exception e) {
             model.addAttribute("error", "Send otp failed, please try again");
             return "auth/forgot-password";
         }
     }
+
     @GetMapping("/forget/otp")
     public String forgotOtpPage() {
 
@@ -112,15 +128,19 @@ public class AuthController {
                             HttpSession session,
                             Model model) {
 
+        if (bindingResult.hasErrors()) {
+            String firstError = bindingResult.getAllErrors().getFirst().getDefaultMessage();
+            model.addAttribute("error", firstError);
+            return "auth/forgot-password-otp";
+        }
+
         String email = (String) session.getAttribute("resetEmail");
 
         if (email == null) {
             return "redirect:/auth/forget";
         }
+
         request.setEmail(email);
-        if (bindingResult.hasErrors()) {
-            return "auth/forgot-password-otp";
-        }
 
         if (authService.verifyOTP(request)) {
             session.setAttribute("isVerified", true);
@@ -148,7 +168,11 @@ public class AuthController {
                                 BindingResult bindingResult,
                                 HttpSession session,
                                 Model model) {
-        if (bindingResult.hasErrors()) return "auth/forgot-password-reset";
+        if (bindingResult.hasErrors()) {
+            String firstError = bindingResult.getAllErrors().getFirst().getDefaultMessage();
+            model.addAttribute("error", firstError);
+            return "auth/forgot-password-reset";
+        }
 
         if (!request.getConfirmPassword().equals(request.getNewPassword())) {
             model.addAttribute("error", "Confirm  password is not same new password");
