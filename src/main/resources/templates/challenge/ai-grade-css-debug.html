@@ -51,7 +51,7 @@
     </section>
 
     <div class="mt-4 d-flex flex-wrap" style="gap: 10px;">
-      <a th:href="@{/practice/css-debug}" class="btn btn-cm-primary">Try Another</a>
+      <a th:href="@{/practice/css-debug/{title}(title=${submission.challenge.challengeTitle})}" class="btn btn-cm-primary">Try Again</a>
       <a th:href="@{/progress}" class="btn btn-outline-secondary">View My Progress</a>
     </div>
   </main>

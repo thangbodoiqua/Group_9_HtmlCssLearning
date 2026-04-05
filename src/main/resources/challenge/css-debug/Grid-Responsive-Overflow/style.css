@@ -1,0 +1,19 @@
+/* Challenge: This grid should automatically wrap when the screen is small (Responsive) */
+.grid-container {
+    display: grid;
+    /* Error: Fixed sizes cause screen overflow */
+    grid-template-columns: repeat(3, 400px);
+    gap: 20px;
+    padding: 20px;
+}
+
+.grid-item {
+    background: #4a90e2;
+    color: white;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    border-radius: 12px;
+}

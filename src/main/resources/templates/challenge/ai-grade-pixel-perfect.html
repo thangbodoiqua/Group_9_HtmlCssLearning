@@ -61,14 +61,14 @@
     </section>
 
     <section class="ai-pixel-card mt-1">
-      <h2 class="h5 mb-3">AI Feedback</h2>
-      <div class="ai-pixel-feedback-container" style="color: var(--cm-text-main); line-height: 1.6;">
+      <h2 class="h5 mb-3">AI Detailed Feedback</h2>
+      <div class="ai-pixel-feedback-container" style="color: var(--cm-text-main); line-height: 1.6; white-space: pre-wrap;">
         <p th:text="${submission.feedback}">AI feedback details go here...</p>
       </div>
     </section>
 
     <div class="mt-4 d-flex flex-wrap" style="gap: 10px;">
-      <a th:href="@{/practice/pixel-perfect}" class="btn btn-cm-primary">Try Another</a>
+      <a th:href="@{/practice/pixel-perfect/{title}(title=${submission.challenge.challengeTitle})}" class="btn btn-cm-primary">Try Again</a>
       <a th:href="@{/progress}" class="btn btn-outline-secondary">View My Progress</a>
     </div>
   </main>

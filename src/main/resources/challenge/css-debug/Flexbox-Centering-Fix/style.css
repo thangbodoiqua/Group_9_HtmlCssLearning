@@ -1,0 +1,17 @@
+/* Challenge: Center the child element .centered-card */
+.main-container {
+    display: flex;
+    /* Hint: These properties are missing or incorrect to achieve centering */
+    
+    background-color: #f0f2f5;
+    height: 100vh;
+}
+
+.centered-card {
+    padding: 40px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    text-align: center;
+    max-width: 400px;
+}

@@ -24,6 +24,7 @@
   overflow: hidden;
   border: 1px solid #e2e8f0;
 }
+
 .challenge-dropdown-menu.show {
   display: block;
 }
@@ -36,6 +37,7 @@
   color: #64748b;
   text-transform: uppercase;
 }
+
 .dropdown-item {
   display: block;
   padding: 10px 15px;
@@ -45,10 +47,12 @@
   font-weight: 500;
   border-bottom: 1px solid #f1f5f9;
 }
+
 .dropdown-item:hover {
   background: #f1f5f9;
   text-decoration: none;
 }
+
 .dropdown-item.active {
   background: #e0e7ff;
   color: var(--cm-primary);
@@ -187,6 +191,7 @@
     grid-template-columns: 1fr;
     height: auto;
   }
+
   .dark-panel {
     min-height: 400px;
   }

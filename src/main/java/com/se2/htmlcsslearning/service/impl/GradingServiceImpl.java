@@ -32,13 +32,12 @@ public class GradingServiceImpl implements GradingService {
     private ObjectMapper objectMapper;
 
     @Override
-    public GradingResult evaluate(Challenge challenge, String userCode, String modelId, Double visualScore) {
+    public GradingResult evaluate(Challenge challenge, String userCode, String modelId) {
         String type = challenge.getChallengeType().getChallengeType();
         String folderType = type.equals("CSS_DEBUG") ? "css-debug" : "pixel-perfect";
         String challengeName = challenge.getChallengeTitle();
 
         GradingContext context = new GradingContext();
-        context.setVisualScore(visualScore);
         try {
             context.setHtmlTemplate(ResourceReaderUtil.readFile(folderType, challengeName, "index.html"));
             context.setReferenceCss(ResourceReaderUtil.readFile(folderType, challengeName, "solution.css"));
@@ -61,21 +60,43 @@ public class GradingServiceImpl implements GradingService {
         logger.debug("Raw AI Response Content: {}", aiResponse);
 
         try {
-            String cleanedResponse = aiResponse.replaceAll("(?s)```json\\s*", "")
-                    .replaceAll("(?s)```\\s*", "")
-                    .replaceAll("(?s)^.*?(\\{)", "$1")
-                    .replaceAll("(?s)(\\}).*?$", "$1")
-                    .trim();
+            // Comprehensive cleaning for AI responses
+            String cleanedResponse = aiResponse.trim();
+
+            // Remove markdown code blocks if present
+            if (cleanedResponse.contains("```")) {
+                cleanedResponse = cleanedResponse.replaceAll("(?s)```(?:json)?\\n?(.*?)\\n?```", "$1");
+            }
+
+            // Find the first '{' and last '}' to isolate the JSON object
+            int firstBrace = cleanedResponse.indexOf('{');
+            int lastBrace = cleanedResponse.lastIndexOf('}');
+
+            if (firstBrace != -1 && lastBrace != -1 && lastBrace > firstBrace) {
+                cleanedResponse = cleanedResponse.substring(firstBrace, lastBrace + 1);
+            }
 
             logger.info("Cleaned JSON for parsing: {}", cleanedResponse);
 
             @SuppressWarnings("unchecked")
             Map<String, Object> result = objectMapper.copy()
                     .configure(com.fasterxml.jackson.core.JsonParser.Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true)
+                    .configure(com.fasterxml.jackson.core.JsonParser.Feature.ALLOW_SINGLE_QUOTES, true)
+                    .configure(com.fasterxml.jackson.core.JsonParser.Feature.ALLOW_BACKSLASH_ESCAPING_ANY_CHARACTER,
+                            true)
                     .readValue(cleanedResponse, Map.class);
 
             Object scoreObj = result.get("score");
-            int score = (scoreObj instanceof Number) ? ((Number) scoreObj).intValue() : 0;
+            int score = 0;
+            if (scoreObj instanceof Number) {
+                score = ((Number) scoreObj).intValue();
+            } else if (scoreObj instanceof String) {
+                try {
+                    score = Integer.parseInt((String) scoreObj);
+                } catch (NumberFormatException ignored) {
+                }
+            }
+
             String feedback = (String) result.getOrDefault("feedback", "No feedback provided.");
 
             return GradingResult.builder()
@@ -84,8 +105,26 @@ public class GradingServiceImpl implements GradingService {
                     .build();
 
         } catch (Exception e) {
-            logger.error("Failed to process AI response: ", e);
-            throw new RuntimeException("AI Evaluation failed: " + e.getMessage());
+            logger.error("Failed to process AI response. Raw response: " + aiResponse, e);
+            // Fallback for extreme cases: try to extract score with regex
+            return attemptManualExtraction(aiResponse);
+        }
+    }
+
+    private GradingResult attemptManualExtraction(String rawResponse) {
+        try {
+            java.util.regex.Pattern scorePattern = java.util.regex.Pattern.compile("\"score\"\\s*:\\s*(\\d+)");
+            java.util.regex.Matcher matcher = scorePattern.matcher(rawResponse);
+            int score = 0;
+            if (matcher.find()) {
+                score = Integer.parseInt(matcher.group(1));
+            }
+            return GradingResult.builder()
+                    .score(score)
+                    .feedback("Warning: AI response format was invalid. Raw output: " + rawResponse)
+                    .build();
+        } catch (Exception e) {
+            throw new RuntimeException("AI Evaluation failed completely: " + e.getMessage());
         }
     }
 }
