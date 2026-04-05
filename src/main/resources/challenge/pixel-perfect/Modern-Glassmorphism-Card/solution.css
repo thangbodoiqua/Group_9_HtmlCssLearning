@@ -1,0 +1,33 @@
+/* Glassmorphism Card Solution */
+.glass-container {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Outfit', sans-serif;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 40px;
+    border-radius: 20px;
+    width: 350px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.glass-card h2 {
+    margin-top: 0;
+    font-size: 2rem;
+    letter-spacing: 1px;
+}
+
+.glass-card p {
+    font-size: 1rem;
+    line-height: 1.6;
+}

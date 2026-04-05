@@ -1,0 +1,60 @@
+/* Responsive Nav Solution */
+.responsive-nav {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    background: #1a252f;
+    color: white;
+    height: 80px; /* Fixed height for desktop */
+    font-family: 'Outfit', sans-serif;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #3498db;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    margin-left: 30px;
+}
+
+.nav-links li a {
+    color: #bdc3c7;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+    font-weight: 500;
+}
+
+.nav-links li a:hover {
+    color: #3498db;
+}
+
+/* Responsive adjustment */
+@media (max-width: 600px) {
+    .responsive-nav {
+        height: auto;
+        padding: 20px;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .nav-links {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .nav-links li {
+        margin: 0 10px;
+    }
+}

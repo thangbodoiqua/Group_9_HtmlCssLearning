@@ -21,18 +21,20 @@
             <div class="challenge-dropdown-wrapper">
                 <button class="btn btn-outline-light font-weight-bold d-flex align-items-center"
                     onclick="document.getElementById('challengeMenu').classList.toggle('show')">
-                    <span class="mr-2" th:text="${challenge?.challengeTitle} ?: 'Select Challenge'"> Select Challenge</span> <small>▼</small>
+                    <span class="mr-2" th:text="${challenge?.challengeTitle} ?: 'Select Challenge'"> Select
+                        Challenge</span> <small>▼</small>
                 </button>
                 <div id="challengeMenu" class="challenge-dropdown-menu">
                     <div class="dropdown-group-title"> Pixel Perfect</div>
-                    <a th:each="c, iterStat : ${allChallenges}" 
-                       th:href="@{/practice/pixel-perfect/{title}(title=${c.challengeTitle})}" 
-                       th:text="${iterStat.count + '. ' + c.challengeTitle}"
-                       th:class="'dropdown-item ' + (${c.challengeTitle == challenge.challengeTitle} ? 'active' : '')">
+                    <a th:each="c, iterStat : ${allChallenges}"
+                        th:href="@{/practice/pixel-perfect/{title}(title=${c.challengeTitle})}"
+                        th:text="${iterStat.count + '. ' + c.challengeTitle}"
+                        th:class="'dropdown-item ' + (${c.challengeTitle == challenge.challengeTitle} ? 'active' : '')">
                     </a>
                 </div>
             </div>
-            <h5 class="mb-0 text-white font-weight-bold d-none d-sm-block" th:text="'Pixel Perfect: ' + ${challenge?.challengeTitle}">Pixel Perfect Challenge</h5>
+            <h5 class="mb-0 text-white font-weight-bold d-none d-sm-block"
+                th:text="'Pixel Perfect: ' + ${challenge?.challengeTitle}">Pixel Perfect Challenge</h5>
         </div>
 
         <div class="d-flex align-items-center" style="gap: 15px;">
@@ -61,8 +63,10 @@
     <div class="container-fluid px-4 pt-3">
         <div class="alert alert-info practice-requirement mb-0" role="alert">
             <p class="mb-1 font-weight-bold">Practice Goal</p>
-            <p class="mb-0 small">Edit the provided code so the button matches the target design exactly, including the
-                gradient background, spacing, typography, and rounded corners.</p>
+            <p class="mb-0 small" th:text="${challenge?.challengeInstructions}"></p>
+            <hr class="my-2" style="border-top: 1px solid rgba(0,0,0,.1)">
+            <p class="mb-1 font-weight-bold">Hints</p>
+            <p class="mb-0 small" th:text="${challenge?.challengeHints}"></p>
         </div>
     </div>
 
@@ -91,15 +95,14 @@
                 <span>3. Target Reference</span>
             </div>
             <div class="target-stage">
-                <iframe id="targetFrame" th:srcdoc="${solutionCombinedHtml}" style="width: 100%; height: 100%; border: none; background: #ffffff;"></iframe>
+                <iframe id="targetFrame" th:srcdoc="${solutionCombinedHtml}"
+                    style="width: 100%; height: 100%; border: none; background: #ffffff;"></iframe>
             </div>
         </div>
     </div>
 
-    <!-- Monaco Editor & Pixel Diffing Scripts -->
+    <!-- Monaco Editor Script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs/loader.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/resemblejs/5.0.0/resemble.min.js"></script>
     <script th:src="@{/js/challenge-evaluator.js}"></script>
     <script th:inline="javascript">
         let editor;
@@ -110,7 +113,7 @@
         let initialCombined = '';
         const headIdx = rawHtml.indexOf('</head>');
         if (headIdx !== -1) {
-            initialCombined = rawHtml.substring( headIdx) === '' ? rawHtml : rawHtml.substring(0, headIdx) + '<style>\n' + rawCss + '\n</style>\n' + rawHtml.substring(headIdx);
+            initialCombined = rawHtml.substring(headIdx) === '' ? rawHtml : rawHtml.substring(0, headIdx) + '<style>\n' + rawCss + '\n</style>\n' + rawHtml.substring(headIdx);
         } else {
             initialCombined = '<style>\n' + rawCss + '\n</style>\n' + rawHtml;
         }
@@ -140,73 +143,45 @@
             doc.close();
         }
 
-        async function calculateVisualScore() {
-            try {
-                const pBody = document.getElementById('practiceFrame').contentDocument.body;
-                const tBody = document.getElementById('targetFrame').contentDocument.body;
-                
-                const pCanvas = await html2canvas(pBody, { backgroundColor: '#ffffff', width: pBody.scrollWidth, height: pBody.scrollHeight });
-                const tCanvas = await html2canvas(tBody, { backgroundColor: '#ffffff', width: tBody.scrollWidth, height: tBody.scrollHeight });
-
-                return new Promise((resolve) => {
-                    resemble(pCanvas.toDataURL())
-                        .compareTo(tCanvas.toDataURL())
-                        .ignoreAntialiasing()
-                        .onComplete(data => {
-                            const mismatch = Number(data.misMatchPercentage);
-                            let score = 100 - mismatch;
-                            resolve(Math.max(0, score));
-                        });
-                });
-            } catch (e) {
-                console.error("Visual diffing failed", e);
-                return null; // Fallback
-            }
-        }
 
         async function handleAiSubmit() {
             const modelId = document.getElementById('aiModel').value;
             const btnSubmit = document.getElementById('btnSubmit');
             const originalText = btnSubmit.innerHTML;
             const userCode = editor.getValue();
-            
+
             btnSubmit.disabled = true;
-            btnSubmit.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Calculating Diff...';
-            
-            const visualScore = await calculateVisualScore();
-            
             btnSubmit.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Grading...';
 
             const payload = {
                 challengeTitle: challengeTitle,
                 userCode: userCode,
-                visualScore: visualScore,
                 modelId: modelId
             };
-            
+
             fetch('/practice/submit', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
             })
-            .then(response => {
-                if (!response.ok) throw new Error('Submission failed');
-                return response.json();
-            })
-            .then(data => {
-                if (data.success) {
-                    window.location.href = `/practice/result/${data.submissionId}`;
-                } else {
-                    alert("Error: " + data.message);
+                .then(response => {
+                    if (!response.ok) throw new Error('Submission failed');
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        window.location.href = `/practice/result/${data.submissionId}`;
+                    } else {
+                        alert("Error: " + data.message);
+                        resetButton();
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert("Evaluation failed: " + error.message);
                     resetButton();
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert("Evaluation failed: " + error.message);
-                resetButton();
-            });
-            
+                });
+
             function resetButton() {
                 btnSubmit.disabled = false;
                 btnSubmit.innerHTML = originalText;
