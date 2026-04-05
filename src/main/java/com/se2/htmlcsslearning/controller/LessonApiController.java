@@ -20,7 +20,7 @@ public class LessonApiController {
     @PostMapping("/mark-completed")
     public ResponseEntity<?> markAsCompleted(@RequestParam Long lessonId, @RequestParam Integer userId) {
 
-        if (completedRepository.existsByLesson_IdAndUser_Id(lessonId, userId)) {
+        if (completedRepository.existsByLessonIdAndUserId(lessonId, userId)) {
             return ResponseEntity.badRequest().body("Already completed");
         }
 

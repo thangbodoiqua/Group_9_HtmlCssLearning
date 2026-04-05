@@ -6,9 +6,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LessonCompletedRepository extends JpaRepository<LessonCompleted, Long> {
-    boolean existsByLesson_IdAndUser_Id(Long lessonId, Integer userId);
+    boolean existsByLessonIdAndUserId(Long lessonId, Integer userId);
 
-    long countByUser_Id(Integer userId);
+    long countByUserId(Integer userId);
 
-    long countByUser_IdAndLesson_Category_CategoryName(Integer userId, String categoryName);
+    long countByUserIdAndLessonCategoryCategoryName(Integer userId, String categoryName);
 }
