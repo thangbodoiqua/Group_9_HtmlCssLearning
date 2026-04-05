@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 
-@RestController // Thay vì @Controller, dùng @RestController cho API
-@RequestMapping("/api/lesson") // Tách hẳn tiền tố /api ra ngoài
+@RestController
+@RequestMapping("/api/lesson")
 public class LessonApiController {
 
     @Autowired

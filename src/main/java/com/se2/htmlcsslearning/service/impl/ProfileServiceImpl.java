@@ -5,10 +5,9 @@ import com.se2.htmlcsslearning.dto.request.ProfileRequest;
 import com.se2.htmlcsslearning.entity.User;
 import com.se2.htmlcsslearning.repository.UserRepository;
 import com.se2.htmlcsslearning.service.ProfileService;
-import com.se2.htmlcsslearning.utils.SecurityUtils;
+import com.se2.htmlcsslearning.utils.SecurityUtil;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -26,7 +25,7 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     public ProfileRequest getCurrentProfile() {
-        User curUser = SecurityUtils.getCurrentUser();
+        User curUser = SecurityUtil.getCurrentUser();
 
         User user = userRepository.findByEmail(curUser.getEmail())
                 .orElseThrow(() -> new UsernameNotFoundException("User Not Found"));
@@ -54,13 +53,13 @@ public class ProfileServiceImpl implements ProfileService {
 
         userRepository.save(user);
 
-        SecurityUtils.refreshAuthentication(user);
+        SecurityUtil.refreshAuthentication(user);
     }
 
     @Transactional
     @Override
     public boolean changePassword(ChangePasswordRequest request) {
-        User curUser = SecurityUtils.getCurrentUser();
+        User curUser = SecurityUtil.getCurrentUser();
 
         User user = userRepository.findByEmail(curUser.getEmail())
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));

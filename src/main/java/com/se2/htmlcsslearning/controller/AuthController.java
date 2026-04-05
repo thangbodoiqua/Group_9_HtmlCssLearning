@@ -6,9 +6,9 @@ import com.se2.htmlcsslearning.dto.request.SignUpRequest;
 import com.se2.htmlcsslearning.dto.request.VerifyOtpRequest;
 import com.se2.htmlcsslearning.exception.EmailAlreadyExistsException;
 import com.se2.htmlcsslearning.service.AuthService;
+import com.se2.htmlcsslearning.utils.SecurityUtil;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -25,17 +25,11 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
-    private boolean isLoggedIn(Authentication auth) {
-        return auth != null && auth.isAuthenticated()
-                && !(auth instanceof AnonymousAuthenticationToken);
-    }
-
     @GetMapping("/signin")
     public String signinPage(@RequestParam(value = "error", required = false) String error,
                              @RequestParam(value = "logout", required = false) String logout,
-                             Authentication auth,
                              Model model) {
-        if (isLoggedIn(auth)) return "redirect:/";
+        if (SecurityUtil.isAuthenticated()) return "redirect:/";
         if (error != null) {
             model.addAttribute("error", "Invalid email or password.");
             model.asMap().remove("message");
@@ -48,8 +42,8 @@ public class AuthController {
     }
 
     @GetMapping("/signup")
-    public String signupPage(Authentication auth, Model model) {
-        if (isLoggedIn(auth)) return "redirect:/";
+    public String signupPage(Model model) {
+        if (SecurityUtil.isAuthenticated()) return "redirect:/";
         if (!model.containsAttribute("signUpRequest")) {
             model.addAttribute("signUpRequest", new SignUpRequest());
         }
@@ -86,7 +80,7 @@ public class AuthController {
     }
     @GetMapping("/forget")
     public String forgotPage(Authentication auth, Model model) {
-        if (isLoggedIn(auth)) return "redirect:/";
+        if (SecurityUtil.isAuthenticated()) return "redirect:/";
         if (!model.containsAttribute("forgotPasswordRequest")) {
             model.addAttribute("forgotPasswordRequest", new ForgotPasswordRequest());
         }
@@ -98,11 +92,11 @@ public class AuthController {
                           HttpSession session,
                           Model model) {
         try {
-            authService.generateOTP(request);
+            authService.sendOtp(request);
             session.setAttribute("resetEmail", request.getEmail());
             return "redirect:/auth/forget/otp";
         } catch (Exception e) {
-            model.addAttribute("error", e.getMessage());
+            model.addAttribute("error", "Send otp failed, please try again");
             return "auth/forgot-password";
         }
     }
@@ -153,26 +147,29 @@ public class AuthController {
     public String resetPassword(@Valid @ModelAttribute("resetPasswordRequest") ResetPasswordRequest request,
                                 BindingResult bindingResult,
                                 HttpSession session,
-                                RedirectAttributes redirectAttributes, Model model) {
-        String email = (String) session.getAttribute("resetEmail");
-        Boolean isVerified = (Boolean) session.getAttribute("isVerified");
-        if (email == null || isVerified == null || !isVerified) return "redirect:/auth/forget";
+                                Model model) {
+        if (bindingResult.hasErrors()) return "auth/forgot-password-reset";
+
         if (!request.getConfirmPassword().equals(request.getNewPassword())) {
             model.addAttribute("error", "Confirm  password is not same new password");
             return "auth/forgot-password-reset";
         }
-        if (bindingResult.hasErrors()) return "auth/forgot-password-reset";
-        request.setEmail(email);
+
+        String email = (String) session.getAttribute("resetEmail");
+        Boolean isVerified = (Boolean) session.getAttribute("isVerified");
+
+        if (email == null || isVerified == null) return "redirect:/auth/forget";
+
         try {
             authService.resetPassword(request);
-            session.invalidate();
-            redirectAttributes.addFlashAttribute("successMessage", "Password reset successfully. Please sign in.");
+            session.removeAttribute("resetEmail");
             return "redirect:/auth/reset-password-success";
         } catch (Exception e) {
-            bindingResult.reject("globalError", e.getMessage());
+            bindingResult.reject("globalError", "Cannot reset password, please try again");
             return "auth/forgot-password-reset";
         }
     }
+
     @GetMapping("/reset-password-success")
     public String successPage() {
         return "auth/reset-password-success";

@@ -14,7 +14,7 @@ public interface AuthService extends UserDetailsService {
 
     void register(SignUpRequest request);
 
-    String generateOTP(ForgotPasswordRequest request);
+    void sendOtp(ForgotPasswordRequest request) throws Exception;
 
     boolean verifyOTP(VerifyOtpRequest request);
 

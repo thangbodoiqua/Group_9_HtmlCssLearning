@@ -2,12 +2,13 @@ package com.se2.htmlcsslearning.utils;
 
 import com.se2.htmlcsslearning.config.CustomUserDetails;
 import com.se2.htmlcsslearning.entity.User;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
-public class SecurityUtils {
-    private SecurityUtils() {}
+public class SecurityUtil {
+    private SecurityUtil() {}
 
     public static void refreshAuthentication(User updatedUser) {
         Authentication currentAuth = SecurityContextHolder.getContext().getAuthentication();
@@ -28,6 +29,13 @@ public class SecurityUtils {
         );
 
         SecurityContextHolder.getContext().setAuthentication(newAuth);
+    }
+    public static boolean isAuthenticated() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !authentication.isAuthenticated()) {
+            return false;
+        }
+        return !(authentication instanceof AnonymousAuthenticationToken);
     }
 
     public static User getCurrentUser() {

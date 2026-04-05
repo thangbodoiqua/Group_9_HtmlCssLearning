@@ -1,4 +1,4 @@
-package com.se2.htmlcsslearning.controller.dto;
+package com.se2.htmlcsslearning.dto.response;
 
 import lombok.Builder;
 import lombok.Data;

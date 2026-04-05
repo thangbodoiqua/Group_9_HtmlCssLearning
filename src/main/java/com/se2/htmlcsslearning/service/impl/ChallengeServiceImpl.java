@@ -2,8 +2,8 @@ package com.se2.htmlcsslearning.service.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.se2.htmlcsslearning.controller.dto.ChallengeResponse;
-import com.se2.htmlcsslearning.controller.dto.ChallengeSubmissionRequest;
+import com.se2.htmlcsslearning.dto.response.ChallengeResponse;
+import com.se2.htmlcsslearning.dto.response.ChallengeSubmissionRequest;
 import com.se2.htmlcsslearning.entity.Challenge;
 import com.se2.htmlcsslearning.entity.ChallengeSubmission;
 import com.se2.htmlcsslearning.entity.User;
